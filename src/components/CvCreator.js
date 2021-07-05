@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import './cvCreator.css'
 import ExperienceForm from './ExperienceForm';
+import Experience from './Experience';
 import PersonalForm from './PersonalForm';
 import PersonalInfo from './PersonalInfo';
+import SchoolFrom from './SchoolForm';
+import SchoolInfo from './SchoolInfo';
+import LanguageForm from './LanguageForm';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 
@@ -10,60 +16,169 @@ class CvCreator extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            experience: [],
-            address: '',
+            experience: [{
+                position: '',
+                company: '',
+                city: '',
+                dateFrom: '',
+                dateTo: '',
+                id: uuidv4()
+            }],
+            school: [
+                {
+                    degree: '',
+                    schoolName: '',
+                    city: '',
+                    dateFrom: '',
+                    dateTo: '',
+                    id: uuidv4()
+                }
+            ],
+            street: '',
+            place: '',
             telephone: '',
             email: '',
             fullName: '',
             birthDate: '',
             nationality: '',
             status: '',
-            pic: ''
+            pic: '',
+
         }
         this.addExperience = this.addExperience.bind(this);
         this.removeItem = this.removeItem.bind(this);
         this.updateData = this.updateData.bind(this);
+        this.addSchool = this.addSchool.bind(this)
     }
-    removeItem() {
-        let newList = this.state.experience
-        newList.pop()
+    removeItem(id) {
+
         this.setState({
-            experience: newList
-        })
+            experience: this.state.experience.filter(exp => exp.id !== id),
+            school: this.state.school.filter(sc => sc.id !== id)
+        });
 
     }
-    updateData = (target, value) => {
+    updateData = (target, value, id) => {
+        this.setState({
+            experience: this.state.experience.map(obj => {
+                if (obj.id === id) {
+                    return { ...obj, [target]: value }
+                }
+                return obj
+            }),
+            school: this.state.school.map(obj => {
+                if (obj.id === id) {
+                    return { ...obj, [target]: value }
+                }
+                return obj
+            })
+        })
         this.setState({ [target]: value });
+
     };
     addExperience() {
+        let newObj = {
+            position: '',
+            company: '',
+            city: '',
+            dateFrom: '',
+            dateTo: '',
+            id: uuidv4()
+        }
         this.setState(st => ({
-            experience: [...st.experience, 'exp']
+            experience: [...st.experience, newObj],
+
         }))
-        console.log(this.state.experience)
+    }
+    addSchool() {
+        let newSchool = {
+            position: '',
+            company: '',
+            city: '',
+            dateFrom: '',
+            dateTo: '',
+            id: uuidv4()
+        }
+        this.setState(st => ({
+            school: [...st.school, newSchool]
+        }))
     }
     render() {
-        let newFrom = this.state.experience.map(form => (
-            <ExperienceForm add={this.addExperience} removeItem={this.removeItem} />
+        let newExpForm = this.state.experience.map(form => (
+            <ExperienceForm
+                key={form.id}
+                id={form.id}
+                removeItem={this.removeItem}
+                updateData={this.updateData}
+            />
+
+        ))
+        let newExp = this.state.experience.map(form => (
+
+            <Experience
+                key={form.id}
+                id={form.id}
+                position={form.position}
+                company={form.company}
+                city={form.city}
+                dateFrom={form.dateFrom}
+                dateTo={form.dateTo} />
+
+        ))
+
+        let newSchoolForm = this.state.school.map(sc => (
+            <SchoolFrom
+                key={sc.id}
+                id={sc.id}
+                updateData={this.updateData}
+                removeItem={this.removeItem} />
+        ))
+        let newSchoolInfo = this.state.school.map(sc => (
+
+            <SchoolInfo
+                key={sc.id}
+                id={sc.id}
+                degree={sc.degree}
+                school={sc.schoolName}
+                city={sc.city}
+                dateFrom={sc.dateFrom}
+                dateTo={sc.dateTo} />
         ))
         return (
             <div>
                 <div className='Container'>
-                    <PersonalForm updateData={
-                        this.updateData
+                    <div>
+                        <PersonalForm updateData={this.updateData} />
 
-                    } />
+                        <h2>Professional Experience</h2>
+                        {newExpForm}
+                        <button onClick={this.addExperience}>Add</button>
+                        <h2>Education</h2>
+                        {newSchoolForm}
+                        <button onClick={this.addSchool}>Add</button>
+                        <h2>Extra Skill</h2>
+                        <LanguageForm updateData={this.updateData} />
+                    </div>
 
                     <div>
+
                         <PersonalInfo
                             name={this.state.fullName}
-                            address={this.state.address}
+                            street={this.state.street}
+                            place={this.state.place}
                             telephone={this.state.telephone}
                             email={this.state.email}
+                            birthDate={this.state.birthDate}
+                            nationality={this.state.nationality}
+                            status={this.state.status}
+
                         />
+
+
+                        {newExp}
+                        {newSchoolInfo}
+
                     </div>
-                    <ExperienceForm add={this.addExperience} removeItem={this.removeItem} />
-                    {newFrom}
-                    <button onClick={this.addExperience}>Add</button>
 
                 </div>
 

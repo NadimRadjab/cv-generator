@@ -7,7 +7,8 @@ class PersonalForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            address: '',
+            street: '',
+            place: '',
             telephone: '',
             email: '',
             fullName: '',
@@ -37,11 +38,18 @@ class PersonalForm extends Component {
                         placeholder='Name'
                         onChange={this.handleChange} />
 
-                    <input type='text' name='address'
-                        id='address'
-                        value={this.state.address}
-                        placeholder='Adress'
+                    <input type='text' name='street'
+                        id='street'
+                        value={this.state.street}
+                        placeholder='Street'
                         onChange={this.handleChange} />
+
+                    <input type='text' name='place'
+                        id='place'
+                        value={this.state.place}
+                        placeholder='Place'
+                        onChange={this.handleChange} />
+
 
                     <input type='number' name='telephone'
                         id='telephone'
@@ -56,7 +64,7 @@ class PersonalForm extends Component {
                         onChange={this.handleChange} />
 
 
-                    <input type='date' name='birthDate'
+                    <input type='text' name='birthDate'
                         id='birthDate'
                         value={this.state.birthDate}
                         placeholder='BirthDate'

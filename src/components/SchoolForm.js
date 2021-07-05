@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import Experience from './Experience';
 
 
-class ExperienceForm extends Component {
+
+class SchoolForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            position: '',
-            company: '',
+            degree: '',
+            schoolName: '',
             city: '',
             dateFrom: '',
             dateTo: '',
@@ -39,16 +39,16 @@ class ExperienceForm extends Component {
         if (this.state.isDelete) {
             result = <div>
                 <form >
-                    <input type='text' name='position'
-                        id='position'
-                        value={this.state.position}
-                        placeholder='Position'
+                    <input type='text' name='degree'
+                        id='degree'
+                        value={this.state.degree}
+                        placeholder='Degree'
                         onChange={this.handleChange} />
 
-                    <input type='text' name='company'
-                        id='company'
-                        value={this.state.company}
-                        placeholder='Company'
+                    <input type='text' name='schoolName'
+                        id='schoolName'
+                        value={this.state.schoolName}
+                        placeholder='School'
                         onChange={this.handleChange}
                     />
 
@@ -88,4 +88,4 @@ class ExperienceForm extends Component {
 
 
 }
-export default ExperienceForm;
+export default SchoolForm;
