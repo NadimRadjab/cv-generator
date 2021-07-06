@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
-import './cvCreator.css'
+import '../styles/cvCreator.css'
 import ExperienceForm from './ExperienceForm';
 import Experience from './Experience';
 import PersonalForm from './PersonalForm';
 import PersonalInfo from './PersonalInfo';
 import SchoolFrom from './SchoolForm';
 import SchoolInfo from './SchoolInfo';
-import LanguageForm from './LanguageForm';
+import ExtraSkillsFrom from './ExtraSkillsFrom';
+import ExtraSkillsInfo from './ExtraSkillsInfo';
 import { v4 as uuidv4 } from 'uuid';
 
 
 
-
+//Cv Creator Class Main Component
 class CvCreator extends Component {
     constructor(props) {
         super(props)
@@ -34,6 +35,13 @@ class CvCreator extends Component {
                     id: uuidv4()
                 }
             ],
+            skills: [{
+                language: '',
+                level: '',
+                computerSkills: '',
+                driving: '',
+                id: uuidv4()
+            }],
             street: '',
             place: '',
             telephone: '',
@@ -42,40 +50,55 @@ class CvCreator extends Component {
             birthDate: '',
             nationality: '',
             status: '',
-            pic: '',
+            picture: '',
 
         }
         this.addExperience = this.addExperience.bind(this);
         this.removeItem = this.removeItem.bind(this);
         this.updateData = this.updateData.bind(this);
-        this.addSchool = this.addSchool.bind(this)
+        this.addSchool = this.addSchool.bind(this);
+        this.addSkill = this.addSkill.bind(this);
     }
+
+    // Removes a form filters by id
     removeItem(id) {
 
         this.setState({
             experience: this.state.experience.filter(exp => exp.id !== id),
-            school: this.state.school.filter(sc => sc.id !== id)
+            school: this.state.school.filter(sc => sc.id !== id),
+            language: this.state.skills.filter(lan => lan.id !== id)
         });
 
     }
+
+    //updates the data by setting the  state  the function is passed as a prop to the childs components to take there value
     updateData = (target, value, id) => {
         this.setState({
             experience: this.state.experience.map(obj => {
                 if (obj.id === id) {
                     return { ...obj, [target]: value }
                 }
-                return obj
+                return obj;
             }),
             school: this.state.school.map(obj => {
                 if (obj.id === id) {
                     return { ...obj, [target]: value }
                 }
-                return obj
+                return obj;
+            }),
+            skills: this.state.skills.map(obj => {
+                if (obj.id === id) {
+                    return { ...obj, [target]: value }
+                }
+                return obj;
             })
         })
         this.setState({ [target]: value });
 
+
     };
+
+    // Adds a new obj to the exp array
     addExperience() {
         let newObj = {
             position: '',
@@ -90,6 +113,7 @@ class CvCreator extends Component {
 
         }))
     }
+    // Adds a new school obj to the school array
     addSchool() {
         let newSchool = {
             position: '',
@@ -102,8 +126,23 @@ class CvCreator extends Component {
         this.setState(st => ({
             school: [...st.school, newSchool]
         }))
+
+    }
+    // Adds a new skill obj to the skills array
+    addSkill() {
+        let newSkill = {
+            language: '',
+            level: '',
+            computerSkills: '',
+            driving: '',
+            id: uuidv4()
+        }
+        this.setState(st => ({
+            skills: [...st.skills, newSkill]
+        }))
     }
     render() {
+        /// Creates elements for the amount of items in the given array
         let newExpForm = this.state.experience.map(form => (
             <ExperienceForm
                 key={form.id}
@@ -124,7 +163,7 @@ class CvCreator extends Component {
                 dateFrom={form.dateFrom}
                 dateTo={form.dateTo} />
 
-        ))
+        ));
 
         let newSchoolForm = this.state.school.map(sc => (
             <SchoolFrom
@@ -132,7 +171,7 @@ class CvCreator extends Component {
                 id={sc.id}
                 updateData={this.updateData}
                 removeItem={this.removeItem} />
-        ))
+        ));
         let newSchoolInfo = this.state.school.map(sc => (
 
             <SchoolInfo
@@ -143,44 +182,59 @@ class CvCreator extends Component {
                 city={sc.city}
                 dateFrom={sc.dateFrom}
                 dateTo={sc.dateTo} />
-        ))
+        ));
+        let newLanguageFrom = this.state.skills.map(lan => (
+            <ExtraSkillsFrom
+                key={lan.id}
+                id={lan.id}
+                updateData={this.updateData}
+                removeItem={this.removeItem} />
+        ));
+        let newLanguageInfo = this.state.skills.map(lan => (
+            <ExtraSkillsInfo
+                key={lan.id}
+                id={lan.id}
+                language={lan.language}
+                level={lan.level}
+                computer={lan.computerSkills}
+                driving={lan.driving} />
+        ));
         return (
-            <div>
-                <div className='Container'>
-                    <div>
-                        <PersonalForm updateData={this.updateData} />
+            <div className='Cv-container'>
 
-                        <h2>Professional Experience</h2>
-                        {newExpForm}
-                        <button onClick={this.addExperience}>Add</button>
-                        <h2>Education</h2>
-                        {newSchoolForm}
-                        <button onClick={this.addSchool}>Add</button>
-                        <h2>Extra Skill</h2>
-                        <LanguageForm updateData={this.updateData} />
-                    </div>
+                <div className='Cv-forms'>
+                    <PersonalForm updateData={this.updateData} />
+                    <h2>Professional Experience</h2>
+                    {newExpForm}
+                    <button onClick={this.addExperience}>Add</button>
+                    <h2>Education</h2>
+                    {newSchoolForm}
+                    <button onClick={this.addSchool}>Add</button>
+                    <h2>Extra Skill</h2>
+                    {newLanguageFrom}
+                    <button onClick={this.addSkill}>Add</button>
+                </div>
 
-                    <div>
+                <div className='Cv-infos'>
 
-                        <PersonalInfo
-                            name={this.state.fullName}
-                            street={this.state.street}
-                            place={this.state.place}
-                            telephone={this.state.telephone}
-                            email={this.state.email}
-                            birthDate={this.state.birthDate}
-                            nationality={this.state.nationality}
-                            status={this.state.status}
+                    <PersonalInfo
+                        name={this.state.fullName}
+                        street={this.state.street}
+                        place={this.state.place}
+                        telephone={this.state.telephone}
+                        email={this.state.email}
+                        birthDate={this.state.birthDate}
+                        nationality={this.state.nationality}
+                        status={this.state.status}
 
-                        />
+                    />
 
-
-                        {newExp}
-                        {newSchoolInfo}
-
-                    </div>
+                    {newExp}
+                    {newSchoolInfo}
+                    {newLanguageInfo}
 
                 </div>
+
 
 
             </div>

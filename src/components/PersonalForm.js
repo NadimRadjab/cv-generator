@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PersonalInfo from './PersonalInfo';
-import './PersonalForm.css'
+import '../styles/PersonalForm.css'
 
 
 class PersonalForm extends Component {
@@ -15,7 +15,7 @@ class PersonalForm extends Component {
             birthDate: '',
             nationality: '',
             status: '',
-            pic: ''
+            picture: ''
 
         }
         this.handleChange = this.handleChange.bind(this);
@@ -29,7 +29,7 @@ class PersonalForm extends Component {
     render() {
 
         return (
-            <div className='List-form'>
+            <div className=''>
                 <h2>Personal Information</h2>
                 <form>
                     <input type='text' name='fullName'
@@ -80,6 +80,12 @@ class PersonalForm extends Component {
                         id='status'
                         value={this.state.status}
                         placeholder='Status'
+                        onChange={this.handleChange} />
+
+                    <input type='file' name='picture'
+                        id='picture'
+                        value={this.state.picture}
+                        placeholder='Picture'
                         onChange={this.handleChange} />
                 </form>
 
