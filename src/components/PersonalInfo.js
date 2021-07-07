@@ -15,6 +15,8 @@ class PersonalInfo extends Component {
                 <p>{this.props.birthDate}</p>
                 <p>{this.props.nationality}</p>
                 <p>{this.props.status}</p>
+                <img src={this.props.picture}
+                    alt='cv picture' />
             </div>
         )
     }

@@ -19,12 +19,25 @@ class PersonalForm extends Component {
 
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleFile = this.handleFile.bind(this);
     }
+
     handleChange(e) {
         this.props.updateData(e.target.name, e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+    handleFile(e) {
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.addEventListener('load', () => {
+            this.setState({
+                picture: reader.result
+            })
+            this.props.updateFile(e.target.name, reader.result)
+        })
+
     }
     render() {
 
@@ -82,11 +95,13 @@ class PersonalForm extends Component {
                         placeholder='Status'
                         onChange={this.handleChange} />
 
+                    <label htmlFor='picture'>Add a Photo</label>
                     <input type='file' name='picture'
                         id='picture'
-                        value={this.state.picture}
+
                         placeholder='Picture'
-                        onChange={this.handleChange} />
+                        accept='image/*'
+                        onChange={this.handleFile} />
                 </form>
 
 

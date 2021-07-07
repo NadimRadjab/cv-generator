@@ -9,8 +9,8 @@ import SchoolInfo from './SchoolInfo';
 import ExtraSkillsFrom from './ExtraSkillsFrom';
 import ExtraSkillsInfo from './ExtraSkillsInfo';
 import { v4 as uuidv4 } from 'uuid';
-
-
+import { PDFViewer } from '@react-pdf/renderer';
+import Pdf from "react-to-pdf";
 
 //Cv Creator Class Main Component
 class CvCreator extends Component {
@@ -56,6 +56,7 @@ class CvCreator extends Component {
         this.addExperience = this.addExperience.bind(this);
         this.removeItem = this.removeItem.bind(this);
         this.updateData = this.updateData.bind(this);
+        this.updateFile = this.updateFile.bind(this);
         this.addSchool = this.addSchool.bind(this);
         this.addSkill = this.addSkill.bind(this);
     }
@@ -97,6 +98,13 @@ class CvCreator extends Component {
 
 
     };
+    updateFile = (target, value) => {
+
+        this.setState({
+            [target]: value
+        })
+    };
+
 
     // Adds a new obj to the exp array
     addExperience() {
@@ -149,6 +157,7 @@ class CvCreator extends Component {
                 id={form.id}
                 removeItem={this.removeItem}
                 updateData={this.updateData}
+
             />
 
         ))
@@ -199,11 +208,12 @@ class CvCreator extends Component {
                 computer={lan.computerSkills}
                 driving={lan.driving} />
         ));
+
         return (
             <div className='Cv-container'>
 
                 <div className='Cv-forms'>
-                    <PersonalForm updateData={this.updateData} />
+                    <PersonalForm updateData={this.updateData} updateFile={this.updateFile} />
                     <h2>Professional Experience</h2>
                     {newExpForm}
                     <button onClick={this.addExperience}>Add</button>
@@ -215,26 +225,30 @@ class CvCreator extends Component {
                     <button onClick={this.addSkill}>Add</button>
                 </div>
 
-                <div className='Cv-infos'>
+                <Pdf >
+                    {({ toPdf, targetRef }) => (
+                        <div className='Cv-infos' ref={targetRef}>
 
-                    <PersonalInfo
-                        name={this.state.fullName}
-                        street={this.state.street}
-                        place={this.state.place}
-                        telephone={this.state.telephone}
-                        email={this.state.email}
-                        birthDate={this.state.birthDate}
-                        nationality={this.state.nationality}
-                        status={this.state.status}
+                            <PersonalInfo
+                                name={this.state.fullName}
+                                street={this.state.street}
+                                place={this.state.place}
+                                telephone={this.state.telephone}
+                                email={this.state.email}
+                                birthDate={this.state.birthDate}
+                                nationality={this.state.nationality}
+                                status={this.state.status}
+                                picture={this.state.picture}
 
-                    />
+                            />
 
-                    {newExp}
-                    {newSchoolInfo}
-                    {newLanguageInfo}
-
-                </div>
-
+                            {newExp}
+                            {newSchoolInfo}
+                            {newLanguageInfo}
+                            <button onClick={toPdf}>PDF</button>
+                        </div>
+                    )}
+                </Pdf>
 
 
             </div>
