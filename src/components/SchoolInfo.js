@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../styles/SchoolInfo.css'
 
 class SchoolInfo extends Component {
     constructor(props) {
@@ -6,12 +7,12 @@ class SchoolInfo extends Component {
     }
     render() {
         return (
-            <div>
-                <h2>{this.props.degree}</h2>
-                <p>{this.props.school}</p>
-                <p>{this.props.city}</p>
-                <p>{this.props.dateFrom}</p>
-                <p>{this.props.dateTo}</p>
+            <div className='SchoolInfo-itmes'>
+                <p id='degreeTag'>{this.props.degree}</p>
+                <p id='schoolTag'>{this.props.school} {this.props.city}</p>
+
+                <p id='dateTagSchool'>{this.props.dateFrom} - {this.props.dateTo}</p>
+
             </div>
         )
     }

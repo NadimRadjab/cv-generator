@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 
 
 
-class ExtraSkillsFrom extends Component {
+class LanguageFrom extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            computerSkills: '',
-            driving: '',
+            language: '',
+            level: '',
             isDelete: true
         }
         this.handleClick = this.handleClick.bind(this);
@@ -36,22 +36,28 @@ class ExtraSkillsFrom extends Component {
         if (this.state.isDelete) {
             result = <div>
                 <form >
-                    <input type='text' name='computerSkills'
-                        id='computerSkills'
-                        value={this.state.computerSkills}
-                        placeholder='Computer Skills'
-                        onChange={this.handleChange} />
 
 
-                    <input type='text' name='driving'
-                        id='driving'
-                        value={this.state.driving}
-                        placeholder='Driving Licence'
+                    <input type='text' name='language'
+                        id='language'
+                        value={this.state.language}
+                        placeholder='Language'
                         onChange={this.handleChange} />
+
+                    <select value={this.state.level}
+                        name='level'
+                        id='level'
+                        onChange={this.handleChange}>
+                        <option value='Beginner' >Beginner</option>
+                        <option value='Intermediate' >Intermediate</option>
+                        <option value='Upper-intermediate'>Upper-intermediate </option>
+                        <option value='Proficient/Fluent'>Proficient/Fluent</option>
+                        <option value='Native'>Native</option>
+                    </select>
 
 
                 </form>
-
+                <button onClick={this.handleClick}>Delete</button>
 
             </div >
         } else {
@@ -66,4 +72,4 @@ class ExtraSkillsFrom extends Component {
 
 
 }
-export default ExtraSkillsFrom;
+export default LanguageFrom;

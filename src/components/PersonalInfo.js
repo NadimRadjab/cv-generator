@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../styles/PersonalInfo.css'
 
 class PersonalInfo extends Component {
     constructor(props) {
@@ -6,17 +7,39 @@ class PersonalInfo extends Component {
     }
     render() {
         return (
-            <div>
-                <h1>{this.props.name}</h1>
-                <h3>{this.props.street}</h3>
-                <h3>{this.props.place}</h3>
-                <p>{this.props.telephone}</p>
-                <p>{this.props.email}</p>
-                <p>{this.props.birthDate}</p>
-                <p>{this.props.nationality}</p>
-                <p>{this.props.status}</p>
-                <img src={this.props.picture}
-                    alt='cv picture' />
+            <div class="PersonalInfo">
+                <div className='PersonalInfo-title-container'>
+                    <h2>{this.props.name}</h2>
+                    <div className='PersonalInfo-title'>
+
+                        <p id='street'>{this.props.street}</p>
+                        <li id='place'>{this.props.place}</li>
+                        <p id='mobil'>Mobil: {this.props.telephone}</p>
+                        <li id='email'>E-Mail: {this.props.email}</li>
+                    </div>
+                </div>
+                <div className='PersonalInfo-info'>
+                    <div className='profilePic'>
+                        <h3>Personal Information</h3>
+                        <img src={this.props.picture}
+                            alt='cv picture' />
+                    </div>
+
+                    <div className='PersonalInfo-itmes'>
+
+                        <p id='nameTag' >Name: </p>
+                        <p id='birthTag'>BirthDate: </p>
+                        <p id='nationalityTag'>Nationality:</p>
+                        <p id='statusTag'>Status:</p>
+                        <p id='name'>{this.props.name}</p>
+                        <p id='birthdateInfo'>{this.props.birthDate}</p>
+                        <p id='nationalityInfo'>{this.props.nationality}</p>
+                        <p id='statusInfo'> {this.props.status}</p>
+                    </div>
+                </div>
+
+
+
             </div>
         )
     }

@@ -1,0 +1,134 @@
+.PersonalInfo{
+    width: 100%;
+}
+.PersonalInfo-title{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto minmax(10px, 10px);
+    height: 20px;
+}
+.PersonalInfo-title-container{
+position: relative;
+left: 70px;
+bottom: 20px;
+    height: 110px;
+    width: 85%;
+    border-bottom: black 2px solid;
+    margin-top: 0;
+}
+.PersonalInfo-title-container h2{
+    position: relative;
+    top:20px;
+    height: 15px;
+    left: 10px;
+}
+
+#street{
+    position: relative;
+    right: 10px;
+justify-self: end;
+align-self: start;
+height: 10px;
+
+}
+#place{
+    height: 10px;
+    justify-self: start;
+    
+}
+#mobil{
+    height: 10px;
+    justify-self: end;
+    position: relative;
+    right: 10px;
+    bottom: 5px;
+    align-self: baseline;
+}
+#email{
+    position: relative;
+    bottom: 5px;
+    height: 10px;
+    justify-self: start;
+    align-self: baseline;
+}
+.PersonalInfo-info{
+    position: relative;
+    bottom: 5px;
+}
+.PersonalInfo-info img{
+width: 170px;
+height: 170px;
+}
+.profilePic{  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+     justify-content: space-evenly;
+}
+.profilePic h3{
+    margin-top: 100px;
+  margin-right: 90px;
+    text-decoration: underline;
+}
+.profilePic img{
+    margin-top: 30px;
+  margin-left: 100px;
+   
+}
+.PersonalInfo-itmes{
+    display: grid;
+    position: relative;
+    bottom: 70px;
+    justify-items: start;
+    grid-template-columns: repeat(2,1fr);
+}
+#nameTag{
+    
+    position: relative;
+    left: 60px;
+}
+#birthTag{
+    bottom: 20px;
+    position: relative;
+    left: 60px;
+}
+#nationalityTag{
+    bottom: 40px;
+    position: relative;
+    left: 60px;
+}
+#statusTag{
+    bottom: 60px;
+    position: relative;
+    left: 60px;
+}
+#name{ 
+    font-weight: bold;
+  position: relative;
+  right: 80px;
+    grid-column: 2/2;
+    grid-row: 1;
+}
+#birthdateInfo{
+    bottom: 20px;
+    position: relative;
+    right: 80px;
+    grid-column: 2/2;
+    grid-row: 2;
+}
+#nationalityInfo{
+    bottom: 40px;
+    position: relative;
+    right: 80px;
+    grid-column: 2/2;
+    grid-row: 3;
+}
+#statusInfo{
+    bottom: 60px;
+    position: relative;
+    right: 80px;
+    grid-column: 2/2;
+    grid-row: 4;
+}

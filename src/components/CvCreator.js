@@ -6,51 +6,59 @@ import PersonalForm from './PersonalForm';
 import PersonalInfo from './PersonalInfo';
 import SchoolFrom from './SchoolForm';
 import SchoolInfo from './SchoolInfo';
+import LanguageFrom from './LanguageForm';
 import ExtraSkillsFrom from './ExtraSkillsFrom';
 import ExtraSkillsInfo from './ExtraSkillsInfo';
 import { v4 as uuidv4 } from 'uuid';
-import { PDFViewer } from '@react-pdf/renderer';
+import placeholder from "../imgs/placeholder.png";
+import LanguageInfo from './LanguageInfo';
 import Pdf from "react-to-pdf";
 
 //Cv Creator Class Main Component
 class CvCreator extends Component {
+
     constructor(props) {
         super(props)
+
         this.state = {
             experience: [{
-                position: '',
-                company: '',
-                city: '',
-                dateFrom: '',
-                dateTo: '',
+                position: 'Produktions',
+                company: 'Ktl Center Mhk helibron sarmak',
+                city: 'Harrmanns',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
                 id: uuidv4()
             }],
             school: [
                 {
-                    degree: '',
-                    schoolName: '',
-                    city: '',
-                    dateFrom: '',
-                    dateTo: '',
+                    degree: 'Umweltddiplom-Ingenierurmeister',
+                    schoolName: 'Technischeuniversität,',
+                    city: 'Varna (Bulgarien)',
+                    dateFrom: '09/2005',
+                    dateTo: ' 06/2003',
                     id: uuidv4()
                 }
             ],
             skills: [{
-                language: '',
-                level: '',
                 computerSkills: '',
                 driving: '',
                 id: uuidv4()
             }],
-            street: '',
-            place: '',
-            telephone: '',
-            email: '',
-            fullName: '',
-            birthDate: '',
-            nationality: '',
-            status: '',
-            picture: '',
+            languages: [{
+                language: '',
+                level: '',
+                id: uuidv4()
+            }],
+
+            street: 'Volklinger str 5',
+            place: '46117 Oberhausen',
+            telephone: '0177732333',
+            email: 'krio@abv.bg',
+            fullName: 'Kiro Ivan',
+            birthDate: '19 /05 /2020',
+            nationality: 'bulgarian',
+            status: 'single',
+            picture: placeholder
 
         }
         this.addExperience = this.addExperience.bind(this);
@@ -58,7 +66,7 @@ class CvCreator extends Component {
         this.updateData = this.updateData.bind(this);
         this.updateFile = this.updateFile.bind(this);
         this.addSchool = this.addSchool.bind(this);
-        this.addSkill = this.addSkill.bind(this);
+        this.addLanguage = this.addLanguage.bind(this);
     }
 
     // Removes a form filters by id
@@ -67,7 +75,7 @@ class CvCreator extends Component {
         this.setState({
             experience: this.state.experience.filter(exp => exp.id !== id),
             school: this.state.school.filter(sc => sc.id !== id),
-            language: this.state.skills.filter(lan => lan.id !== id)
+            languages: this.state.languages.filter(lan => lan.id !== id)
         });
 
     }
@@ -88,6 +96,12 @@ class CvCreator extends Component {
                 return obj;
             }),
             skills: this.state.skills.map(obj => {
+                if (obj.id === id) {
+                    return { ...obj, [target]: value }
+                }
+                return obj;
+            }),
+            languages: this.state.languages.map(obj => {
                 if (obj.id === id) {
                     return { ...obj, [target]: value }
                 }
@@ -137,16 +151,14 @@ class CvCreator extends Component {
 
     }
     // Adds a new skill obj to the skills array
-    addSkill() {
-        let newSkill = {
+    addLanguage() {
+        let newLanguage = {
             language: '',
             level: '',
-            computerSkills: '',
-            driving: '',
             id: uuidv4()
         }
         this.setState(st => ({
-            skills: [...st.skills, newSkill]
+            languages: [...st.languages, newLanguage]
         }))
     }
     render() {
@@ -192,19 +204,33 @@ class CvCreator extends Component {
                 dateFrom={sc.dateFrom}
                 dateTo={sc.dateTo} />
         ));
-        let newLanguageFrom = this.state.skills.map(lan => (
-            <ExtraSkillsFrom
+        let newLanguageFrom = this.state.languages.map(lan => (
+            <LanguageFrom
                 key={lan.id}
                 id={lan.id}
                 updateData={this.updateData}
                 removeItem={this.removeItem} />
         ));
-        let newLanguageInfo = this.state.skills.map(lan => (
-            <ExtraSkillsInfo
+        let newSkillFrom = this.state.skills.map(sk => (
+
+            <ExtraSkillsFrom
+                key={sk.id}
+                id={sk.id}
+                updateData={this.updateData}
+            />
+        ));
+
+        let newLanguageInfo = this.state.languages.map(lan => (
+            <LanguageInfo
                 key={lan.id}
                 id={lan.id}
                 language={lan.language}
-                level={lan.level}
+                level={lan.level} />
+        ));
+        let newSkillInfo = this.state.skills.map(lan => (
+            <ExtraSkillsInfo
+                key={lan.id}
+                id={lan.id}
                 computer={lan.computerSkills}
                 driving={lan.driving} />
         ));
@@ -221,30 +247,40 @@ class CvCreator extends Component {
                     {newSchoolForm}
                     <button onClick={this.addSchool}>Add</button>
                     <h2>Extra Skill</h2>
+                    {newSkillFrom}
                     {newLanguageFrom}
-                    <button onClick={this.addSkill}>Add</button>
+                    <button onClick={this.addLanguage}>Add</button>
                 </div>
 
                 <Pdf >
                     {({ toPdf, targetRef }) => (
                         <div className='Cv-infos' ref={targetRef}>
+                            <div className='PersonalInfo-container'>
+                                <PersonalInfo
+                                    name={this.state.fullName}
+                                    street={this.state.street}
+                                    place={this.state.place}
+                                    telephone={this.state.telephone}
+                                    email={this.state.email}
+                                    birthDate={this.state.birthDate}
+                                    nationality={this.state.nationality}
+                                    status={this.state.status}
+                                    picture={this.state.picture}
+                                />
+                            </div>
+                            <div className='Exp'>
+                                <h3>Professional Experience</h3>
+                                {newExp}</div>
+                            <div className='School'>
+                                <h3>Education</h3>
+                                {newSchoolInfo}
+                            </div>
+                            <div className='ExtraSkills'>
+                                <h3>Extra Skills</h3>
+                                {newSkillInfo}
+                                {newLanguageInfo}
+                            </div>
 
-                            <PersonalInfo
-                                name={this.state.fullName}
-                                street={this.state.street}
-                                place={this.state.place}
-                                telephone={this.state.telephone}
-                                email={this.state.email}
-                                birthDate={this.state.birthDate}
-                                nationality={this.state.nationality}
-                                status={this.state.status}
-                                picture={this.state.picture}
-
-                            />
-
-                            {newExp}
-                            {newSchoolInfo}
-                            {newLanguageInfo}
                             <button onClick={toPdf}>PDF</button>
                         </div>
                     )}

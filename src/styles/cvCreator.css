@@ -22,3 +22,36 @@ flex-direction: row;
     margin-bottom: 0.5cm;
     box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
 }
+.PersonalInfo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Exp{
+    position: relative;
+    bottom: 100px;
+}
+.Exp h3{
+     position: relative;
+     right: 190px;
+  
+     text-decoration: underline;
+}
+.School{
+    position: relative;
+    bottom: 100px;
+}
+.School h3{
+    position: relative;
+    right: 250px;
+    text-decoration: underline;
+}
+.ExtraSkills{
+    position: relative;
+    bottom: 100px;
+}
+.ExtraSkills{
+    position: relative;
+    right: 250px;
+    text-decoration: underline;
+}

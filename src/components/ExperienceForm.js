@@ -58,14 +58,14 @@ class ExperienceForm extends Component {
                         placeholder='City'
                         onChange={this.handleChange} />
 
-                    <input type='date' name='dateFrom'
+                    <input type='text' name='dateFrom'
                         id='dateFrom'
                         value={this.state.dateFrom}
                         placeholder='DateFrom'
                         onChange={this.handleChange} />
 
 
-                    <input type='date' name='dateTo'
+                    <input type='text' name='dateTo'
                         id='dateTo'
                         value={this.state.dateTo}
                         placeholder='DateTo'
