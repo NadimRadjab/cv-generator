@@ -12,29 +12,32 @@
 .PersonalInfo-title-container{
 position: relative;
 left: 70px;
-bottom: 20px;
-    height: 110px;
+  bottom: 20px;
+    height: 80px;
     width: 85%;
     border-bottom: black 2px solid;
     margin-top: 0;
 }
 .PersonalInfo-title-container h2{
     position: relative;
-    top:20px;
+    top:10px;
     height: 15px;
     left: 10px;
 }
 
 #street{
     position: relative;
-    right: 10px;
+    right: 20px;
+    bottom: 10px;
 justify-self: end;
 align-self: start;
 height: 10px;
 
 }
 #place{
+    position: relative;
     height: 10px;
+    bottom: 10px;
     justify-self: start;
     
 }
@@ -42,13 +45,13 @@ height: 10px;
     height: 10px;
     justify-self: end;
     position: relative;
-    right: 10px;
-    bottom: 5px;
+    right: 20px;
+    bottom: 30px;
     align-self: baseline;
 }
 #email{
     position: relative;
-    bottom: 5px;
+    bottom: 30px;
     height: 10px;
     justify-self: start;
     align-self: baseline;
@@ -68,7 +71,8 @@ height: 170px;
      justify-content: space-evenly;
 }
 .profilePic h3{
-    margin-top: 100px;
+    margin-top: 30px;
+    height: 20px;
   margin-right: 90px;
     text-decoration: underline;
 }
@@ -80,7 +84,7 @@ height: 170px;
 .PersonalInfo-itmes{
     display: grid;
     position: relative;
-    bottom: 70px;
+    bottom: 150px;
     justify-items: start;
     grid-template-columns: repeat(2,1fr);
 }
@@ -107,28 +111,28 @@ height: 170px;
 #name{ 
     font-weight: bold;
   position: relative;
-  right: 80px;
+  right: 150px;
     grid-column: 2/2;
     grid-row: 1;
 }
 #birthdateInfo{
     bottom: 20px;
     position: relative;
-    right: 80px;
+    right: 150px;
     grid-column: 2/2;
     grid-row: 2;
 }
 #nationalityInfo{
     bottom: 40px;
     position: relative;
-    right: 80px;
+    right: 150px;
     grid-column: 2/2;
     grid-row: 3;
 }
 #statusInfo{
     bottom: 60px;
     position: relative;
-    right: 80px;
+    right: 150px;
     grid-column: 2/2;
     grid-row: 4;
 }

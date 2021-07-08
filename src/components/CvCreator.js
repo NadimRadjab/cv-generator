@@ -7,8 +7,8 @@ import PersonalInfo from './PersonalInfo';
 import SchoolFrom from './SchoolForm';
 import SchoolInfo from './SchoolInfo';
 import LanguageFrom from './LanguageForm';
-import ExtraSkillsFrom from './ExtraSkillsFrom';
-import ExtraSkillsInfo from './ExtraSkillsInfo';
+import ComputerForm from './ComputerForm';
+import ComputerInfo from './ComputerInfo';
 import { v4 as uuidv4 } from 'uuid';
 import placeholder from "../imgs/placeholder.png";
 import LanguageInfo from './LanguageInfo';
@@ -28,6 +28,52 @@ class CvCreator extends Component {
                 dateFrom: '04/2018',
                 dateTo: '04/2020',
                 id: uuidv4()
+
+            },
+            {
+                position: 'Reinigung',
+                company: 'Leale Francesco Gebäudereinigung ',
+                city: 'Heilbronn',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
+                id: uuidv4()
+
+            },
+            {
+                position: 'Hausfrau',
+                company: 'Heilbronn',
+                city: '',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
+                id: uuidv4()
+
+            },
+            {
+                position: 'Verkaufsberater',
+                company: 'MAT Star',
+                city: 'Varna (Bulgarien)',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
+                id: uuidv4()
+
+            },
+            {
+                position: 'Verkaufsberater',
+                company: 'Optik , Hristovi OOD ',
+                city: ' Varna (Bulgarien)',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
+                id: uuidv4()
+
+            },
+            {
+                position: 'Beratender Chemiker in Wasserversorgnug-Trinkwasseraufbereitungundprüfung- Umweltingenieur-Laborassistent in chemischen Labor',
+                company: 'DEVEN OOD-SOLVAY SODI',
+                city: 'Varna (Bulgarien)',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
+                id: uuidv4()
+
             }],
             school: [
                 {
@@ -37,28 +83,50 @@ class CvCreator extends Component {
                     dateFrom: '09/2005',
                     dateTo: ' 06/2003',
                     id: uuidv4()
+                },
+                {
+                    degree: 'Technischeuniversität',
+                    schoolName: 'Technischeuniversität,',
+                    city: 'Varna (Bulgarien)',
+                    dateFrom: '09/2005',
+                    dateTo: ' 06/2003',
+                    id: uuidv4()
                 }
             ],
-            skills: [{
-                computerSkills: '',
-                driving: '',
+            computerSkill: [{
+                computerSkills: 'Windows,Mac OS,MS Office',
                 id: uuidv4()
             }],
             languages: [{
-                language: '',
-                level: '',
+                language: 'English',
+                level: 'Advanced',
                 id: uuidv4()
-            }],
+            }, {
+                language: 'Bulgarisch',
+                level: 'Advanced',
+                id: uuidv4()
+            },
+            {
+                language: 'Russisch',
+                level: 'Advanced',
+                id: uuidv4()
+            },
+            {
+                language: 'Deutsch',
+                level: 'Advanced',
+                id: uuidv4()
+            },],
 
             street: 'Volklinger str 5',
             place: '46117 Oberhausen',
             telephone: '0177732333',
             email: 'krio@abv.bg',
-            fullName: 'Kiro Ivan',
-            birthDate: '19 /05 /2020',
+            fullName: 'Kiro Ivan PEtur mishov',
+            birthDate: '22.08.1968 in Varna, Bulgarien',
             nationality: 'bulgarian',
             status: 'single',
-            picture: placeholder
+            picture: placeholder,
+            drivingLicences: 'Klassen AM und B'
 
         }
         this.addExperience = this.addExperience.bind(this);
@@ -67,6 +135,8 @@ class CvCreator extends Component {
         this.updateFile = this.updateFile.bind(this);
         this.addSchool = this.addSchool.bind(this);
         this.addLanguage = this.addLanguage.bind(this);
+        this.addComputerSkill = this.addComputerSkill.bind(this);
+        this.updateDriving = this.updateDriving.bind(this);
     }
 
     // Removes a form filters by id
@@ -79,7 +149,12 @@ class CvCreator extends Component {
         });
 
     }
-
+    //updates the driving state
+    updateDriving(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
     //updates the data by setting the  state  the function is passed as a prop to the childs components to take there value
     updateData = (target, value, id) => {
         this.setState({
@@ -95,7 +170,7 @@ class CvCreator extends Component {
                 }
                 return obj;
             }),
-            skills: this.state.skills.map(obj => {
+            computerSkill: this.state.computerSkill.map(obj => {
                 if (obj.id === id) {
                     return { ...obj, [target]: value }
                 }
@@ -150,7 +225,7 @@ class CvCreator extends Component {
         }))
 
     }
-    // Adds a new skill obj to the skills array
+    // Adds a language  obj to the language array
     addLanguage() {
         let newLanguage = {
             language: '',
@@ -159,6 +234,17 @@ class CvCreator extends Component {
         }
         this.setState(st => ({
             languages: [...st.languages, newLanguage]
+        }))
+    }
+    // Adds a new computer obj to the computer array
+    addComputerSkill() {
+        let newComputer = {
+            computerSkills: '',
+
+            id: uuidv4()
+        }
+        this.setState(st => ({
+            computerSkill: [...st.computerSkill, newComputer]
         }))
     }
     render() {
@@ -211,9 +297,8 @@ class CvCreator extends Component {
                 updateData={this.updateData}
                 removeItem={this.removeItem} />
         ));
-        let newSkillFrom = this.state.skills.map(sk => (
-
-            <ExtraSkillsFrom
+        let newComputerForm = this.state.computerSkill.map(sk => (
+            <ComputerForm
                 key={sk.id}
                 id={sk.id}
                 updateData={this.updateData}
@@ -227,12 +312,12 @@ class CvCreator extends Component {
                 language={lan.language}
                 level={lan.level} />
         ));
-        let newSkillInfo = this.state.skills.map(lan => (
-            <ExtraSkillsInfo
+        let newComputerInfo = this.state.computerSkill.map(lan => (
+            <ComputerInfo
                 key={lan.id}
                 id={lan.id}
                 computer={lan.computerSkills}
-                driving={lan.driving} />
+            />
         ));
 
         return (
@@ -247,9 +332,20 @@ class CvCreator extends Component {
                     {newSchoolForm}
                     <button onClick={this.addSchool}>Add</button>
                     <h2>Extra Skill</h2>
-                    {newSkillFrom}
+                    {newComputerForm}
+                    <button onClick={this.addComputerSkill}>Add</button>
                     {newLanguageFrom}
                     <button onClick={this.addLanguage}>Add</button>
+                    <form>
+                        <input type='text'
+                            name='drivingLicences'
+                            id='drivingLicences'
+                            key={uuidv4}
+                            onChange={this.updateDriving}
+                            value={this.state.drivingLicences}
+                            placeholder='Driving Licences'
+                            maxLength='22' />
+                    </form>
                 </div>
 
                 <Pdf >
@@ -277,17 +373,32 @@ class CvCreator extends Component {
                             </div>
                             <div className='ExtraSkills'>
                                 <h3>Extra Skills</h3>
-                                {newSkillInfo}
-                                {newLanguageInfo}
-                            </div>
+                                <div className='skillGrid'>
+                                    <div className='LanInfo'>
+                                        <span id='lanSpan'>Languages:</span>
+                                        {newLanguageInfo}
 
+                                    </div>
+                                    <div className='SkillInfo'>
+                                        <span id='computerSpan'>Computer skills:</span>
+
+                                        {newComputerInfo}
+                                    </div>
+                                    <div className='drivingContainer'>
+                                        <span id='drivingSpan'>Driving Licence:</span>
+                                        <p id='driving'>{this.state.drivingLicences}</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
                             <button onClick={toPdf}>PDF</button>
                         </div>
                     )}
                 </Pdf>
 
 
-            </div>
+            </div >
         )
     }
 }

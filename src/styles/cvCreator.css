@@ -29,7 +29,7 @@ flex-direction: row;
 }
 .Exp{
     position: relative;
-    bottom: 100px;
+    bottom: 200px;
 }
 .Exp h3{
      position: relative;
@@ -39,7 +39,7 @@ flex-direction: row;
 }
 .School{
     position: relative;
-    bottom: 100px;
+    bottom: 210px;
 }
 .School h3{
     position: relative;
@@ -48,10 +48,79 @@ flex-direction: row;
 }
 .ExtraSkills{
     position: relative;
-    bottom: 100px;
+    bottom: 235px;
 }
-.ExtraSkills{
+.skillGrid{
+ 
+}
+.ExtraSkills h3{
     position: relative;
     right: 250px;
     text-decoration: underline;
 }
+#lanSpan{
+    position: relative;
+    top: 50px;
+    right: 300px;
+
+}
+#computerSpan{
+    position: relative;
+    top: 20px;
+    right: 285px;
+
+}
+.drivingContainer{
+    grid-column: 2/2;
+}
+#drivingSpan{
+  
+    grid-row: 2/2;
+    /* position: relative;
+    top: 15px;
+    right: 235px; */
+}
+
+
+.LanInfo{
+    position: relative;
+
+bottom: 55px;
+
+
+}
+.SkillInfo{
+
+    position: relative;
+    left: 350px;
+    bottom: 140px;
+
+}
+#computer{
+    position: relative;
+    bottom: 30px;
+    left:68px;
+
+}
+.computer-info{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 25px;
+    justify-content: space-evenly;
+    position: relative;
+    top: 17px;
+ }
+ .drivingContainer{
+   
+ }
+ #driving{
+  
+    position: relative;
+    bottom: 35px; 
+    left: 155px;
+ }
+ .drivingContainer{
+    position: relative;
+    bottom: 130px; 
+    left: 65px;
+ }

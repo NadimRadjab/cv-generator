@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
+import '../styles/cvCreator.css'
 
 
-
-class ExtraSkillsFrom extends Component {
+class ComputerForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
             computerSkills: '',
-            driving: '',
             isDelete: true
         }
         this.handleClick = this.handleClick.bind(this);
@@ -33,6 +32,7 @@ class ExtraSkillsFrom extends Component {
     }
     render() {
         let result;
+
         if (this.state.isDelete) {
             result = <div>
                 <form >
@@ -40,14 +40,9 @@ class ExtraSkillsFrom extends Component {
                         id='computerSkills'
                         value={this.state.computerSkills}
                         placeholder='Computer Skills'
+                        maxlength="25"
                         onChange={this.handleChange} />
 
-
-                    <input type='text' name='driving'
-                        id='driving'
-                        value={this.state.driving}
-                        placeholder='Driving Licence'
-                        onChange={this.handleChange} />
 
 
                 </form>
@@ -66,4 +61,4 @@ class ExtraSkillsFrom extends Component {
 
 
 }
-export default ExtraSkillsFrom;
+export default ComputerForm;

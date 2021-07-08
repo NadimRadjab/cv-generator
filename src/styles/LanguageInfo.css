@@ -1,0 +1,18 @@
+.languages-info{
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+height: 25px;
+justify-content: space-evenly;
+position: relative;
+top: 17px;
+
+
+}
+#levels{
+position: relative;
+right: 250px;
+}
+#languageP{
+    position: relative;
+right: 40px; 
+}
