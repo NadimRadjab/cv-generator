@@ -145,7 +145,8 @@ class CvCreator extends Component {
         this.setState({
             experience: this.state.experience.filter(exp => exp.id !== id),
             school: this.state.school.filter(sc => sc.id !== id),
-            languages: this.state.languages.filter(lan => lan.id !== id)
+            languages: this.state.languages.filter(lan => lan.id !== id),
+            computerSkill: this.state.computerSkill.filter(lan => lan.id !== id)
         });
 
     }
@@ -204,12 +205,12 @@ class CvCreator extends Component {
             dateFrom: '',
             dateTo: '',
             id: uuidv4()
-        }
+        };
         this.setState(st => ({
             experience: [...st.experience, newObj],
 
-        }))
-    }
+        }));
+    };
     // Adds a new school obj to the school array
     addSchool() {
         let newSchool = {
@@ -222,9 +223,9 @@ class CvCreator extends Component {
         }
         this.setState(st => ({
             school: [...st.school, newSchool]
-        }))
+        }));
 
-    }
+    };
     // Adds a language  obj to the language array
     addLanguage() {
         let newLanguage = {
@@ -234,8 +235,8 @@ class CvCreator extends Component {
         }
         this.setState(st => ({
             languages: [...st.languages, newLanguage]
-        }))
-    }
+        }));
+    };
     // Adds a new computer obj to the computer array
     addComputerSkill() {
         let newComputer = {
@@ -246,8 +247,10 @@ class CvCreator extends Component {
         this.setState(st => ({
             computerSkill: [...st.computerSkill, newComputer]
         }))
-    }
+    };
+
     render() {
+
         /// Creates elements for the amount of items in the given array
         let newExpForm = this.state.experience.map(form => (
             <ExperienceForm
@@ -302,6 +305,7 @@ class CvCreator extends Component {
                 key={sk.id}
                 id={sk.id}
                 updateData={this.updateData}
+                removeItem={this.removeItem}
             />
         ));
 
@@ -319,85 +323,107 @@ class CvCreator extends Component {
                 computer={lan.computerSkills}
             />
         ));
+        const ref = React.createRef();
 
         return (
-            <div className='Cv-container'>
+            <div>
 
-                <div className='Cv-forms'>
-                    <PersonalForm updateData={this.updateData} updateFile={this.updateFile} />
-                    <h2>Professional Experience</h2>
-                    {newExpForm}
-                    <button onClick={this.addExperience}>Add</button>
-                    <h2>Education</h2>
-                    {newSchoolForm}
-                    <button onClick={this.addSchool}>Add</button>
-                    <h2>Extra Skill</h2>
-                    {newComputerForm}
-                    <button onClick={this.addComputerSkill}>Add</button>
-                    {newLanguageFrom}
-                    <button onClick={this.addLanguage}>Add</button>
-                    <form>
-                        <input type='text'
-                            name='drivingLicences'
-                            id='drivingLicences'
-                            key={uuidv4}
-                            onChange={this.updateDriving}
-                            value={this.state.drivingLicences}
-                            placeholder='Driving Licences'
-                            maxLength='22' />
-                    </form>
-                </div>
+                <div className='Title'><h1>Cv-Creator</h1></div>
+                <div className='Cv-container'>
 
-                <Pdf >
-                    {({ toPdf, targetRef }) => (
-                        <div className='Cv-infos' ref={targetRef}>
-                            <div className='PersonalInfo-container'>
-                                <PersonalInfo
-                                    name={this.state.fullName}
-                                    street={this.state.street}
-                                    place={this.state.place}
-                                    telephone={this.state.telephone}
-                                    email={this.state.email}
-                                    birthDate={this.state.birthDate}
-                                    nationality={this.state.nationality}
-                                    status={this.state.status}
-                                    picture={this.state.picture}
-                                />
-                            </div>
-                            <div className='Exp'>
-                                <h3>Professional Experience</h3>
-                                {newExp}</div>
-                            <div className='School'>
-                                <h3>Education</h3>
-                                {newSchoolInfo}
-                            </div>
-                            <div className='ExtraSkills'>
-                                <h3>Extra Skills</h3>
-                                <div className='skillGrid'>
-                                    <div className='LanInfo'>
-                                        <span id='lanSpan'>Languages:</span>
-                                        {newLanguageInfo}
+                    <div className='Cv-forms'>
+                        <PersonalForm updateData={this.updateData} updateFile={this.updateFile} />
+                        <h2>Professional Experience</h2>
+                        {newExpForm}
+                        <button onClick={this.addExperience}>Add</button>
+                        <h2>Education</h2>
+                        {newSchoolForm}
+                        <button onClick={this.addSchool}>Add</button>
+                        <h2>Extra Skill</h2>
+                        {newComputerForm}
+                        <button onClick={this.addComputerSkill}>Add</button>
+                        {newLanguageFrom}
+                        <button onClick={this.addLanguage}>Add</button>
+                        <form>
+                            <input type='text'
+                                name='drivingLicences'
+                                id='drivingLicences'
+                                key={uuidv4}
+                                onChange={this.updateDriving}
+                                value={this.state.drivingLicences}
+                                placeholder='Driving Licences'
+                                maxLength='22' />
+                        </form>
+                        <div><Pdf targetRef={ref} filename="Cv.pdf" >
 
-                                    </div>
-                                    <div className='SkillInfo'>
-                                        <span id='computerSpan'>Computer skills:</span>
+                            {({ toPdf }) => (
+                                <button onClick={toPdf}>Generate pdf</button>
+                            )}
 
-                                        {newComputerInfo}
-                                    </div>
-                                    <div className='drivingContainer'>
-                                        <span id='drivingSpan'>Driving Licence:</span>
-                                        <p id='driving'>{this.state.drivingLicences}</p>
-                                    </div>
-                                </div>
+                        </Pdf></div>
+                    </div>
 
 
-                            </div>
-                            <button onClick={toPdf}>PDF</button>
+
+                    <div div className='Cv-infos' ref={ref}>
+
+                        <div className='PersonalInfo-container'>
+                            <PersonalInfo
+                                name={this.state.fullName}
+                                street={this.state.street}
+                                place={this.state.place}
+                                telephone={this.state.telephone}
+                                email={this.state.email}
+                                birthDate={this.state.birthDate}
+                                nationality={this.state.nationality}
+                                status={this.state.status}
+                                picture={this.state.picture}
+                            />
                         </div>
-                    )}
-                </Pdf>
+                        <div className='Exp'>
+                            <h3>Professional Experience</h3>
+                            {newExp}</div>
+                        <div className='School'>
+                            <h3>Education</h3>
+                            {newSchoolInfo}
+                        </div>
+                        <div className='ExtraSkills'>
+                            <h3>Extra Skills</h3>
+                            <div className='skillGrid'>
+                                <div className='LanInfo'>
+                                    <span id='lanSpan'>Languages:</span>
+                                    <div>
+                                        {newLanguageInfo}
+                                    </div>
 
 
+                                </div>
+                                <div className='SkillInfo'>
+                                    <span id='computerSpan'>Computer skills:</span>
+                                    <div className='computer-info'>
+                                        {newComputerInfo}
+
+                                    </div>
+
+                                </div>
+                                {/* <div className='drivingContainer'>
+                                    <span id='drivingSpan'>Driving Licence:</span>
+                                    <p id='driving'>{this.state.drivingLicences}</p>
+                                </div> */}
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div >
+                <div className='footer'>
+                    <footer>
+                        <p>Created By Nadim Radjab
+                        </p></footer>
+                </div>
             </div >
         )
     }

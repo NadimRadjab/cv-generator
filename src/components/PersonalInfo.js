@@ -7,7 +7,7 @@ class PersonalInfo extends Component {
     }
     render() {
         return (
-            <div class="PersonalInfo">
+            <div className="PersonalInfo">
                 <div className='PersonalInfo-title-container'>
                     <h2>{this.props.name}</h2>
                     <div className='PersonalInfo-title'>

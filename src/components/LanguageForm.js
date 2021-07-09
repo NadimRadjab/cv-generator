@@ -40,7 +40,7 @@ class LanguageFrom extends Component {
 
                     <input type='text' name='language'
                         id='language'
-                        maxlength="15"
+                        maxLength="15"
                         value={this.state.language}
                         placeholder='Language'
                         onChange={this.handleChange} />

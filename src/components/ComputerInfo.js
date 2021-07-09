@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import '../styles/cvCreator.css'
 
 class ComputerInfo extends Component {
-
+    constructor(props) {
+        super(props)
+    }
     render() {
 
         return (
-            <div className='computer-info'>
+            <div >
                 <p className='computerP' id='computer'>{this.props.computer}</p>
 
             </div>

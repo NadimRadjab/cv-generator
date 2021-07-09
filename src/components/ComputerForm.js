@@ -40,14 +40,13 @@ class ComputerForm extends Component {
                         id='computerSkills'
                         value={this.state.computerSkills}
                         placeholder='Computer Skills'
-                        maxlength="25"
+                        maxLength="25"
+
                         onChange={this.handleChange} />
-
-
 
                 </form>
 
-
+                <button onClick={this.handleClick}>Delete</button>
             </div >
         } else {
             result = <div>
