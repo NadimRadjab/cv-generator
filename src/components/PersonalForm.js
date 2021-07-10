@@ -43,7 +43,7 @@ class PersonalForm extends Component {
 
         return (
             <div className='PersonalForm'>
-                <h2>Personal Information</h2>
+                <h2>{this.props.titleT}</h2>
                 <form className='row g-2'>
 
                     <label className="col-sm-1 col-form-label" htmlFor='fullName'>Name</label>
@@ -53,18 +53,18 @@ class PersonalForm extends Component {
                         placeholder='Name'
                         onChange={this.handleChange} />
 
-                    <label className="col-sm-1 col-form-label" htmlFor='street'>Street</label>
+                    <label className="col-sm-1 col-form-label" htmlFor='street'>{this.props.streetT}</label>
                     <input className="form-control" type='text' name='street'
                         id='street'
                         value={this.state.street}
-                        placeholder='Street'
+                        placeholder={this.props.streetT}
                         onChange={this.handleChange} />
 
-                    <label className="col-sm-1 col-form-label" htmlFor='place'>Place</label>
+                    <label className="col-sm-1 col-form-label" htmlFor='place'>{this.props.placeT}</label>
                     <input className="form-control" type='text' name='place'
                         id='place'
                         value={this.state.place}
-                        placeholder='Place'
+                        placeholder={this.props.placeT}
                         onChange={this.handleChange} />
 
                     <label className="col-sm-1 col-form-label" htmlFor='telephone'>Telephone</label>
@@ -81,25 +81,25 @@ class PersonalForm extends Component {
                         placeholder='Email'
                         onChange={this.handleChange} />
 
-                    <label className="col-sm-1 col-form-label" htmlFor='birthDate'>Birth Date</label>
+                    <label className="col-sm-1 col-form-label" htmlFor='birthDate'>{this.props.birthDateT}</label>
                     <input className="form-control" type='text' name='birthDate'
                         id='birthDate'
                         value={this.state.birthDate}
-                        placeholder='BirthDate'
+                        placeholder={this.props.birthDateT}
                         onChange={this.handleChange} />
 
-                    <label className="col-sm-1 col-form-label" htmlFor='nationality'>Nationality</label>
+                    <label className="col-sm-1 col-form-label" htmlFor='nationality'>{this.props.nationalityT}</label>
                     <input className="form-control" type='text' name='nationality'
                         id='nationality'
                         value={this.state.nationality}
-                        placeholder='Nationality'
+                        placeholder={this.props.nationalityT}
                         onChange={this.handleChange} />
 
-                    <label className="col-sm-1 col-form-label" htmlFor='status'>Status</label>
+                    <label className="col-sm-1 col-form-label" htmlFor='status'>{this.props.statusT}</label>
                     <input className="form-control" type='text' name='status'
                         id='status'
                         value={this.state.status}
-                        placeholder='Status'
+                        placeholder={this.props.statusT}
                         onChange={this.handleChange} />
 
                     <label htmlFor='picture' id='picLabel'>Add a Photo</label>

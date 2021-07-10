@@ -38,43 +38,44 @@ class ExperienceForm extends Component {
         let result;
         if (this.state.isDelete) {
             result = <div className='ExperienceForm'>
+                <h2>{this.props.titelT}</h2>
                 <form className='row g-2' >
                     <div className='col-sm-5'>
-                        <label className="col-sm-3  col-form-label" htmlFor='position'>Position</label>
+                        <label className="col-sm-3  col-form-label" htmlFor='position'>{this.props.positionT}</label>
                         <input className="form-control" type='text' name='position'
                             id='position'
                             value={this.state.position}
-                            placeholder='Position'
+                            placeholder={this.props.positionT}
                             onChange={this.handleChange} />
-                        <label className="col-sm-3  col-form-label" htmlFor='company'>Company</label>
+                        <label className="col-sm-3  col-form-label" htmlFor='company'>{this.props.companyT}</label>
                         <input className="form-control" type='text' name='company'
                             id='company'
                             value={this.state.company}
-                            placeholder='Company'
+                            placeholder={this.props.companyT}
                             onChange={this.handleChange}
                         />
-                        <label className="col-sm-3  col-form-label" htmlFor='city'>City</label>
+                        <label className="col-sm-3  col-form-label" htmlFor='city'>{this.props.cityT}</label>
                         <input className="form-control" type='text' name='city'
                             id='city'
                             value={this.state.city}
-                            placeholder='City'
+                            placeholder={this.props.cityT}
                             onChange={this.handleChange} />
                     </div>
 
 
                     <div className='col-sm-5'>
-                        <label className="col-sm-4  col-form-label" htmlFor='dateFrom'>Date From</label>
+                        <label className="col-sm-4  col-form-label" htmlFor='dateFrom'>{this.props.dateFromT}</label>
                         <input className="form-control" type='text' name='dateFrom'
                             id='dateFrom'
                             value={this.state.dateFrom}
-                            placeholder='DateFrom'
+                            placeholder={this.props.dateFromT}
                             onChange={this.handleChange} />
 
-                        <label className="col-sm-3 col-form-label" htmlFor='dateTo'>Date To</label>
+                        <label className="col-sm-3 col-form-label" htmlFor='dateTo'>{this.props.dateToT}</label>
                         <input className="form-control" type='text' name='dateTo'
                             id='dateTo'
                             value={this.state.dateTo}
-                            placeholder='DateTo'
+                            placeholder={this.props.dateToT}
                             onChange={this.handleChange} />
                     </div>
 

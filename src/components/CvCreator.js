@@ -20,32 +20,63 @@ import Pdf from "react-to-pdf";
 //Cv Creator Class Main Component
 class CvCreator extends Component {
     static defaultProps = {
+        personalInfoEng: [{
+            titleEng: 'Personal Information',
+            nameEng: 'Name',
+            streetEng: 'Street',
+            placeEng: 'Zip/City',
+            birthDateEng: 'Birth Date',
+            emailEng: 'Email',
+            mobilEng: 'Mobil',
+            statusEng: 'Status',
+            nationalityEng: 'Nationality'
+        }],
         personalInfoGerm: [{
+            titleGerman: 'Persönliche Angaben',
             nameGerman: 'Name',
             streetGerman: 'Strasse',
-            placeGerman: 'Ort,Stadt',
+            placeGerman: 'Ort/Stadt',
             birthDateGerman: 'Geburtsdaten',
             emailGerman: 'email',
             mobilGerman: 'mobil',
             statusGerman: 'Familienstand',
             nationalityGerman: 'Nationalität'
         }],
-        ExpInfoGerm: [{
+        ExpInfoEng: {
+            titleEng: 'Professional Experience ',
+            positionEng: 'Position',
+            companyEng: 'Company',
+            cityEng: 'City',
+            dateFromEng: 'From',
+            dateToEng: 'Until',
+
+        },
+        ExpInfoGerm: {
+            titleGerman: 'Berufliche Erfahrungen',
             positionGerman: 'Position',
             companyGerman: 'Firma',
             cityGerman: 'Stadt',
             dateFromGerman: 'von',
             dateToGerman: 'bis',
 
-        }],
-        SchoolInfoGerm: [{
-            degreeGerman: 'ausbuildung',
+        },
+
+        SchoolInfoGerm: {
+            degreeGerman: 'Ausbildung',
             schoolGerman: 'Schulname',
             cityGerman: 'Stadt',
             dateFromGerman: 'von',
             dateToGerman: 'bis',
 
-        }],
+        },
+        SchoolInfoEng: {
+            degreeEng: 'Degree',
+            schoolEng: 'School Name',
+            cityEng: 'City',
+            dateFromEng: 'From',
+            dateToEng: 'Until',
+
+        },
         computerInfoGerm: [{
             computerGerman: 'EDV-Kenntnisse:',
 
@@ -63,6 +94,7 @@ class CvCreator extends Component {
         super(props)
 
         this.state = {
+            isGerman: false,
             experience: [{
                 position: 'Produktions',
                 company: 'Ktl Center Mhk helibron sarmak',
@@ -118,13 +150,19 @@ class CvCreator extends Component {
         this.addComputerSkill = this.addComputerSkill.bind(this);
         this.updateDriving = this.updateDriving.bind(this);
         this.resetForm = this.resetForm.bind(this);
+        this.changeLanguage = this.changeLanguage.bind(this);
     }
 
-
+    //Chage the language
+    changeLanguage() {
+        this.setState({
+            isGerman: true
+        })
+    }
     //Resets the form inputs
     resetForm() {
         this.setState({
-            isGerman: false,
+
             experience: [{
                 position: 'Produktions',
                 company: 'Ktl Center Mhk helibron sarmak',
@@ -275,6 +313,114 @@ class CvCreator extends Component {
     };
 
     render() {
+        let translateGermanPersonal;
+        let translateExp;
+        let translateSchool;
+        if (this.state.isGerman === true) {
+            translateGermanPersonal = this.props.personalInfoGerm.map(el => (
+                <PersonalForm updateData={this.updateData} updateFile={this.updateFile}
+                    streetT={el.streetGerman}
+                    placeT={el.placeGerman}
+                    birthDateT={el.birthDateGerman}
+                    statusT={el.statusGerman}
+                    nationalityT={el.nationalityGerman}
+                    titleT={el.titleGerman} />
+            ))
+
+
+
+        } else {
+            translateGermanPersonal = this.props.personalInfoEng.map(el => (
+                <PersonalForm updateData={this.updateData} updateFile={this.updateFile}
+                    streetT={el.streetEng}
+                    placeT={el.placeEng}
+                    birthDateT={el.birthDateEng}
+                    statusT={el.statusEng}
+                    nationalityT={el.nationalityEng}
+                    titleT={el.titleEng} />
+            ))
+
+
+        }
+
+
+        if (this.state.isGerman === true) {
+            translateExp = this.state.experience.map(form => (
+
+                <ExperienceForm
+                    key={form.id}
+                    id={form.id}
+                    removeItem={this.removeItem}
+                    updateData={this.updateData}
+                    positionT={this.props.ExpInfoGerm.positionGerman}
+                    companyT={this.props.ExpInfoGerm.companyGerman}
+                    cityT={this.props.ExpInfoGerm.cityGerman}
+                    dateFromT={this.props.ExpInfoGerm.dateFromGerman}
+                    dateToT={this.props.ExpInfoGerm.dateToGerman}
+                    titelT={this.props.ExpInfoGerm.titleGerman}
+                />
+
+
+
+            ))
+        } else {
+            translateExp = this.state.experience.map(form => (
+                translateExp = <ExperienceForm
+                    key={form.id}
+                    id={form.id}
+                    removeItem={this.removeItem}
+                    updateData={this.updateData}
+                    positionT={this.props.ExpInfoEng.positionEng}
+                    companyT={this.props.ExpInfoEng.companyEng}
+                    cityT={this.props.ExpInfoEng.cityEng}
+                    dateFromT={this.props.ExpInfoEng.dateFromEng}
+                    dateToT={this.props.ExpInfoEng.dateToEng}
+                    titelT={this.props.ExpInfoEng.titleEng}
+
+                />
+
+            ))
+
+        }
+        if (this.state.isGerman === true) {
+            translateSchool = this.state.school.map(form => (
+
+                <SchoolFrom
+                    key={form.id}
+                    id={form.id}
+                    removeItem={this.removeItem}
+                    updateData={this.updateData}
+                    positionT={this.props.SchoolInfoGerm.degreeGerman}
+                    companyT={this.props.SchoolInfoGerm.schoolGerman}
+                    cityT={this.props.SchoolInfoGerm.cityGerman}
+                    dateFromT={this.props.SchoolInfoGerm.dateFromGerman}
+                    dateToT={this.props.SchoolInfoGerm.dateToGerman}
+                    titelT={this.props.SchoolInfoGerm.titleGerman}
+                />
+
+
+
+            ))
+        } else {
+            translateSchool = this.state.experience.map(form => (
+                translateSchool = <SchoolFrom
+                    key={form.id}
+                    id={form.id}
+                    removeItem={this.removeItem}
+                    updateData={this.updateData}
+                    positionT={this.props.SchoolInfoEng.degreeEng}
+                    companyT={this.props.SchoolInfoEng.schoolEng}
+                    cityT={this.props.SchoolInfoEng.cityEng}
+                    dateFromT={this.props.SchoolInfoEng.dateFromEng}
+                    dateToT={this.props.SchoolInfoEng.dateToEng}
+                    titelT={this.props.SchoolInfoEng.titleEng}
+
+                />
+
+            ))
+
+        }
+
 
         /// Creates elements for the amount of items in the given array
         let newExpForm = this.state.experience.map(form => (
@@ -358,18 +504,20 @@ class CvCreator extends Component {
                 <div className='Cv-container'>
 
                     <div className='Cv-forms'>
+                        {translateGermanPersonal}
+                        {/* <PersonalForm updateData={this.updateData} updateFile={this.updateFile} /> */}
 
-                        <PersonalForm updateData={this.updateData} updateFile={this.updateFile} />
 
 
-                        <h2>Professional Experience</h2>
                         <div className='Define'>
-                            {newExpForm}
+                            {translateExp}
+                            {/* {newExpForm} */}
                             <button className="btn btn-info" onClick={this.addExperience}>Add</button>
                         </div>
                         <h2>Education</h2>
                         <div className='Define'>
-                            {newSchoolForm}
+                            {translateSchool}
+                            {/* {newSchoolForm} */}
                             <button className="btn btn-info" onClick={this.addSchool}>Add</button>
                         </div>
                         <div className='Define'>
