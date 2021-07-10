@@ -37,26 +37,26 @@ class LanguageFrom extends Component {
             result = <div className='LanForm'>
                 <form className='row g-4'>
                     <div className='col-sm-5'>
-                        <label className="col-sm-2  col-form-label" htmlFor='language'>Language</label>
+                        <label className="col-sm-2  col-form-label" htmlFor='language'>{this.props.languageT}</label>
                         <input className="form-control" type='text' name='language'
                             id='language'
                             maxLength="15"
                             value={this.state.language}
-                            placeholder='Language'
+                            placeholder={this.props.languageT}
                             onChange={this.handleChange} />
                     </div >
 
                     <div className='col-sm-5'>
-                        <label className="col-sm-2  col-form-label" htmlFor='level'>Level</label>
+                        <label className="col-sm-2  col-form-label" htmlFor='level'>{this.props.levelT}</label>
                         <select className="form-select" value={this.state.level}
                             name='level'
                             id='level'
                             onChange={this.handleChange}>
-                            <option value='Beginner' >Beginner</option>
-                            <option value='Intermediate' >Intermediate</option>
-                            <option value='Advanced'>Advanced </option>
-                            <option value='Proficient/Fluent'>Proficient/Fluent</option>
-                            <option value='Native'>Native</option>
+                            <option value='Beginner' >{this.props.beginnerT}</option>
+                            <option value='Intermediate' >{this.props.intermediateT}</option>
+                            <option value='Advanced'>{this.props.advancedT}</option>
+                            <option value='Proficient/Fluent'>{this.props.proficientT}</option>
+                            <option value='Native'>{this.props.nativeT}</option>
                         </select>
 
                     </div >

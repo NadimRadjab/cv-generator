@@ -36,14 +36,14 @@ class ComputerForm extends Component {
         if (this.state.isDelete) {
             result = <div className="ComputerFrom">
                 <form >
-                    <label className="col-sm-10  col-form-label" htmlFor='computerSkills'>Computer Skills</label>
+                    <label className="col-sm-10  col-form-label" htmlFor='computerSkills'>{this.props.computerT}</label>
                     <input className="form-control" style={{
                         width: '200px', backgroundColor: '#9ac0d4',
                         borderColor: '#9ac0d4'
                     }} type='text' name='computerSkills'
                         id='computerSkills'
                         value={this.state.computerSkills}
-                        placeholder='Computer Skills'
+                        placeholder={this.props.computerT}
                         maxLength="25"
 
                         onChange={this.handleChange} />

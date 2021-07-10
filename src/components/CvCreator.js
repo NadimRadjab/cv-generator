@@ -62,6 +62,7 @@ class CvCreator extends Component {
         },
 
         SchoolInfoGerm: {
+            titleGerman: 'Schulausbildung',
             degreeGerman: 'Ausbildung',
             schoolGerman: 'Schulname',
             cityGerman: 'Stadt',
@@ -70,6 +71,7 @@ class CvCreator extends Component {
 
         },
         SchoolInfoEng: {
+            titleEng: 'Education',
             degreeEng: 'Degree',
             schoolEng: 'School Name',
             cityEng: 'City',
@@ -77,17 +79,36 @@ class CvCreator extends Component {
             dateToEng: 'Until',
 
         },
-        computerInfoGerm: [{
-            computerGerman: 'EDV-Kenntnisse:',
+        computerInfoGerm: {
+            computerGerman: 'EDV-Kenntnisse',
 
 
-        }],
-        languageInfoGerm: [{
-            languageGerman: 'Sprachen:',
-            levelGerman: 'Niveau'
+        },
+        computerInfoEng: {
+            computerEng: 'Coumputer Skills',
 
 
-        }]
+        },
+        languageInfoGerm: {
+            languageGerman: 'Sprachen',
+            levelGerman: 'Niveau',
+            beginnerGerman: 'Anfänger',
+            intermediateGerman: 'Mittlere',
+            advancedGerman: 'Fortgeschritten',
+            fluentGerman: 'Kompetent/Fließend',
+            motherGerman: 'Muttersprache',
+
+        },
+        languageInfoEng: {
+            languageEng: 'Language',
+            levelEng: 'Level',
+            beginnerEng: 'Beginner',
+            intermediateEng: 'Intermediate',
+            advancedEng: 'Advanced',
+            fluentEng: 'Proficient/Fluent',
+            motherEng: 'Native',
+
+        }
 
     }
     constructor(props) {
@@ -313,9 +334,16 @@ class CvCreator extends Component {
     };
 
     render() {
+
+        // Statements for the Language Translation
+
         let translateGermanPersonal;
         let translateExp;
         let translateSchool;
+        let translateComputer;
+        let translateLanguage;
+        let translateDriving;
+
         if (this.state.isGerman === true) {
             translateGermanPersonal = this.props.personalInfoGerm.map(el => (
                 <PersonalForm updateData={this.updateData} updateFile={this.updateFile}
@@ -381,7 +409,8 @@ class CvCreator extends Component {
 
             ))
 
-        }
+        };
+
         if (this.state.isGerman === true) {
             translateSchool = this.state.school.map(form => (
 
@@ -390,8 +419,8 @@ class CvCreator extends Component {
                     id={form.id}
                     removeItem={this.removeItem}
                     updateData={this.updateData}
-                    positionT={this.props.SchoolInfoGerm.degreeGerman}
-                    companyT={this.props.SchoolInfoGerm.schoolGerman}
+                    degreeT={this.props.SchoolInfoGerm.degreeGerman}
+                    schoolT={this.props.SchoolInfoGerm.schoolGerman}
                     cityT={this.props.SchoolInfoGerm.cityGerman}
                     dateFromT={this.props.SchoolInfoGerm.dateFromGerman}
                     dateToT={this.props.SchoolInfoGerm.dateToGerman}
@@ -402,14 +431,14 @@ class CvCreator extends Component {
 
             ))
         } else {
-            translateSchool = this.state.experience.map(form => (
+            translateSchool = this.state.school.map(form => (
                 translateSchool = <SchoolFrom
                     key={form.id}
                     id={form.id}
                     removeItem={this.removeItem}
                     updateData={this.updateData}
-                    positionT={this.props.SchoolInfoEng.degreeEng}
-                    companyT={this.props.SchoolInfoEng.schoolEng}
+                    degreeT={this.props.SchoolInfoEng.degreeEng}
+                    schoolT={this.props.SchoolInfoEng.schoolEng}
                     cityT={this.props.SchoolInfoEng.cityEng}
                     dateFromT={this.props.SchoolInfoEng.dateFromEng}
                     dateToT={this.props.SchoolInfoEng.dateToEng}
@@ -420,6 +449,119 @@ class CvCreator extends Component {
             ))
 
         }
+
+        if (this.state.isGerman === true) {
+            translateLanguage = this.state.languages.map(form => (
+
+                <LanguageFrom
+                    key={form.id}
+                    id={form.id}
+                    removeItem={this.removeItem}
+                    updateData={this.updateData}
+                    languageT={this.props.languageInfoGerm.languageGerman}
+                    levelT={this.props.languageInfoGerm.levelGerman}
+                    beginnerT={this.props.languageInfoGerm.beginnerGerman}
+                    intermediateT={this.props.languageInfoGerm.intermediateGerman}
+                    advancedT={this.props.languageInfoGerm.advancedGerman}
+                    proficientT={this.props.languageInfoGerm.fluentGerman}
+                    nativeT={this.props.languageInfoGerm.motherGerman}
+                />
+
+
+
+            ))
+        } else {
+            translateLanguage = this.state.languages.map(form => (
+                translateLanguage = <LanguageFrom
+                    key={form.id}
+                    id={form.id}
+                    removeItem={this.removeItem}
+                    updateData={this.updateData}
+                    languageT={this.props.languageInfoEng.languageEng}
+                    levelT={this.props.languageInfoEng.levelEng}
+                    beginnerT={this.props.languageInfoEng.beginnerEng}
+                    intermediateT={this.props.languageInfoEng.intermediateEng}
+                    advancedT={this.props.languageInfoEng.advancedEng}
+                    proficientT={this.props.languageInfoEng.fluentEng}
+                    nativeT={this.props.languageInfoEng.motherEng}
+
+                />
+
+            ))
+
+        };
+
+        if (this.state.isGerman === true) {
+            translateComputer = this.state.computerSkill.map(form => (
+
+                <ComputerForm
+                    key={form.id}
+                    id={form.id}
+                    removeItem={this.removeItem}
+                    updateData={this.updateData}
+                    computerT={this.props.computerInfoGerm.computerGerman}
+
+                />
+
+
+
+            ))
+        } else {
+            translateComputer = this.state.computerSkill.map(form => (
+                translateComputer = <ComputerForm
+                    key={form.id}
+                    id={form.id}
+                    removeItem={this.removeItem}
+                    updateData={this.updateData}
+                    computerT={this.props.computerInfoEng.computerEng}
+
+                />
+
+            ))
+
+        };
+
+        if (this.state.isGerman === true) {
+            translateDriving = <div className='DrivingFrom'>
+                <form>
+                    <label className="col-sm-8  col-form-label" htmlFor='drivingLicences'>Führerscheine</label>
+                    <input type='text'
+                        className="form-control"
+                        name='drivingLicences'
+                        id='drivingLicences'
+                        key={uuidv4}
+                        onChange={this.updateDriving}
+                        value={this.state.drivingLicences}
+                        placeholder='Führerscheine'
+                        maxLength='22' />
+                </form>
+            </div>
+
+
+
+        } else {
+            translateDriving = <div className='DrivingFrom'>
+                <form>
+                    <label className="col-sm-8  col-form-label" htmlFor='drivingLicences'>Driving Licences</label>
+                    <input type='text'
+                        className="form-control"
+                        name='drivingLicences'
+                        id='drivingLicences'
+                        key={uuidv4}
+                        onChange={this.updateDriving}
+                        value={this.state.drivingLicences}
+                        placeholder='Driving Licences'
+                        maxLength='22' />
+                </form>
+            </div>
+
+
+
+
+        };
+
+
+
 
 
         /// Creates elements for the amount of items in the given array
@@ -514,7 +656,7 @@ class CvCreator extends Component {
                             {/* {newExpForm} */}
                             <button className="btn btn-info" onClick={this.addExperience}>Add</button>
                         </div>
-                        <h2>Education</h2>
+
                         <div className='Define'>
                             {translateSchool}
                             {/* {newSchoolForm} */}
@@ -522,28 +664,17 @@ class CvCreator extends Component {
                         </div>
                         <div className='Define'>
                             <h2>Extra Skill</h2>
-                            {newComputerForm}
+                            {translateComputer}
+                            {/* {newComputerForm} */}
                             <button className="btn btn-info" onClick={this.addComputerSkill}>Add</button>
                         </div>
                         <div className='Define'>
-                            {newLanguageFrom}
+                            {translateLanguage}
+                            {/* {newLanguageFrom} */}
                             <button className="btn btn-info" onClick={this.addLanguage}>Add</button>
                         </div>
 
-                        <div className='DrivingFrom'>
-                            <form>
-                                <label className="col-sm-8  col-form-label" htmlFor='drivingLicences'>Driving Licences</label>
-                                <input type='text'
-                                    className="form-control"
-                                    name='drivingLicences'
-                                    id='drivingLicences'
-                                    key={uuidv4}
-                                    onChange={this.updateDriving}
-                                    value={this.state.drivingLicences}
-                                    placeholder='Driving Licences'
-                                    maxLength='22' />
-                            </form>
-                        </div>
+                        {translateDriving}
 
 
 
@@ -600,6 +731,7 @@ class CvCreator extends Component {
                                     </div>
 
                                     <div>
+
                                         {newLanguageInfo}
                                     </div>
 
