@@ -6,10 +6,9 @@ flex-direction: row;
 justify-content: space-evenly;
 
 }
-
+/* Title elements */
 .Title{
-    display: flex;
-    
+    display: flex; 
     background-color: #5c5b5b;
     height: 90px;
 }
@@ -17,23 +16,37 @@ justify-content: space-evenly;
  position: relative;
  top: 20px;
  color: white;
- left: 220px;
+ left: 260px;
 }
 .Title h1{
     font-family:  Monaco, Consolas, 'Courier New';
     position: relative;
     top: 15px;
-    left: 220px;
+    left: 260px;
     height: 35px;
     color: whitesmoke;
     width: 250px;
 }
+.lanButtons{
+    position: relative;
+    align-self: flex-end;
+    right: 270px;
+    
+    
+}
+.lanButtons button{
+margin: 5px;
+ color: white; 
+ background: rgba(46, 229, 156, 0.123);
+}
+
 /* Form Elements */
  .Cv-forms{
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #EEE1B3;
     text-align: center; 
-     overflow: hidden ;
+    
+    overflow: hidden;
     background: white;
     background-color: #556d7a;
     width: 21cm;
@@ -105,14 +118,20 @@ justify-content: space-evenly;
        align-items: center;
      flex-direction: column;
       display: flex;
+      margin: 15px;      
   }
+  .DrivingFrom label{
+    font-size: 18px;    
+}
   .DrivingFrom input{
  width: 230px;
     background-color: #9ac0d4;
     border-color: #9ac0d4;
  }
+
 /* Functional Buttons */
 .FunButtons{
+   
     display: flex;
     flex-direction: column;
     width: 250px;
@@ -124,6 +143,7 @@ justify-content: space-evenly;
 .FunButtons button{
 width: 140px;
 margin: 10px;
+color: whitesmoke;
 }
 
 
@@ -163,7 +183,7 @@ margin: 10px;
 .Exp h3{
      position: relative  ;
      bottom: 10px;
-     right: 190px  ;
+     right: 220px  ;
   
      text-decoration: underline  ;
 }
@@ -243,7 +263,7 @@ bottom: 20px  ;
  .drivingContainer{
     position: relative;
     width: 200px;
-   bottom: 130px;
+   bottom: 120px;
  }
 
 
@@ -297,5 +317,14 @@ bottom: 20px  ;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .FunButtons{
+        display: flex;
+        flex-direction: row;
+        width: 250px;
+        height: 80px;
+        margin: 10px;
+        align-items: center;
+        justify-content: center;
     }
   }

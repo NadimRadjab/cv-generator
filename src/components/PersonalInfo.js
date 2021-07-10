@@ -20,17 +20,17 @@ class PersonalInfo extends Component {
                 </div>
                 <div className='PersonalInfo-info'>
                     <div className='profilePic'>
-                        <h3>Personal Information</h3>
+                        <h3>{this.props.titleT}</h3>
                         <img src={this.props.picture}
                             alt='cv picture' />
                     </div>
 
                     <div className='PersonalInfo-itmes'>
 
-                        <p id='nameTag' >Name: </p>
-                        <p id='birthTag'>BirthDate: </p>
-                        <p id='nationalityTag'>Nationality:</p>
-                        <p id='statusTag'>Status:</p>
+                        <p id='nameTag' >{this.props.nameT}: </p>
+                        <p id='birthTag'>{this.props.birthDateT}: </p>
+                        <p id='nationalityTag'>{this.props.nationalityT}:</p>
+                        <p id='statusTag'>{this.props.statusT}:</p>
                         <p id='name'>{this.props.name}</p>
                         <p id='birthdateInfo'>{this.props.birthDate}</p>
                         <p id='nationalityInfo'>{this.props.nationality}</p>

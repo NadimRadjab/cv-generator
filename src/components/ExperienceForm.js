@@ -38,7 +38,7 @@ class ExperienceForm extends Component {
         let result;
         if (this.state.isDelete) {
             result = <div className='ExperienceForm'>
-                <h2>{this.props.titelT}</h2>
+
                 <form className='row g-2' >
                     <div className='col-sm-5'>
                         <label className="col-sm-3  col-form-label" htmlFor='position'>{this.props.positionT}</label>

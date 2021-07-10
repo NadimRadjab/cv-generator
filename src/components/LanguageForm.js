@@ -52,11 +52,11 @@ class LanguageFrom extends Component {
                             name='level'
                             id='level'
                             onChange={this.handleChange}>
-                            <option value='Beginner' >{this.props.beginnerT}</option>
-                            <option value='Intermediate' >{this.props.intermediateT}</option>
-                            <option value='Advanced'>{this.props.advancedT}</option>
-                            <option value='Proficient/Fluent'>{this.props.proficientT}</option>
-                            <option value='Native'>{this.props.nativeT}</option>
+                            <option value={this.props.beginnerT}>{this.props.beginnerT}</option>
+                            <option value={this.props.intermediateT} >{this.props.intermediateT}</option>
+                            <option value={this.props.advancedT}>{this.props.advancedT}</option>
+                            <option value={this.props.proficientT}>{this.props.proficientT}</option>
+                            <option value={this.props.nativeT}>{this.props.nativeT}</option>
                         </select>
 
                     </div >

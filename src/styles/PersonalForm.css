@@ -15,7 +15,7 @@
     display: none;
 }
 .col-sm-1{
-    margin-left: 15px;
+    margin-left: 25px;
     display: flex;
     font-size: 18px;
     align-items: center;
@@ -36,8 +36,9 @@
 }
 #picLabel:hover{
     background-color: #2EE59D;
+    cursor: pointer;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
-    transform: translateY(-7px);
+ 
 
 }

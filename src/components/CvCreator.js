@@ -14,11 +14,11 @@ import ComputerInfo from './ComputerInfo';
 import { v4 as uuidv4 } from 'uuid';
 import placeholder from "../imgs/placeholder.png";
 import LanguageInfo from './LanguageInfo';
-
 import Pdf from "react-to-pdf";
 
 //Cv Creator Class Main Component
 class CvCreator extends Component {
+    //Default Props Used for the translation of the page
     static defaultProps = {
         personalInfoEng: [{
             titleEng: 'Personal Information',
@@ -117,15 +117,14 @@ class CvCreator extends Component {
         this.state = {
             isGerman: false,
             experience: [{
-                position: 'Produktions',
-                company: 'Ktl Center Mhk helibron sarmak',
-                city: 'Harrmanns',
+                position: 'Position',
+                company: 'Company Name',
+                city: 'City Name',
                 dateFrom: '04/2018',
                 dateTo: '04/2020',
                 id: uuidv4()
 
             },
-
 
             ],
             school: [
@@ -144,14 +143,14 @@ class CvCreator extends Component {
                 id: uuidv4()
             }],
             languages: [{
-                language: 'Language',
+                language: 'English',
                 level: 'Level',
                 id: uuidv4()
 
             }],
 
-            street: 'street',
-            place: 'zip/city',
+            street: 'Street Nr',
+            place: 'Zip/City',
             telephone: 'Phone',
             email: 'email@gmail.com',
             fullName: 'Kevin Sarmp',
@@ -159,7 +158,13 @@ class CvCreator extends Component {
             nationality: 'nationality',
             status: 'single',
             picture: placeholder,
-            drivingLicences: 'Class B'
+            drivingLicences: 'Class B',
+            expTitle: 'Professional Experience',
+            schoolTitle: 'Education',
+            skillsTitle: 'Extra Skills',
+            drivingTitle: 'Driving Licence',
+            languageTitle: 'Languages',
+            computerTitle: 'Computer Skills'
 
         }
         this.addExperience = this.addExperience.bind(this);
@@ -171,23 +176,73 @@ class CvCreator extends Component {
         this.addComputerSkill = this.addComputerSkill.bind(this);
         this.updateDriving = this.updateDriving.bind(this);
         this.resetForm = this.resetForm.bind(this);
-        this.changeLanguage = this.changeLanguage.bind(this);
+        this.changeLanguageGerm = this.changeLanguageGerm.bind(this);
+        this.changeLanguageEng = this.changeLanguageEng.bind(this);
     }
 
-    //Chage the language
-    changeLanguage() {
+    //Change the language to German
+    changeLanguageGerm() {
         this.setState({
-            isGerman: true
+            isGerman: true,
+            expTitle: 'Berufliche Erfahrungen',
+            schoolTitle: 'Schulausbildung',
+            skillsTitle: 'Sonstige Kenntnisse',
+            drivingTitle: 'Führerscheine',
+            languageTitle: 'Sprachen',
+            computerTitle: 'EDV-Kenntnisse',
+            experience: [{
+                position: 'Position',
+                company: 'Firma Name',
+                city: 'Stadt Name',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
+                id: uuidv4()
+
+            },],
+            school: [{
+                degree: 'Ausbildung',
+                schoolName: 'Schulname,',
+                city: 'Stadt',
+                dateFrom: 'Von',
+                dateTo: ' Bis',
+                id: uuidv4()
+            }],
+            computerSkill: [{
+                computerSkills: 'Windows,Mac OS,MS Office',
+                id: uuidv4()
+            }],
+            languages: [{
+                language: 'English',
+                level: 'Niveau',
+                id: uuidv4()
+
+            }],
+            street: 'Strasse Nr',
+            place: 'Ort/Stadt',
+            telephone: 'Mobil',
+            email: 'email@gmail.com',
+            fullName: 'Kevin Sarmp',
+            birthDate: '19.02.1991',
+            nationality: 'Nationalität',
+            status: 'single',
+            picture: placeholder,
+            drivingLicences: 'Klasse B'
         })
     }
-    //Resets the form inputs
-    resetForm() {
+    //Change the language to English
+    changeLanguageEng() {
         this.setState({
-
+            isGerman: false,
+            expTitle: 'Professional Experience',
+            schoolTitle: 'Education',
+            skillsTitle: 'Extra Skills',
+            drivingTitle: 'Driving Licence',
+            languageTitle: 'Languages',
+            computerTitle: 'Computer Skills',
             experience: [{
-                position: 'Produktions',
-                company: 'Ktl Center Mhk helibron sarmak',
-                city: 'Harrmanns',
+                position: 'Position',
+                company: 'Company Name',
+                city: 'City Name',
                 dateFrom: '04/2018',
                 dateTo: '04/2020',
                 id: uuidv4()
@@ -206,13 +261,13 @@ class CvCreator extends Component {
                 id: uuidv4()
             }],
             languages: [{
-                language: 'Language',
+                language: 'English',
                 level: 'Level',
                 id: uuidv4()
 
             }],
-            street: 'street',
-            place: 'zip/city',
+            street: 'Street Nr',
+            place: 'Zip/City',
             telephone: 'Phone',
             email: 'email@gmail.com',
             fullName: 'Kevin Sarmp',
@@ -220,7 +275,59 @@ class CvCreator extends Component {
             nationality: 'nationality',
             status: 'single',
             picture: placeholder,
-            drivingLicences: 'Class B'
+            drivingLicences: 'Class B',
+
+        })
+
+    }
+    //Resets the form sets the language to english
+    resetForm() {
+        this.setState({
+            isGerman: false,
+            expTitle: 'Professional Experience',
+            schoolTitle: 'Education',
+            skillsTitle: 'Extra Skills',
+            drivingTitle: 'Driving Licence',
+            languageTitle: 'Languages',
+            computerTitle: 'Computer Skills',
+            experience: [{
+                position: 'Position',
+                company: 'Company Name',
+                city: 'City Name',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
+                id: uuidv4()
+
+            },],
+            school: [{
+                degree: 'Degree',
+                schoolName: 'School Name,',
+                city: 'City',
+                dateFrom: 'From',
+                dateTo: ' To',
+                id: uuidv4()
+            }],
+            computerSkill: [{
+                computerSkills: 'Windows,Mac OS,MS Office',
+                id: uuidv4()
+            }],
+            languages: [{
+                language: 'English',
+                level: 'Level',
+                id: uuidv4()
+
+            }],
+            street: 'Street Nr',
+            place: 'Zip/City',
+            telephone: 'Phone',
+            email: 'email@gmail.com',
+            fullName: 'Kevin Sarmp',
+            birthDate: '19.02.1991',
+            nationality: 'nationality',
+            status: 'single',
+            picture: placeholder,
+            drivingLicences: 'Class B',
+
         })
     }
     // Removes a form filters by id
@@ -272,6 +379,8 @@ class CvCreator extends Component {
 
 
     };
+
+    //func for the picture upload
     updateFile = (target, value) => {
 
         this.setState({
@@ -335,8 +444,7 @@ class CvCreator extends Component {
 
     render() {
 
-        // Statements for the Language Translation
-
+        // Statements for the Language Translation for Foroms
         let translateGermanPersonal;
         let translateExp;
         let translateSchool;
@@ -344,6 +452,11 @@ class CvCreator extends Component {
         let translateLanguage;
         let translateDriving;
 
+        // Statements for the Language Translation for the Info
+        let translateGermanPersonalInfo;
+
+
+        //Translates the Personal Form
         if (this.state.isGerman === true) {
             translateGermanPersonal = this.props.personalInfoGerm.map(el => (
                 <PersonalForm updateData={this.updateData} updateFile={this.updateFile}
@@ -372,6 +485,7 @@ class CvCreator extends Component {
         }
 
 
+        //Translates the Professional Experience form
         if (this.state.isGerman === true) {
             translateExp = this.state.experience.map(form => (
 
@@ -411,6 +525,7 @@ class CvCreator extends Component {
 
         };
 
+        //Translates the Education form
         if (this.state.isGerman === true) {
             translateSchool = this.state.school.map(form => (
 
@@ -450,6 +565,7 @@ class CvCreator extends Component {
 
         }
 
+        //Translates the Language form
         if (this.state.isGerman === true) {
             translateLanguage = this.state.languages.map(form => (
 
@@ -491,6 +607,7 @@ class CvCreator extends Component {
 
         };
 
+        //Translates the computer form
         if (this.state.isGerman === true) {
             translateComputer = this.state.computerSkill.map(form => (
 
@@ -521,6 +638,7 @@ class CvCreator extends Component {
 
         };
 
+        //Translates the driving form
         if (this.state.isGerman === true) {
             translateDriving = <div className='DrivingFrom'>
                 <form>
@@ -560,23 +678,59 @@ class CvCreator extends Component {
 
         };
 
+        //Translates the Personal Info for the Cv
+        if (this.state.isGerman === true) {
+            translateGermanPersonalInfo = this.props.personalInfoGerm.map(el => (
+                <PersonalInfo
+                    nameT={el.nameGerman}
+                    streetT={el.streetGerman}
+                    placeT={el.placeGerman}
+                    telephoneT={el.placeGerman}
+                    birthDateT={el.birthDateGerman}
+                    nationalityT={el.nationalityGerman}
+                    statusT={el.statusGerman}
+                    titleT={el.titleGerman}
+                    name={this.state.fullName}
+                    street={this.state.street}
+                    place={this.state.place}
+                    telephone={this.state.telephone}
+                    email={this.state.email}
+                    birthDate={this.state.birthDate}
+                    nationality={this.state.nationality}
+                    status={this.state.status}
+                    picture={this.state.picture}
+                />
+            ));
+        } else {
+            translateGermanPersonalInfo = this.props.personalInfoEng.map(el => (
+                <PersonalInfo
+                    nameT={el.nameEng}
+                    streetT={el.streetEng}
+                    placeT={el.placeEng}
+                    telephoneT={el.placeEng}
+                    birthDateT={el.birthDateEng}
+                    nationalityT={el.nationalityEng}
+                    statusT={el.statusEng}
+                    titleT={el.titleEng}
+                    name={this.state.fullName}
+                    street={this.state.street}
+                    place={this.state.place}
+                    telephone={this.state.telephone}
+                    email={this.state.email}
+                    birthDate={this.state.birthDate}
+                    nationality={this.state.nationality}
+                    status={this.state.status}
+                    picture={this.state.picture}
+                />
+            ));
 
+        };
 
 
 
         /// Creates elements for the amount of items in the given array
-        let newExpForm = this.state.experience.map(form => (
-            <ExperienceForm
-                key={form.id}
-                id={form.id}
-                removeItem={this.removeItem}
-                updateData={this.updateData}
 
-            />
-
-        ))
         let newExp = this.state.experience.map(form => (
-
             <Experience
                 key={form.id}
                 id={form.id}
@@ -588,13 +742,7 @@ class CvCreator extends Component {
 
         ));
 
-        let newSchoolForm = this.state.school.map(sc => (
-            <SchoolFrom
-                key={sc.id}
-                id={sc.id}
-                updateData={this.updateData}
-                removeItem={this.removeItem} />
-        ));
+
         let newSchoolInfo = this.state.school.map(sc => (
 
             <SchoolInfo
@@ -606,21 +754,7 @@ class CvCreator extends Component {
                 dateFrom={sc.dateFrom}
                 dateTo={sc.dateTo} />
         ));
-        let newLanguageFrom = this.state.languages.map(lan => (
-            <LanguageFrom
-                key={lan.id}
-                id={lan.id}
-                updateData={this.updateData}
-                removeItem={this.removeItem} />
-        ));
-        let newComputerForm = this.state.computerSkill.map(sk => (
-            <ComputerForm
-                key={sk.id}
-                id={sk.id}
-                updateData={this.updateData}
-                removeItem={this.removeItem}
-            />
-        ));
+
 
         let newLanguageInfo = this.state.languages.map(lan => (
             <LanguageInfo
@@ -636,98 +770,92 @@ class CvCreator extends Component {
                 computer={lan.computerSkills}
             />
         ));
+
+
+        //ref variable
         const ref = React.createRef();
 
         return (
             <div>
 
                 <div className='Title'><h1>Cv-Creator</h1>
-                    <Briefcase size={40} /></div>
+                    <Briefcase size={40} />
+                    <div className='lanButtons' >
+                        <button className="btn " onClick={this.changeLanguageGerm}>German</button>
+                        <button className="btn " onClick={this.changeLanguageEng}>English</button>
+                    </div>
+
+                </div>
+
                 <div className='Cv-container'>
 
                     <div className='Cv-forms'>
                         {translateGermanPersonal}
-                        {/* <PersonalForm updateData={this.updateData} updateFile={this.updateFile} /> */}
-
-
 
                         <div className='Define'>
+                            <h2>{this.state.expTitle}</h2>
                             {translateExp}
-                            {/* {newExpForm} */}
+
                             <button className="btn btn-info" onClick={this.addExperience}>Add</button>
                         </div>
 
                         <div className='Define'>
+                            <h2>{this.state.schoolTitle}</h2>
                             {translateSchool}
-                            {/* {newSchoolForm} */}
+
                             <button className="btn btn-info" onClick={this.addSchool}>Add</button>
                         </div>
                         <div className='Define'>
-                            <h2>Extra Skill</h2>
+                            <h2>{this.state.skillsTitle}</h2>
                             {translateComputer}
-                            {/* {newComputerForm} */}
+
                             <button className="btn btn-info" onClick={this.addComputerSkill}>Add</button>
                         </div>
                         <div className='Define'>
                             {translateLanguage}
-                            {/* {newLanguageFrom} */}
+
                             <button className="btn btn-info" onClick={this.addLanguage}>Add</button>
                         </div>
 
                         {translateDriving}
 
 
-
-
-
-
                     </div>
+
                     <div className="FunButtons">
                         <div ><Pdf targetRef={ref} filename="Cv.pdf" >
 
                             {({ toPdf }) => (
-                                <Button onClick={toPdf}>Generate pdf</Button>
+                                <Button className='btn btn-success' onClick={toPdf}>Generate PDF</Button>
                             )}
 
                         </Pdf></div>
                         <div >
                             <button className="btn btn-danger" onClick={this.resetForm}>Reset Form</button>
                         </div>
-                        <div >
-                            <button className="btn btn-danger" onClick={this.changeLanguage}>German</button>
-                        </div>
                     </div>
+
                     <div div className='Cv-infos' ref={ref}>
 
                         <div className='PersonalInfo-container '>
-                            <PersonalInfo
-                                nameGerman={this.props.nameGerman}
-                                streetGerman={this.props.streetGerman}
-                                placeGerman={this.props.placeGerman}
-                                name={this.state.fullName}
-                                street={this.state.street}
-                                place={this.state.place}
-                                telephone={this.state.telephone}
-                                email={this.state.email}
-                                birthDate={this.state.birthDate}
-                                nationality={this.state.nationality}
-                                status={this.state.status}
-                                picture={this.state.picture}
-                            />
+                            {translateGermanPersonalInfo}
+
                         </div>
                         <div className='Exp'>
-                            <h3>Professional Experience</h3>
-                            {newExp}</div>
+                            <h3>{this.state.expTitle}</h3>
+                            {newExp}
+                        </div>
+
                         <div className='School'>
-                            <h3>Education</h3>
+                            <h3>{this.state.schoolTitle}</h3>
                             {newSchoolInfo}
                         </div>
                         <div className='ExtraSkills'>
-                            <h3>Extra Skills</h3>
+                            <h3>{this.state.skillsTitle}</h3>
                             <div className='skillGrid'>
                                 <div className='LanInfo'>
                                     <div className='lanDiv'>
-                                        <span id='lanSpan'>Languages:</span>
+                                        <span id='lanSpan'>{this.state.languageTitle}:</span>
                                     </div>
 
                                     <div>
@@ -738,7 +866,7 @@ class CvCreator extends Component {
 
                                 </div>
                                 <div className='SkillInfo'>
-                                    <span id='computerSpan'>Computer skills:</span>
+                                    <span id='computerSpan'>{this.state.computerTitle}:</span>
                                     <div className='computer-info'>
                                         {newComputerInfo}
 
@@ -752,7 +880,7 @@ class CvCreator extends Component {
                         </div>
 
                         <div className='drivingContainer'>
-                            <span id='drivingSpan'>Driving Licence:</span>
+                            <span id='drivingSpan'>{this.state.drivingTitle}:</span>
                             <p id='driving'>{this.state.drivingLicences}</p>
                         </div>
                     </div>
