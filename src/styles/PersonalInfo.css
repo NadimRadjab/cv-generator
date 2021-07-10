@@ -1,5 +1,6 @@
 .PersonalInfo{
     width: 100%;
+   
 }
 .PersonalInfo-title{
     display: grid;
@@ -12,8 +13,7 @@
 .PersonalInfo-title-container{
 position: relative;
 left: 70px;
-  bottom: 20px;
-    height: 80px;
+    height: 90px;
     width: 85%;
     border-bottom: black 2px solid;
     margin-top: 0;
@@ -23,35 +23,36 @@ left: 70px;
     top:10px;
     height: 15px;
     left: 10px;
+    font-size: 30px;
 }
 
-#street{
+#streetInfo{
     position: relative;
     right: 20px;
-    bottom: 10px;
+    top: 20px;
 justify-self: end;
 align-self: start;
 height: 10px;
 
 }
-#place{
+#placeInfo{
     position: relative;
     height: 10px;
-    bottom: 10px;
+    top: 12px;
     justify-self: start;
     
 }
-#mobil{
+#mobilInfo{
     height: 10px;
     justify-self: end;
     position: relative;
     right: 20px;
-    bottom: 30px;
+   top: 15px;
     align-self: baseline;
 }
-#email{
+#emailInfo{
     position: relative;
-    bottom: 30px;
+    top: 15px;
     height: 10px;
     justify-self: start;
     align-self: baseline;
@@ -73,7 +74,7 @@ height: 170px;
 .profilePic h3{
     margin-top: 30px;
     height: 20px;
-  margin-right: 90px;
+     margin-right: 90px;
     text-decoration: underline;
 }
 .profilePic img{
@@ -84,7 +85,7 @@ height: 170px;
 .PersonalInfo-itmes{
     display: grid;
     position: relative;
-    bottom: 150px;
+    bottom: 130px;
     justify-items: start;
     grid-template-columns: repeat(2,1fr);
 }

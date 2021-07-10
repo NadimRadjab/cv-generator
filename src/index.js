@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './custom.scss'
+import './styles/cvCreator.css'
 import './index.css';
 import App from './App';
+
 
 
 ReactDOM.render(

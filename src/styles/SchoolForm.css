@@ -1,0 +1,26 @@
+.SchoolForm{
+    border-bottom: black 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+ }
+ .SchoolForm input{
+ width: 250px;
+ margin: 20px;
+ margin-left: 100px;
+ background-color: #9ac0d4;
+ border-color: #9ac0d4;
+ }
+ .SchoolForm label{
+     font-size: 18px;
+     margin-left: 130px;
+     }
+     .SchoolForm button{
+        position: relative;
+        bottom: 58px;
+        left: 130px;
+     }
+ 

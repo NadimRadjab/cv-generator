@@ -34,9 +34,13 @@ class ComputerForm extends Component {
         let result;
 
         if (this.state.isDelete) {
-            result = <div>
+            result = <div className="ComputerFrom">
                 <form >
-                    <input type='text' name='computerSkills'
+                    <label className="col-sm-10  col-form-label" htmlFor='computerSkills'>Computer Skills</label>
+                    <input className="form-control" style={{
+                        width: '200px', backgroundColor: '#9ac0d4',
+                        borderColor: '#9ac0d4'
+                    }} type='text' name='computerSkills'
                         id='computerSkills'
                         value={this.state.computerSkills}
                         placeholder='Computer Skills'
@@ -46,7 +50,7 @@ class ComputerForm extends Component {
 
                 </form>
 
-                <button onClick={this.handleClick}>Delete</button>
+                <button className="btn btn-danger" onClick={this.handleClick}>Delete</button>
             </div >
         } else {
             result = <div>

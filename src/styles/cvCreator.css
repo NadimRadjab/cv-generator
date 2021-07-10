@@ -1,72 +1,191 @@
 .Cv-container{
     position: relative;
-    
     display: flex;
 flex-direction: row;
+ margin: 40px;
 justify-content: space-evenly;
 
-
 }
+
 .Title{
+    display: flex;
+    
     background-color: #5c5b5b;
     height: 90px;
 }
+.Title svg{
+ position: relative;
+ top: 20px;
+ color: white;
+ left: 220px;
+}
 .Title h1{
+    font-family:  Monaco, Consolas, 'Courier New';
     position: relative;
+    top: 15px;
     left: 220px;
-    width: 200px;
+    height: 35px;
+    color: whitesmoke;
+    width: 250px;
 }
-.Cv-forms{
+/* Form Elements */
+ .Cv-forms{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #EEE1B3;
     text-align: center; 
- overflow: hidden;
+     overflow: hidden ;
     background: white;
+    background-color: #556d7a;
     width: 21cm;
-    display: block; 
+    display: grid; 
     margin-bottom: 0.5cm;
+    border-radius: 10px;
     box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
 }
-.Cv-infos{
-    text-align: center;
-    background: white;
-    width: 21cm;
-    height: 29.7cm;
-    display: block;
-    margin-bottom: 0.5cm;
-    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+.Cv-forms button{
+    margin: 15px;
+    width: 150px;
 }
-.PersonalInfo-container{
+.Cv-forms button:hover{
+    background-color: #2EE59D;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    
+}
+.Define{
+    border-bottom: gray 5px solid;
+}
+.ComputerFrom{
+    margin: 10px;
     display: flex;
+   
+    justify-content: center;
+    align-items: center;
+}
+.ComputerFrom label{
+    margin: 5px;
+   font-size: 18px;
+}
+.ComputerFrom input{
+    margin: 15px;
+   
+}
+.ComputerFrom button{
+    margin: 15px;
+    align-self: flex-end;
+}
+.LanForm{
+    display: flex;
+    margin: 25px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.LanForm input{
+    margin-right: 40px;
+   width: 180px;
+   background-color: #9ac0d4;
+ border-color: #9ac0d4;
+}
+.LanForm select{
+
+   background-color: #9ac0d4;
+ border-color: #9ac0d4;
+}
+.LanForm label{
+    
+   font-size: 18px;
+ }
+ .LanForm button{
+    
+    align-self: flex-end;
+    height: 45px;
+  }
+  .DrivingFrom{
+       align-items: center;
+     flex-direction: column;
+      display: flex;
+  }
+  .DrivingFrom input{
+ width: 230px;
+    background-color: #9ac0d4;
+    border-color: #9ac0d4;
+ }
+/* Functional Buttons */
+.FunButtons{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 80px;
+    margin: 10px;
     align-items: center;
     justify-content: center;
 }
+.FunButtons button{
+width: 140px;
+margin: 10px;
+}
+
+
+
+ /* Cv Info elements  */
+.Cv-infos{
+    font-family: Symbol, serif;
+    text-align: center  ;
+    background: white;
+    width: 21cm  ;
+    height: 29.7cm  ;
+    display: block  ;
+    margin-bottom: 0.5cm  ;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+   
+}
+.Cv-infos h2{
+    color: #5398BE;
+ 
+   
+}
+.Cv-infos h3{
+    color: #5398BE;
+   font-size: 25px;
+   
+}
+.PersonalInfo-container{
+    display:  flex  ;
+    align-items: center  ;
+    justify-content: center  ;
+}
+
 .Exp{
-    position: relative;
-    bottom: 200px;
+    position: relative  ;
+    bottom: 150px  ;
 }
 .Exp h3{
-     position: relative;
-     right: 190px;
+     position: relative  ;
+     bottom: 10px;
+     right: 190px  ;
   
-     text-decoration: underline;
+     text-decoration: underline  ;
 }
 .School{
-    position: relative;
-    bottom: 210px;
+    position: relative  ;
+    bottom: 150px  ;
 }
 .School h3{
-    position: relative;
-    right: 250px;
+    position: relative  ;
+    right: 250px  ;
     text-decoration: underline;
+    bottom: 10px;
 }
 .ExtraSkills{
-    position: relative;
-    bottom: 225px;
+    position: relative  ;
+    bottom: 160px  ;
 }
 
 .ExtraSkills h3{
-    position: relative;
-    right: 250px;
-    text-decoration: underline;
+    position: relative  ;
+    right: 250px  ;
+    text-decoration: underline  ;
 }
 #lanSpan{
   
@@ -75,14 +194,12 @@ justify-content: space-evenly;
 }
 
 .drivingContainer{
-    grid-column: 2/2;
+    grid-column: 2/2  !important;
 }
 #drivingSpan{
   
-    grid-row: 2/2;
-    /* position: relative;
-    top: 15px;
-    right: 235px; */
+    grid-row: 2/2  !important;
+   
 }
 
 
@@ -92,40 +209,93 @@ justify-content: space-evenly;
     grid-auto-rows: minmax(100px,auto);
 }
 .LanInfo{
-    display: grid;
-    position: relative;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(100px,auto);
-bottom: 45px;
+    display: grid  ;
+    position: relative  ;
+    grid-template-columns: repeat(2, 1fr)  ;
+    grid-auto-rows: minmax(100px,auto)  ;
+bottom: 20px  ;
 
 
 }
+.lanDiv{
+    display: flex;
+    justify-content: center;
+}
 
-.SkillInfo{
-    
-    position: relative;
-    bottom: 10px;
-    display: grid;
+.SkillInfo{  
+    position: relative  ;
+    display: grid  ;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: minmax(100px,auto);
 
 }
 
 .computer-info{
-    position: relative;
-    bottom: 15px;
+    position: relative  ;
+    right: 30px
+
 }
  #driving{
     display: inline;
     position: relative;
-    bottom: 35px; 
-    left: 155px;
+   left: 10px;
  }
  .drivingContainer{
     position: relative;
-    bottom: 130px; 
-    left: 65px;
+    width: 200px;
+   bottom: 130px;
  }
+
+
+ /* footer */
  .footer{
+     height: 60px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    
     background-color: #5c5b5b;
  }
+ footer{
+     width: 320px;
+    display: flex;
+    font-size: 18px;
+ 
+    font-family:  Monaco, Consolas, 'Courier New',
+    monospace;
+  
+   justify-content: space-between;
+ }
+
+ footer a{
+
+     color: #000;
+     font-size: 25px;
+ }
+ footer a:hover{
+     color: black;
+   transform: scale(1.4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ @media  (max-width: 1450px) {
+    .Cv-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+  }

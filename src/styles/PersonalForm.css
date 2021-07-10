@@ -1,4 +1,43 @@
-.List-form{
-    width: 800px;
-    
+.PersonalForm{
+    display: flex;
+    flex-direction: column;
+    border-bottom: gray 5px solid;
+}
+.PersonalForm input{
+    align-self: center;
+    justify-self: center;
+    width: 200px;
+   margin: 42px;
+   background-color: #9ac0d4;
+   border-color: #9ac0d4;
+}
+#picture{
+    display: none;
+}
+.col-sm-1{
+    margin-left: 15px;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+}
+#picLabel{
+
+    height: 50px;
+    width: 200px;
+    margin: 20px;
+    display: flex;
+    margin-left: 280px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: solid 1px gray;
+    background-color: #8fb0c2;
+}
+#picLabel:hover{
+    background-color: #2EE59D;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+
 }

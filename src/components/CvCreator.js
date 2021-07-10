@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import Button from 'react-bootstrap/Button'
 import '../styles/cvCreator.css'
 import ExperienceForm from './ExperienceForm';
+import { Github, Briefcase } from 'react-bootstrap-icons';
 import Experience from './Experience';
 import PersonalForm from './PersonalForm';
 import PersonalInfo from './PersonalInfo';
@@ -12,11 +14,51 @@ import ComputerInfo from './ComputerInfo';
 import { v4 as uuidv4 } from 'uuid';
 import placeholder from "../imgs/placeholder.png";
 import LanguageInfo from './LanguageInfo';
+
 import Pdf from "react-to-pdf";
 
 //Cv Creator Class Main Component
 class CvCreator extends Component {
+    static defaultProps = {
+        personalInfoGerm: [{
+            nameGerman: 'Name',
+            streetGerman: 'Strasse',
+            placeGerman: 'Ort,Stadt',
+            birthDateGerman: 'Geburtsdaten',
+            emailGerman: 'email',
+            mobilGerman: 'mobil',
+            statusGerman: 'Familienstand',
+            nationalityGerman: 'Nationalität'
+        }],
+        ExpInfoGerm: [{
+            positionGerman: 'Position',
+            companyGerman: 'Firma',
+            cityGerman: 'Stadt',
+            dateFromGerman: 'von',
+            dateToGerman: 'bis',
 
+        }],
+        SchoolInfoGerm: [{
+            degreeGerman: 'ausbuildung',
+            schoolGerman: 'Schulname',
+            cityGerman: 'Stadt',
+            dateFromGerman: 'von',
+            dateToGerman: 'bis',
+
+        }],
+        computerInfoGerm: [{
+            computerGerman: 'EDV-Kenntnisse:',
+
+
+        }],
+        languageInfoGerm: [{
+            languageGerman: 'Sprachen:',
+            levelGerman: 'Niveau'
+
+
+        }]
+
+    }
     constructor(props) {
         super(props)
 
@@ -30,103 +72,41 @@ class CvCreator extends Component {
                 id: uuidv4()
 
             },
-            {
-                position: 'Reinigung',
-                company: 'Leale Francesco Gebäudereinigung ',
-                city: 'Heilbronn',
-                dateFrom: '04/2018',
-                dateTo: '04/2020',
-                id: uuidv4()
 
-            },
-            {
-                position: 'Hausfrau',
-                company: 'Heilbronn',
-                city: '',
-                dateFrom: '04/2018',
-                dateTo: '04/2020',
-                id: uuidv4()
 
-            },
-            {
-                position: 'Verkaufsberater',
-                company: 'MAT Star',
-                city: 'Varna (Bulgarien)',
-                dateFrom: '04/2018',
-                dateTo: '04/2020',
-                id: uuidv4()
-
-            },
-            {
-                position: 'Verkaufsberater',
-                company: 'Optik , Hristovi OOD ',
-                city: ' Varna (Bulgarien)',
-                dateFrom: '04/2018',
-                dateTo: '04/2020',
-                id: uuidv4()
-
-            },
-            {
-                position: 'Beratender Chemiker in Wasserversorgnug-Trinkwasseraufbereitungundprüfung- Umweltingenieur-Laborassistent in chemischen Labor',
-                company: 'DEVEN OOD-SOLVAY SODI',
-                city: 'Varna (Bulgarien)',
-                dateFrom: '04/2018',
-                dateTo: '04/2020',
-                id: uuidv4()
-
-            }],
+            ],
             school: [
                 {
-                    degree: 'Umweltddiplom-Ingenierurmeister',
-                    schoolName: 'Technischeuniversität,',
-                    city: 'Varna (Bulgarien)',
-                    dateFrom: '09/2005',
-                    dateTo: ' 06/2003',
+                    degree: 'Degree',
+                    schoolName: 'School Name,',
+                    city: 'City',
+                    dateFrom: 'From',
+                    dateTo: ' To',
                     id: uuidv4()
                 },
-                {
-                    degree: 'Technischeuniversität',
-                    schoolName: 'Technischeuniversität,',
-                    city: 'Varna (Bulgarien)',
-                    dateFrom: '09/2005',
-                    dateTo: ' 06/2003',
-                    id: uuidv4()
-                }
+
             ],
             computerSkill: [{
                 computerSkills: 'Windows,Mac OS,MS Office',
                 id: uuidv4()
             }],
             languages: [{
-                language: 'English',
-                level: 'Advanced',
+                language: 'Language',
+                level: 'Level',
                 id: uuidv4()
-            }, {
-                language: 'Bulgarisch',
-                level: 'Advanced',
-                id: uuidv4()
-            },
-            {
-                language: 'Russisch',
-                level: 'Advanced',
-                id: uuidv4()
-            },
-            {
-                language: 'Deutsch',
-                level: 'Advanced',
-                id: uuidv4()
-            },],
 
-            street: 'Volklinger str 5',
-            place: '46117 Oberhausen',
-            telephone: '0177732333',
-            email: 'krio@abv.bg',
-            fullName: 'Kiro Ivan PEtur mishov',
-            birthDate: '22.08.1968 in Varna, Bulgarien',
-            nationality: 'bulgarian',
+            }],
+
+            street: 'street',
+            place: 'zip/city',
+            telephone: 'Phone',
+            email: 'email@gmail.com',
+            fullName: 'Kevin Sarmp',
+            birthDate: '19.02.1991',
+            nationality: 'nationality',
             status: 'single',
             picture: placeholder,
-            drivingLicences: 'Klassen AM und B'
+            drivingLicences: 'Class B'
 
         }
         this.addExperience = this.addExperience.bind(this);
@@ -137,8 +117,53 @@ class CvCreator extends Component {
         this.addLanguage = this.addLanguage.bind(this);
         this.addComputerSkill = this.addComputerSkill.bind(this);
         this.updateDriving = this.updateDriving.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
 
+
+    //Resets the form inputs
+    resetForm() {
+        this.setState({
+            isGerman: false,
+            experience: [{
+                position: 'Produktions',
+                company: 'Ktl Center Mhk helibron sarmak',
+                city: 'Harrmanns',
+                dateFrom: '04/2018',
+                dateTo: '04/2020',
+                id: uuidv4()
+
+            },],
+            school: [{
+                degree: 'Degree',
+                schoolName: 'School Name,',
+                city: 'City',
+                dateFrom: 'From',
+                dateTo: ' To',
+                id: uuidv4()
+            }],
+            computerSkill: [{
+                computerSkills: 'Windows,Mac OS,MS Office',
+                id: uuidv4()
+            }],
+            languages: [{
+                language: 'Language',
+                level: 'Level',
+                id: uuidv4()
+
+            }],
+            street: 'street',
+            place: 'zip/city',
+            telephone: 'Phone',
+            email: 'email@gmail.com',
+            fullName: 'Kevin Sarmp',
+            birthDate: '19.02.1991',
+            nationality: 'nationality',
+            status: 'single',
+            picture: placeholder,
+            drivingLicences: 'Class B'
+        })
+    }
     // Removes a form filters by id
     removeItem(id) {
 
@@ -328,47 +353,78 @@ class CvCreator extends Component {
         return (
             <div>
 
-                <div className='Title'><h1>Cv-Creator</h1></div>
+                <div className='Title'><h1>Cv-Creator</h1>
+                    <Briefcase size={40} /></div>
                 <div className='Cv-container'>
 
                     <div className='Cv-forms'>
+
                         <PersonalForm updateData={this.updateData} updateFile={this.updateFile} />
+
+
                         <h2>Professional Experience</h2>
-                        {newExpForm}
-                        <button onClick={this.addExperience}>Add</button>
+                        <div className='Define'>
+                            {newExpForm}
+                            <button className="btn btn-info" onClick={this.addExperience}>Add</button>
+                        </div>
                         <h2>Education</h2>
-                        {newSchoolForm}
-                        <button onClick={this.addSchool}>Add</button>
-                        <h2>Extra Skill</h2>
-                        {newComputerForm}
-                        <button onClick={this.addComputerSkill}>Add</button>
-                        {newLanguageFrom}
-                        <button onClick={this.addLanguage}>Add</button>
-                        <form>
-                            <input type='text'
-                                name='drivingLicences'
-                                id='drivingLicences'
-                                key={uuidv4}
-                                onChange={this.updateDriving}
-                                value={this.state.drivingLicences}
-                                placeholder='Driving Licences'
-                                maxLength='22' />
-                        </form>
-                        <div><Pdf targetRef={ref} filename="Cv.pdf" >
+                        <div className='Define'>
+                            {newSchoolForm}
+                            <button className="btn btn-info" onClick={this.addSchool}>Add</button>
+                        </div>
+                        <div className='Define'>
+                            <h2>Extra Skill</h2>
+                            {newComputerForm}
+                            <button className="btn btn-info" onClick={this.addComputerSkill}>Add</button>
+                        </div>
+                        <div className='Define'>
+                            {newLanguageFrom}
+                            <button className="btn btn-info" onClick={this.addLanguage}>Add</button>
+                        </div>
+
+                        <div className='DrivingFrom'>
+                            <form>
+                                <label className="col-sm-8  col-form-label" htmlFor='drivingLicences'>Driving Licences</label>
+                                <input type='text'
+                                    className="form-control"
+                                    name='drivingLicences'
+                                    id='drivingLicences'
+                                    key={uuidv4}
+                                    onChange={this.updateDriving}
+                                    value={this.state.drivingLicences}
+                                    placeholder='Driving Licences'
+                                    maxLength='22' />
+                            </form>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                    <div className="FunButtons">
+                        <div ><Pdf targetRef={ref} filename="Cv.pdf" >
 
                             {({ toPdf }) => (
-                                <button onClick={toPdf}>Generate pdf</button>
+                                <Button onClick={toPdf}>Generate pdf</Button>
                             )}
 
                         </Pdf></div>
+                        <div >
+                            <button className="btn btn-danger" onClick={this.resetForm}>Reset Form</button>
+                        </div>
+                        <div >
+                            <button className="btn btn-danger" onClick={this.changeLanguage}>German</button>
+                        </div>
                     </div>
-
-
-
                     <div div className='Cv-infos' ref={ref}>
 
-                        <div className='PersonalInfo-container'>
+                        <div className='PersonalInfo-container '>
                             <PersonalInfo
+                                nameGerman={this.props.nameGerman}
+                                streetGerman={this.props.streetGerman}
+                                placeGerman={this.props.placeGerman}
                                 name={this.state.fullName}
                                 street={this.state.street}
                                 place={this.state.place}
@@ -391,7 +447,10 @@ class CvCreator extends Component {
                             <h3>Extra Skills</h3>
                             <div className='skillGrid'>
                                 <div className='LanInfo'>
-                                    <span id='lanSpan'>Languages:</span>
+                                    <div className='lanDiv'>
+                                        <span id='lanSpan'>Languages:</span>
+                                    </div>
+
                                     <div>
                                         {newLanguageInfo}
                                     </div>
@@ -406,23 +465,24 @@ class CvCreator extends Component {
                                     </div>
 
                                 </div>
-                                {/* <div className='drivingContainer'>
-                                    <span id='drivingSpan'>Driving Licence:</span>
-                                    <p id='driving'>{this.state.drivingLicences}</p>
-                                </div> */}
+
                             </div>
 
 
                         </div>
 
-
+                        <div className='drivingContainer'>
+                            <span id='drivingSpan'>Driving Licence:</span>
+                            <p id='driving'>{this.state.drivingLicences}</p>
+                        </div>
                     </div>
 
                 </div >
                 <div className='footer'>
                     <footer>
-                        <p>Created By Nadim Radjab
-                        </p></footer>
+                        <p>Created By Nadim Radjab &copy; </p>
+                        <a href='https://github.com/NadimRadjab'><Github /></a>
+                    </footer>
                 </div>
             </div >
         )

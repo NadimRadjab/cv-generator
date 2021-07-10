@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import '../styles/SchoolForm.css'
 
 
 class SchoolForm extends Component {
@@ -37,41 +37,48 @@ class SchoolForm extends Component {
     render() {
         let result;
         if (this.state.isDelete) {
-            result = <div>
-                <form >
-                    <input type='text' name='degree'
-                        id='degree'
-                        value={this.state.degree}
-                        placeholder='Degree'
-                        onChange={this.handleChange} />
+            result = <div className="SchoolForm">
+                <form className='row g-2' >
+                    <div className='col-sm-5'>
+                        <label className="col-sm-3  col-form-label" htmlFor='degree'>Degree</label>
+                        <input className="form-control" type='text' name='degree'
+                            id='degree'
+                            value={this.state.degree}
+                            placeholder='Degree'
+                            onChange={this.handleChange} />
 
-                    <input type='text' name='schoolName'
-                        id='schoolName'
-                        value={this.state.schoolName}
-                        placeholder='School'
-                        onChange={this.handleChange}
-                    />
+                        <label className="col-sm-5  col-form-label" htmlFor='schoolName'>School Name</label>
+                        <input className="form-control" type='text' name='schoolName'
+                            id='schoolName'
+                            value={this.state.schoolName}
+                            placeholder='School'
+                            onChange={this.handleChange}
+                        />
 
-                    <input type='text' name='city'
-                        id='city'
-                        value={this.state.city}
-                        placeholder='City'
-                        onChange={this.handleChange} />
+                        <label className="col-sm-3  col-form-label" htmlFor='city'>City</label>
+                        <input className="form-control" type='text' name='city'
+                            id='city'
+                            value={this.state.city}
+                            placeholder='City'
+                            onChange={this.handleChange} />
+                    </div>
+                    <div className='col-sm-5'>
+                        <label className="col-sm-4  col-form-label" htmlFor='dateFrom'>Date From</label>
+                        <input className="form-control" type='text' name='dateFrom'
+                            id='dateFrom'
+                            value={this.state.dateFrom}
+                            placeholder='DateFrom'
+                            onChange={this.handleChange} />
 
-                    <input type='text' name='dateFrom'
-                        id='dateFrom'
-                        value={this.state.dateFrom}
-                        placeholder='DateFrom'
-                        onChange={this.handleChange} />
-
-
-                    <input type='text' name='dateTo'
-                        id='dateTo'
-                        value={this.state.dateTo}
-                        placeholder='DateTo'
-                        onChange={this.handleChange} />
+                        <label className="col-sm-3  col-form-label" htmlFor='dateTo'>Date To</label>
+                        <input className="form-control" type='text' name='dateTo'
+                            id='dateTo'
+                            value={this.state.dateTo}
+                            placeholder='DateTo'
+                            onChange={this.handleChange} />
+                    </div>
                 </form>
-                <button onClick={this.handleClick}>Delete</button>
+                <button className="btn btn-danger" onClick={this.handleClick}>Delete</button>
                 <div>
 
                 </div>

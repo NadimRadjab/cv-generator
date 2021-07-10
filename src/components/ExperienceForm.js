@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Experience from './Experience';
+import '../styles/ProfessionalExp.css'
 
 
 class ExperienceForm extends Component {
@@ -37,41 +37,49 @@ class ExperienceForm extends Component {
     render() {
         let result;
         if (this.state.isDelete) {
-            result = <div>
-                <form >
-                    <input type='text' name='position'
-                        id='position'
-                        value={this.state.position}
-                        placeholder='Position'
-                        onChange={this.handleChange} />
-
-                    <input type='text' name='company'
-                        id='company'
-                        value={this.state.company}
-                        placeholder='Company'
-                        onChange={this.handleChange}
-                    />
-
-                    <input type='text' name='city'
-                        id='city'
-                        value={this.state.city}
-                        placeholder='City'
-                        onChange={this.handleChange} />
-
-                    <input type='text' name='dateFrom'
-                        id='dateFrom'
-                        value={this.state.dateFrom}
-                        placeholder='DateFrom'
-                        onChange={this.handleChange} />
+            result = <div className='ExperienceForm'>
+                <form className='row g-2' >
+                    <div className='col-sm-5'>
+                        <label className="col-sm-3  col-form-label" htmlFor='position'>Position</label>
+                        <input className="form-control" type='text' name='position'
+                            id='position'
+                            value={this.state.position}
+                            placeholder='Position'
+                            onChange={this.handleChange} />
+                        <label className="col-sm-3  col-form-label" htmlFor='company'>Company</label>
+                        <input className="form-control" type='text' name='company'
+                            id='company'
+                            value={this.state.company}
+                            placeholder='Company'
+                            onChange={this.handleChange}
+                        />
+                        <label className="col-sm-3  col-form-label" htmlFor='city'>City</label>
+                        <input className="form-control" type='text' name='city'
+                            id='city'
+                            value={this.state.city}
+                            placeholder='City'
+                            onChange={this.handleChange} />
+                    </div>
 
 
-                    <input type='text' name='dateTo'
-                        id='dateTo'
-                        value={this.state.dateTo}
-                        placeholder='DateTo'
-                        onChange={this.handleChange} />
+                    <div className='col-sm-5'>
+                        <label className="col-sm-4  col-form-label" htmlFor='dateFrom'>Date From</label>
+                        <input className="form-control" type='text' name='dateFrom'
+                            id='dateFrom'
+                            value={this.state.dateFrom}
+                            placeholder='DateFrom'
+                            onChange={this.handleChange} />
+
+                        <label className="col-sm-3 col-form-label" htmlFor='dateTo'>Date To</label>
+                        <input className="form-control" type='text' name='dateTo'
+                            id='dateTo'
+                            value={this.state.dateTo}
+                            placeholder='DateTo'
+                            onChange={this.handleChange} />
+                    </div>
+
                 </form>
-                <button onClick={this.handleClick}>Delete</button>
+                <button className="btn btn-danger" onClick={this.handleClick}>Delete</button>
                 <div>
 
                 </div>
