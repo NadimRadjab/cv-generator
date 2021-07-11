@@ -414,17 +414,17 @@ bottom: 20px  ;
     .Exp h3{
         position: relative  ;
         bottom: 10px;
-        right: 120px  ;
+        right: 90px  ;
    }
    .School h3{
     position: relative  ;
-    right: 150px  ;
+    right: 125px  ;
     text-decoration: underline;
     bottom: 10px;
 }
 .ExtraSkills h3{
     position: relative  ;
-    right: 140px  ;
+    right: 125px  ;
     text-decoration: underline  ;
 }
 .skillGrid{
