@@ -23,4 +23,24 @@
         bottom: 58px;
         left: 130px;
      }
+
+    @media  (max-width: 600px) {
+      .SchoolForm input{
+         width: 180px;
+         margin: 20px;
+         margin-left: 140px;
+         background-color: #9ac0d4;
+         border-color: #9ac0d4;
+         }
+         .SchoolForm label{
+            font-size: 14px;
+            margin-left: 40px;
+            }
+            .SchoolForm button{
+               position: relative;
+               bottom: 10px;
+               left: 10px;
+            }
+    }
+
  

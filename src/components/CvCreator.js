@@ -29,7 +29,8 @@ class CvCreator extends Component {
             emailEng: 'Email',
             mobilEng: 'Mobil',
             statusEng: 'Status',
-            nationalityEng: 'Nationality'
+            nationalityEng: 'Nationality',
+            id: uuidv4()
         }],
         personalInfoGerm: [{
             titleGerman: 'Persönliche Angaben',
@@ -40,7 +41,8 @@ class CvCreator extends Component {
             emailGerman: 'email',
             mobilGerman: 'mobil',
             statusGerman: 'Familienstand',
-            nationalityGerman: 'Nationalität'
+            nationalityGerman: 'Nationalität',
+            id: uuidv4()
         }],
         ExpInfoEng: {
             titleEng: 'Professional Experience ',
@@ -465,14 +467,15 @@ class CvCreator extends Component {
                     birthDateT={el.birthDateGerman}
                     statusT={el.statusGerman}
                     nationalityT={el.nationalityGerman}
-                    titleT={el.titleGerman} />
+                    titleT={el.titleGerman}
+                    key={el.id} />
             ))
 
 
 
         } else {
             translateGermanPersonal = this.props.personalInfoEng.map(el => (
-                <PersonalForm updateData={this.updateData} updateFile={this.updateFile}
+                <PersonalForm key={el.id} updateData={this.updateData} updateFile={this.updateFile}
                     streetT={el.streetEng}
                     placeT={el.placeEng}
                     birthDateT={el.birthDateEng}
@@ -682,6 +685,7 @@ class CvCreator extends Component {
         if (this.state.isGerman === true) {
             translateGermanPersonalInfo = this.props.personalInfoGerm.map(el => (
                 <PersonalInfo
+                    key={el.id}
                     nameT={el.nameGerman}
                     streetT={el.streetGerman}
                     placeT={el.placeGerman}
@@ -704,6 +708,7 @@ class CvCreator extends Component {
         } else {
             translateGermanPersonalInfo = this.props.personalInfoEng.map(el => (
                 <PersonalInfo
+                    key={el.id}
                     nameT={el.nameEng}
                     streetT={el.streetEng}
                     placeT={el.placeEng}

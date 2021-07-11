@@ -328,3 +328,114 @@ bottom: 20px  ;
         justify-content: center;
     }
   }
+
+ @media  (max-width: 570px) {
+    .Title{
+        display: flex; 
+        background-color: #5c5b5b;
+        height: 90px;
+    }
+    .Title svg{
+     position: relative;
+     top: 20px;
+     color: white;
+     left: 160px;
+    }
+    .Title h1{
+        font-family:  Monaco, Consolas, 'Courier New';
+        position: relative;
+        top: 15px;
+        left: 160px;
+        height: 35px;
+        color: whitesmoke;
+        width: 250px;
+    }
+    .Cv-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        
+    }
+    .Cv-container button{
+        width: 80px;
+        font-size: 14px;
+    }
+    .FunButtons{
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        height: 80px;
+        margin: 10px;
+        font-size: 14px;
+        align-items: center;
+        justify-content: center;
+    }
+    .Cv-forms{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #EEE1B3;
+        text-align: center; 
+        
+        overflow: hidden;
+        background: white;
+        background-color: #556d7a;
+        width: 11cm;
+        display: grid; 
+        margin-bottom: 0.5cm;
+        border-radius: 10px;
+        box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    }
+    .Cv-infos{
+        font-family: Symbol, serif;
+        text-align: center  ;
+        background: white;
+        width: 12cm  ;
+        height: 29.7cm  ;
+        display: block  ;
+        margin-bottom: 0.5cm  ;
+        box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+       
+    }
+    .Cv-infos{
+        font-size: 14px;
+       
+    }
+    .Cv-infos h3{
+        font-size: 19px;
+        position: relative;
+       
+       
+    }
+    .Cv-infos img{
+        width: 70px;
+        height: 70px;
+       
+    }
+    .Exp h3{
+        position: relative  ;
+        bottom: 10px;
+        right: 120px  ;
+   }
+   .School h3{
+    position: relative  ;
+    right: 150px  ;
+    text-decoration: underline;
+    bottom: 10px;
+}
+.ExtraSkills h3{
+    position: relative  ;
+    right: 140px  ;
+    text-decoration: underline  ;
+}
+.skillGrid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(100px,auto);
+}
+.computer-info{
+    position: relative  ;
+    right: 10px
+
+}
+  }
