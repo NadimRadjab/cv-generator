@@ -150,6 +150,7 @@ color: whitesmoke;
 
  /* Cv Info elements  */
 .Cv-infos{
+    font-family: serif;
     text-align: center  ;
     background: white;
     width: 21cm  ;
