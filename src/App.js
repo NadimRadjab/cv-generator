@@ -1,14 +1,8 @@
-import './App.css';
-import PersonalForm from './components/PersonalForm';
-import CvCreator from './components/CvCreator';
+import "./App.css";
+import Routs from "./Routs";
 
 function App() {
-  return (
-    <div className="App">
-      <CvCreator />
-
-    </div>
-  );
+  return <Routs />;
 }
 
 export default App;
