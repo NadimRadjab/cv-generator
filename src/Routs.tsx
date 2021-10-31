@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import CvCreator from "./components/CvCreator";
 import ClassicTemplate from "./components/CVTemplates/Classic/ClassicTemplate";
+import CassicForm from "./components/CVTemplates/Classic/ClassicForm";
 import Navbar from "./components/UI/Navbar";
 
 const Routs = () => {
@@ -14,10 +14,11 @@ const Routs = () => {
         justifyContent: "center",
       }}
     >
-      <Navbar />
       <Router>
+        <Navbar />
         <Switch>
           <Route exact path="/" component={ClassicTemplate} />
+          <Route exact path="/form" component={CassicForm} />
         </Switch>
       </Router>
     </div>

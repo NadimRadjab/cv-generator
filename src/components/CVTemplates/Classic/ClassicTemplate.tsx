@@ -1,14 +1,17 @@
-import { Container, Grid, Paper, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { ReactNode } from "react";
+import React, { LegacyRef } from "react";
 import { makeStyles } from "@mui/styles";
-import InfoContainer from "./InfoContainer";
+import InfoContainer from "./UI/InfoContainer";
+import Pdf from "react-to-pdf";
+import { useAppSelector } from "../../../redux/hooks";
+
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 const TextBox: React.FC<Props> = (props: Props) => {
   return (
-    <Box width="50%">
+    <Box width="50%" sx={{ justifyContent: "center", alignItems: "center" }}>
       <Typography fontSize="11pt">{props.children}</Typography>
     </Box>
   );
@@ -16,167 +19,179 @@ const TextBox: React.FC<Props> = (props: Props) => {
 
 const TitleText: React.FC<Props> = (props: Props) => {
   return (
-    <Box sx={{ alignSelf: "flex-start", ml: 10 }}>
+    <Box sx={{ alignSelf: "flex-start", ml: 10, mb: 2 }}>
       <Typography color="#5398be" fontSize="14pt">
         {props.children}
       </Typography>
     </Box>
   );
 };
+
 const ClassicTemplate = () => {
   const classes = useStyles();
+  const classic = useAppSelector((state) => state.classic);
+  let arr = [] as any;
+  const renderPersonalInfoText = () => {
+    return Object.keys(classic.personalInfo).map((key, i) => {
+      if (
+        key === "Full Name" ||
+        key === "Date of Birth" ||
+        key === "Matrial Status" ||
+        key === "Nationality"
+      ) {
+        arr.push(key);
+        if (arr.includes(key)) {
+          return (
+            <InfoContainer key={i} padding={0.2}>
+              <TextBox>{key}:</TextBox>
+              <TextBox>{classic.personalInfo[key]}</TextBox>
+            </InfoContainer>
+          );
+        }
+      }
+    });
+  };
+  const renderHeader = () => {
+    return Object.keys(classic.personalInfo).map((key, i) => {
+      if (
+        key === "Street" ||
+        key === "Zip/City" ||
+        key === "Phone Number" ||
+        key === "Email-Address"
+      ) {
+        return <Typography key={i}>{classic.personalInfo[key]}</Typography>;
+      }
+    });
+  };
+  const renderExperience = () => {
+    return classic.professionalExperience.map((exp, i) => {
+      return (
+        <InfoContainer key={i} padding={1.2}>
+          <TextBox>{`${exp.From} - ${exp.Until}`}</TextBox>
+          <TextBox>
+            <b>{exp.Position}</b>
+            <br />
+            {exp.Company}, {exp.City}
+          </TextBox>
+        </InfoContainer>
+      );
+    });
+  };
+
+  const renderEducation = () => {
+    return classic.education.map((exp, i) => {
+      return (
+        <InfoContainer key={i} padding={1.2}>
+          <TextBox>{`${exp.From} - ${exp.Until}`}</TextBox>
+          <TextBox>
+            <b>{exp["School Name"]}</b>
+            <br />
+            {exp.Degree}, {exp.City}
+          </TextBox>
+        </InfoContainer>
+      );
+    });
+  };
+  const renderLanguage = () => {
+    return classic.languages.map((lang, i) => (
+      <InfoContainer key={i}>
+        <TextBox>{lang.language}:</TextBox>
+        <TextBox>{lang.level}</TextBox>
+      </InfoContainer>
+    ));
+  };
+  const ref: LegacyRef<HTMLDivElement> = React.createRef();
   return (
-    <div
-      style={{
-        marginTop: 10,
-        padding: 20,
-        backgroundColor: "white",
-        width: "21cm",
-        height: "29.7cm",
+    <Container
+      sx={{
+        p: 4,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
       }}
     >
-      <Box
-        justifyContent="center"
-        alignItems="center"
-        display="flex"
-        width="100%"
-        borderBottom="#ccc solid 1px"
-        flexDirection="column"
-      >
-        <Typography variant="h5">Your Name</Typography>
-        <Box className={classes.girdInfo}>
-          <Typography>Samir Street 42adsadsa</Typography>
-
-          <Typography>40902 Some Placeasdsadsadsa</Typography>
-
-          <Typography>23414343423432432</Typography>
-
-          <Typography> emailexample@gmail.com</Typography>
+      <Pdf targetRef={ref} filename="cv.pdf">
+        {({ toPdf }: any) => (
+          <Button variant="contained" sx={{ mb: 4 }} onClick={toPdf}>
+            Download Pdf
+          </Button>
+        )}
+      </Pdf>
+      <div ref={ref} className={classes.cv}>
+        <Box
+          justifyContent="center"
+          alignItems="center"
+          display="flex"
+          width="100%"
+          borderBottom="#ccc solid 1px"
+          flexDirection="column"
+          marginTop="0.5rem"
+        >
+          <Typography variant="h5">
+            {classic.personalInfo["Full Name"]}
+          </Typography>
+          <Box className={classes.girdInfo}>{renderHeader()}</Box>
         </Box>
-      </Box>
 
-      <Box className={classes.gridSecondInfo}>
-        <Box className={classes.personalInfoGrid}>
-          <TitleText>Personal Information</TitleText>
-          <Box sx={{ p: 3 }} width="65%">
-            <InfoContainer padding={0.2}>
-              <TextBox>Name:</TextBox>
-              <TextBox>Kiro Ivan</TextBox>
-            </InfoContainer>
-            <InfoContainer padding={0.2}>
-              <TextBox>Date of Birth:</TextBox>
-              <TextBox>12.08.1988 in Varna</TextBox>
-            </InfoContainer>
-            <InfoContainer padding={0.2}>
-              <TextBox>Nationality:</TextBox>
-              <TextBox>American</TextBox>
-            </InfoContainer>
-            <InfoContainer padding={0.2}>
-              <TextBox>Martial status:</TextBox>
-              <TextBox>single</TextBox>
-            </InfoContainer>
-          </Box>
-        </Box>
-        <Box sx={{ p: 3 }}>
-          <img
-            style={{ width: 180, height: 180 }}
-            src="https://media.istockphoto.com/vectors/default-avatar-profile-icon-grey-photo-placeholder-hand-drawn-modern-vector-id1273297997?k=20&m=1273297997&s=612x612&w=0&h=EkhPspb58IrPQnchFVjZFrz5R1hnCZJTTH_l34J2EtU="
-          />
-        </Box>
-      </Box>
-      <Box className={classes.wraperContainer}>
-        <TitleText>Professional Experience</TitleText>
-        <Box>
-          <InfoContainer padding={1.2}>
-            <TextBox>04/2018 - 06/2018</TextBox>
-            <TextBox>Produktions KTL Center MHK GmbH , Heilbronn</TextBox>
-          </InfoContainer>
-          <InfoContainer>
-            <TextBox>04/2018 - 06/2018</TextBox>
-            <TextBox>Produktions KTL Center MHK GmbH , Heilbronn</TextBox>
-          </InfoContainer>
-          <InfoContainer padding={1.2}>
-            <TextBox>04/2018 - 06/2018</TextBox>
-            <TextBox>Produktions KTL Center MHK GmbH , Heilbronn</TextBox>
-          </InfoContainer>
-          <InfoContainer padding={1.2}>
-            <TextBox>04/2018 - 06/2018</TextBox>
-            <TextBox>
-              Beratender Chemiker in Wasserversorgnug
-              -Trinkwasseraufbereitungund prüfung- Umweltingenieur-
-              Laborassistent in chemischen Labor DEVEN OOD-SOLVAY SODI, Varna
-              (Bulgarien)
-            </TextBox>
-          </InfoContainer>
-        </Box>
-      </Box>
-      <Box className={classes.wraperContainer}>
-        <TitleText>Education</TitleText>
-        <InfoContainer padding={1.2}>
-          <TextBox>09/2002 – 06/2005</TextBox>
-          <TextBox>
-            Technischeuniversität, Varna (Bulgarien) Spezialisierte Chemische
-            Technologien
-          </TextBox>
-        </InfoContainer>
-        <InfoContainer padding={1.2}>
-          <TextBox>09/2002 – 06/2005</TextBox>
-          <TextBox>
-            Technischeuniversität, Varna (Bulgarien) Spezialisierte Chemische
-            Technologien
-          </TextBox>
-        </InfoContainer>
-      </Box>
-      <Box className={classes.wraperContainer}>
-        <TitleText>Other skills</TitleText>
-        <InfoContainer padding={1.2}>
-          <TextBox>Computer skills:</TextBox>
-          <TextBox>
-            MS Office, an, Windows, Ios, Android, JavaScript, Linux Git
-          </TextBox>
-        </InfoContainer>
-        <InfoContainer padding={1.2}>
-          <TextBox>Languages:</TextBox>
-          <Box sx={{ p: 2 }} width="45%">
-            <Box
-              justifyContent="space-between"
-              flexDirection="row"
-              display="flex"
-            >
-              <TextBox>English:</TextBox>
-              <TextBox>Fluent</TextBox>
-            </Box>
-            <Box
-              justifyContent="space-between"
-              flexDirection="row"
-              display="flex"
-            >
-              <TextBox>German:</TextBox>
-              <TextBox>Intermediate</TextBox>
-            </Box>
-            <Box
-              justifyContent="space-between"
-              flexDirection="row"
-              display="flex"
-            >
-              <TextBox>Korean</TextBox>
-              <TextBox>Proficient/Fluent</TextBox>
-            </Box>
-            <Box
-              justifyContent="space-between"
-              flexDirection="row"
-              display="flex"
-            >
-              <TextBox>Very Long Long Long Languege</TextBox>
-              <TextBox>Advanced</TextBox>
+        <Box className={classes.gridSecondInfo}>
+          <Box sx={{ width: "75%" }}>
+            <TitleText>Personal Information</TitleText>
+            <Box sx={{ p: 2 }} width="65%">
+              {renderPersonalInfoText()}
             </Box>
           </Box>
+          <Box sx={{ p: 3, mr: 10 }}>
+            <img
+              src={
+                !classic.image
+                  ? "https://media.istockphoto.com/vectors/default-avatar-profile-icon-grey-photo-placeholder-hand-drawn-modern-vector-id1273297997?k=20&m=1273297997&s=612x612&w=0&h=EkhPspb58IrPQnchFVjZFrz5R1hnCZJTTH_l34J2EtU="
+                  : classic.image
+              }
+              style={{ width: 180, height: 180 }}
+            />
+          </Box>
+        </Box>
+        <Box className={classes.wraperContainer}>
+          <TitleText>Professional Experience</TitleText>
+
+          {renderExperience()}
+        </Box>
+        <Box className={classes.wraperContainer}>
+          <TitleText>Education</TitleText>
+          {renderEducation()}
+        </Box>
+        <Box className={classes.wraperContainer}>
+          <TitleText>Other skills</TitleText>
+          <InfoContainer padding={1.2}>
+            <TextBox>Computer skills:</TextBox>
+            <TextBox>{classic.computerSkills}</TextBox>
+          </InfoContainer>
+          <InfoContainer padding={1.2}>
+            <TextBox>Languages:</TextBox>
+            <Box sx={{ p: 2 }} width="45%">
+              {renderLanguage()}
+            </Box>
+          </InfoContainer>
+        </Box>
+
+        <InfoContainer>
+          <TextBox>Driving Licence:</TextBox>
+          <TextBox>C & B</TextBox>
         </InfoContainer>
-      </Box>
-    </div>
+      </div>
+    </Container>
   );
 };
 const useStyles = makeStyles({
+  cv: {
+    background: "white",
+    width: "21cm",
+    height: "29.7cm",
+    display: "block",
+    marginBottom: "0.5cm ",
+    boxShadow: "0 0 0.5cm rgba(0,0,0,0.5)",
+  },
   girdInfo: {
     display: "grid",
     gridTemplateColumns: "repeat(2,60%)",
@@ -190,11 +205,10 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     flexDirection: "row",
   },
-  personalInfoGrid: {
-    width: "75%",
-  },
+
   wraperContainer: {
     width: "90%",
+    marginTop: "0.5rem",
     justifyContent: "center",
     alignItems: "center",
     display: "flex",
