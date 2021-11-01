@@ -5,15 +5,14 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import {
   updateData,
   updateImage,
-} from "../../../../redux/features/ClassicTemplate/infoSlice";
+} from "../../../../redux/features/DesignerTemplate/designerSlice";
 import FormControllContainer from "../../../GlobalUI/FormControllContainer";
-interface Props {
-  isDesigner?: boolean;
-}
-const PersonalInfoForm: React.FC<Props> = ({ isDesigner }) => {
-  const personalInfo = useAppSelector((state) => state.classic.personalInfo);
+
+const PersonalInfoDesignerForm = () => {
+  const personalInfo = useAppSelector((state) => state.designer.personalInfo);
   const dispatch = useAppDispatch();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     dispatch(updateData({ key: e.target.name, text: e.target.value }));
   };
   const handleFile = (e: any) => {
@@ -26,21 +25,17 @@ const PersonalInfoForm: React.FC<Props> = ({ isDesigner }) => {
 
   const renderTextField = () => {
     return Object.keys(personalInfo).map((key, i) => {
-      if (isDesigner) {
-        if (key !== "Street" && key !== "Nationality" && key !== "Zip/City") {
-          return (
-            <TextField
-              key={i}
-              onChange={handleChange}
-              name={key}
-              value={personalInfo[key]}
-              sx={{ p: 2, m: 2 }}
-              variant="standard"
-              label={key}
-            />
-          );
-        }
-      }
+      return (
+        <TextField
+          key={i}
+          onChange={handleChange}
+          name={key}
+          value={personalInfo[key]}
+          sx={{ p: 2, m: 2 }}
+          variant="standard"
+          label={key}
+        />
+      );
     });
   };
   const classes = useStyles();
@@ -81,4 +76,4 @@ const useStyles = makeStyles({
   },
 });
 
-export default PersonalInfoForm;
+export default PersonalInfoDesignerForm;

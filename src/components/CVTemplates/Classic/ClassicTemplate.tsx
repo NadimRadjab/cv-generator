@@ -5,14 +5,18 @@ import { makeStyles } from "@mui/styles";
 import InfoContainer from "./UI/InfoContainer";
 import Pdf from "react-to-pdf";
 import { useAppSelector } from "../../../redux/hooks";
+import DesignerTemplate from "../Designer/DesignerTemplate";
 
 interface Props {
   children?: React.ReactNode;
+  color?: string;
 }
 const TextBox: React.FC<Props> = (props: Props) => {
   return (
     <Box width="50%" sx={{ justifyContent: "center", alignItems: "center" }}>
-      <Typography fontSize="11pt">{props.children}</Typography>
+      <Typography color={props.color} fontSize="11pt">
+        {props.children}
+      </Typography>
     </Box>
   );
 };
@@ -118,7 +122,9 @@ const ClassicTemplate = () => {
           </Button>
         )}
       </Pdf>
-      <div ref={ref} className={classes.cv}>
+      <DesignerTemplate />
+      {/* <div ref={ref} className={classes.cv}>
+
         <Box
           justifyContent="center"
           alignItems="center"
@@ -162,7 +168,7 @@ const ClassicTemplate = () => {
           {renderEducation()}
         </Box>
         <Box className={classes.wraperContainer}>
-          <TitleText>Other skills</TitleText>
+          <TitleText>Additional skills</TitleText>
           <InfoContainer padding={1.2}>
             <TextBox>Computer skills:</TextBox>
             <TextBox>{classic.computerSkills}</TextBox>
@@ -179,7 +185,7 @@ const ClassicTemplate = () => {
           <TextBox>Driving Licence:</TextBox>
           <TextBox>C & B</TextBox>
         </InfoContainer>
-      </div>
+      </div> */}
     </Container>
   );
 };
@@ -194,7 +200,7 @@ const useStyles = makeStyles({
   },
   girdInfo: {
     display: "grid",
-    gridTemplateColumns: "repeat(2,60%)",
+    gridTemplateColumns: "repeat(2,70%)",
     padding: 10,
   },
   gridSecondInfo: {

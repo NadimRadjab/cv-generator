@@ -1,13 +1,13 @@
 import React from "react";
 import { Button, Paper, TextField } from "@mui/material";
-import { useAppDispatch } from "../../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import {
   removeEducationData,
   updateEducationData,
-} from "../../../../redux/features/ClassicTemplate/infoSlice";
-import { EducationData } from "../../../../data/seeds";
-import FormControllContainer from "./FormControllContainer";
-import DeleteButton from "../UI/DeleteButton";
+} from "../../../redux/features/ClassicTemplate/infoSlice";
+import { EducationData } from "../../../data/seeds";
+import FormControllContainer from "../../GlobalUI/FormControllContainer";
+import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
 type Props = {
   info: EducationData;
 };
@@ -33,6 +33,7 @@ const EducationForm = (props: Props) => {
         return (
           <TextField
             key={i}
+            value={props.info[key]}
             onChange={handleChange}
             name={key}
             sx={{ p: 2, m: 2 }}

@@ -14,7 +14,10 @@ interface InfoState {
   education: EducationData[];
   computerSkills: string;
   languages: { id: string; language: string; level: string }[];
-  image: "";
+  certifications: { id: string; certification: string; year: string }[];
+  awards: { id: string; awards: string; year: string }[];
+  image: string;
+  description: string;
 }
 type PayloadData = {
   key: string;
@@ -26,6 +29,9 @@ const initialState: InfoState = {
   professionalExperience: [{ id: uuidv4(), ...professionalExperienceData }],
   education: [{ ...educationData, id: uuidv4() }],
   computerSkills: "",
+  description: "",
+  certifications: [{ id: uuidv4(), certification: "", year: "" }],
+  awards: [{ id: uuidv4(), awards: "", year: "" }],
   image: "",
   languages: [{ id: uuidv4(), language: "", level: "" }],
 };
@@ -108,6 +114,62 @@ export const infoSlice = createSlice({
         return { ...info };
       });
     },
+
+    addCertificationsData: (state) => {
+      state.certifications.push({
+        id: uuidv4(),
+        certification: "",
+        year: "",
+      });
+    },
+
+    updateCertificationsData: (
+      state,
+      action: PayloadAction<{ id: string; award: string; year: string }>
+    ) => {
+      state.certifications = state.certifications.map((info) => {
+        if (info.id === action.payload.id) {
+          return {
+            ...info,
+            certification: action.payload.award,
+            year: action.payload.year,
+          };
+        }
+        return { ...info };
+      });
+    },
+    removeCertificationsData: (state, action) => {
+      state.certifications = state.certifications.filter(
+        (cer) => cer.id !== action.payload
+      );
+    },
+
+    addAwardsData: (state) => {
+      state.awards.push({
+        id: uuidv4(),
+        awards: "",
+        year: "",
+      });
+    },
+
+    updateAwardsData: (
+      state,
+      action: PayloadAction<{ id: string; award: string; year: string }>
+    ) => {
+      state.awards = state.awards.map((info) => {
+        if (info.id === action.payload.id) {
+          return {
+            ...info,
+            awards: action.payload.award,
+            year: action.payload.year,
+          };
+        }
+        return { ...info };
+      });
+    },
+    removeAwardsData: (state, action) => {
+      state.awards = state.awards.filter((aw) => aw.id !== action.payload);
+    },
     updateImage: (state, action) => {
       state.image = action.payload;
     },
@@ -116,6 +178,12 @@ export const infoSlice = createSlice({
 
 export const {
   updateImage,
+  updateAwardsData,
+  addAwardsData,
+  removeAwardsData,
+  addCertificationsData,
+  updateCertificationsData,
+  removeCertificationsData,
   removeEducationData,
   removeExperienceData,
   removeLanguageData,

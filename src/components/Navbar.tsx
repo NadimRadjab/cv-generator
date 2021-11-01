@@ -23,7 +23,8 @@ const Navbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">Preview</Link>
+            <Link to="/preview">Preview</Link>
+
             <Link to="/form">Form</Link>
           </Typography>
           <Button color="inherit">Login</Button>

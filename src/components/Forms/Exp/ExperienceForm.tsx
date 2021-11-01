@@ -1,12 +1,12 @@
 import React from "react";
 import { Paper, TextField } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeExperienceData,
   updateExperienceData,
-} from "../../../../redux/features/ClassicTemplate/infoSlice";
-import FormControllContainer from "./FormControllContainer";
-import DeleteButton from "../UI/DeleteButton";
+} from "../../../redux/features/ClassicTemplate/infoSlice";
+import FormControllContainer from "../../GlobalUI/FormControllContainer";
+import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
 const ExperienceForm = (props: any) => {
   const dispatch = useAppDispatch();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +29,7 @@ const ExperienceForm = (props: any) => {
             key={i}
             onChange={handleChange}
             name={key}
+            value={props.exp[key]}
             sx={{ p: 2, m: 2 }}
             variant="standard"
             label={key}
