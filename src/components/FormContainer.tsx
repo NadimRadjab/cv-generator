@@ -10,14 +10,23 @@ import {
 } from "../redux/features/ClassicTemplate/infoSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import ExperienceForm from "./Forms/Exp/ExperienceForm";
-import ComputerSkillsForm from "./CVTemplates/Classic/Forms/ComputerSkillsForm";
+import ComputerSkillsForm from "./Forms/ExtraSkills/ComputerSkillsForm";
 import EducationForm from "./Forms/Exp/EducationForm";
-import LanguageForm from "./CVTemplates/Classic/Forms/LanguageForm";
-import PersonalInfoForm from "./CVTemplates/Classic/Forms/PersonalInfoForm";
-import CertificateForm from "./Forms/CertificateForm";
-import AwardsForm from "./Forms/AwardsForm";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LanguageForm from "./Forms/ExtraSkills/LanguageForm";
+import PersonalInfoForm from "./Forms/PersonalInfoForm";
+import CertificateForm from "./Forms/Awards&Certificate/CertificateForm";
+import AwardsForm from "./Forms/Awards&Certificate/AwardsForm";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 import Experience from "./Forms/Exp/Experience";
+import ExtraSkills from "./Forms/ExtraSkills/ExtraSkills";
+import AwardsCertificate from "./Forms/Awards&Certificate/Awards&Certificate";
 
 type Props = {
   isDesigner: boolean;
@@ -35,6 +44,7 @@ const FormContainer = (props: Props) => {
   const handleLanguage = () => {
     dispatch(addLanguageData());
   };
+  const { url } = useRouteMatch();
 
   const classes = useStyles();
   return (
@@ -42,17 +52,28 @@ const FormContainer = (props: Props) => {
       <Paper
         sx={{
           display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           p: 5,
         }}
       >
         <Switch>
-          <Route path="/">
-            <PersonalInfoForm isDesigner />
-          </Route>
-          <Route path="/exp">
-            <Experience />
-          </Route>
+          <Route
+            exact
+            path="/form"
+            render={() => <PersonalInfoForm isDesigner />}
+          />
+          <Route exact path="/form/exp" render={() => <Experience />} />
+          <Route
+            exact
+            path="/form/awards"
+            render={() => <AwardsCertificate />}
+          />
+          <Route exact path="/form/extr" render={() => <ExtraSkills />} />
         </Switch>
+        {/* <Route path="/form/exp">
+            <PersonalInfoForm isDesigner />
+          </Route> */}
 
         {/* <Box className={classes.formControl}>
           <Typography className={classes.title}>Personal Info</Typography>
@@ -132,7 +153,7 @@ const FormContainer = (props: Props) => {
 const useStyles = makeStyles({
   root: {
     marginTop: "2rem",
-    width: "95%",
+    width: "75%",
     height: "500px",
     justifyContent: "center",
     alignItems: "center",

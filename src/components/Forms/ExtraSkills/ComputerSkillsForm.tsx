@@ -1,7 +1,7 @@
 import React from "react";
 import { Paper, TextField } from "@mui/material";
-import { useAppDispatch } from "../../../../redux/hooks";
-import { updateComputerData } from "../../../../redux/features/ClassicTemplate/infoSlice";
+import { useAppDispatch } from "../../../redux/hooks";
+import { updateComputerData } from "../../../redux/features/ClassicTemplate/infoSlice";
 
 const ComputerSkillsForm = () => {
   const dispatch = useAppDispatch();

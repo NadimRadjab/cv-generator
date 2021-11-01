@@ -7,13 +7,13 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useAppDispatch } from "../../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import {
   removeLanguageData,
   updateLanguageData,
-} from "../../../../redux/features/ClassicTemplate/infoSlice";
-import { lanuageData } from "../../../../data/seeds";
-import DeleteButton from "../UI/DeleteButton";
+} from "../../../redux/features/ClassicTemplate/infoSlice";
+import { lanuageData } from "../../../data/seeds";
+import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
 type Props = {
   info: { id: string; language: string; level: string };
 };

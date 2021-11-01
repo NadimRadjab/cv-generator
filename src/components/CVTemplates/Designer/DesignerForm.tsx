@@ -1,6 +1,6 @@
 import React from "react";
-import ComputerSkillsForm from "../Classic/Forms/ComputerSkillsForm";
-import PersonalInfoForm from "../Classic/Forms/PersonalInfoForm";
+import ComputerSkillsForm from "../../Forms/ExtraSkills/ComputerSkillsForm";
+import PersonalInfoForm from "../../Forms/PersonalInfoForm";
 import PersonalInfoDesignerForm from "./Form/PersonalInfoForm";
 
 const DesignerForm = () => {

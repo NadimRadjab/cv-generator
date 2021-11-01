@@ -23,7 +23,6 @@ const EducationForm = (props: Props) => {
     );
   };
   const handleRemove = () => {
-    console.log(props.info.id);
     dispatch(removeEducationData(props.info.id));
   };
 

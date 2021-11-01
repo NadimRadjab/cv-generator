@@ -1,12 +1,14 @@
 import React from "react";
 import { TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   updateData,
   updateImage,
-} from "../../../../redux/features/ClassicTemplate/infoSlice";
-import FormControllContainer from "../../../GlobalUI/FormControllContainer";
+} from "../../redux/features/ClassicTemplate/infoSlice";
+import FormControllContainer from "../GlobalUI/FormControllContainer";
+import { Box } from "@mui/system";
+import LocationButtons from "../GlobalUI/LocationButtons";
 interface Props {
   isDesigner?: boolean;
 }
@@ -46,21 +48,24 @@ const PersonalInfoForm: React.FC<Props> = ({ isDesigner }) => {
   const classes = useStyles();
 
   return (
-    <FormControllContainer>
-      {renderTextField()}
-      <label className={classes.labelPic} htmlFor="picture" id="picLabel">
-        Add a Photo
-      </label>
-      <input
-        style={{ display: "none" }}
-        type="file"
-        name="picture"
-        id="picture"
-        placeholder="Picture"
-        accept="image/*"
-        onChange={handleFile}
-      />
-    </FormControllContainer>
+    <Box>
+      <LocationButtons location={"form/exp"} />
+      <FormControllContainer>
+        {renderTextField()}
+        <label className={classes.labelPic} htmlFor="picture" id="picLabel">
+          Add a Photo
+        </label>
+        <input
+          style={{ display: "none" }}
+          type="file"
+          name="picture"
+          id="picture"
+          placeholder="Picture"
+          accept="image/*"
+          onChange={handleFile}
+        />
+      </FormControllContainer>
+    </Box>
   );
 };
 const useStyles = makeStyles({

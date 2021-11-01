@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { TextField } from "@mui/material";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import {
-  removeCertificationsData,
-  updateCertificationsData,
-} from "../../redux/features/ClassicTemplate/infoSlice";
-import DeleteButton from "../CVTemplates/Classic/UI/DeleteButton";
-import FormControllContainer from "../GlobalUI/FormControllContainer";
+  removeAwardsData,
+  updateAwardsData,
+} from "../../../redux/features/ClassicTemplate/infoSlice";
+import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
+import FormControllContainer from "../../GlobalUI/FormControllContainer";
 type Props = {
-  info: { id: string; certification: string; year: string };
+  info: { id: string; awards: string; year: string };
 };
-const CertificateForm = (props: Props) => {
+const AwardsForm = (props: Props) => {
   const dispatch = useAppDispatch();
   const [items, setItems] = useState({
-    certification: "",
+    award: "",
     year: "",
   });
   const handleChange = (e: any) => {
@@ -21,15 +21,15 @@ const CertificateForm = (props: Props) => {
   };
   useEffect(() => {
     dispatch(
-      updateCertificationsData({
-        award: items.certification,
+      updateAwardsData({
+        award: items.award,
         year: items.year,
         id: props.info.id,
       })
     );
   }, [dispatch, items]);
   const handleRemove = () => {
-    dispatch(removeCertificationsData(props.info.id));
+    dispatch(removeAwardsData(props.info.id));
   };
   return (
     <FormControllContainer>
@@ -38,19 +38,19 @@ const CertificateForm = (props: Props) => {
         name="year"
         sx={{ p: 2, m: 2 }}
         variant="standard"
-        label="Certifications Year"
+        label="Award Year"
       />
       <TextField
         multiline
         onChange={handleChange}
-        name="certification"
+        name="award"
         sx={{ p: 2, m: 2 }}
         variant="standard"
-        label="Certifications"
+        label="Award"
       />
       <DeleteButton onRemove={handleRemove}>Remove</DeleteButton>
     </FormControllContainer>
   );
 };
 
-export default CertificateForm;
+export default AwardsForm;
