@@ -1,11 +1,9 @@
-import { Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@mui/styles";
 import InfoContainer from "./UI/InfoContainer";
-
 import { useAppSelector } from "../../../redux/hooks";
-import DesignerTemplate from "../Designer/DesignerTemplate";
 interface Props {
   children?: React.ReactNode;
   color?: string;
@@ -106,91 +104,68 @@ const ClassicTemplate = () => {
   };
 
   return (
-    <Container
-      sx={{
-        p: 4,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      {/* <Pdf targetRef={ref} filename="cv.pdf">
-        {({ toPdf }: any) => {
-          return (
-            <Button variant="contained" sx={{ mb: 4 }} onClick={toPdf}>
-              Download Pdf
-            </Button>
-          );
-        }}
-      </Pdf> */}
+    <div className={classes.cv}>
+      <Box
+        justifyContent="center"
+        alignItems="center"
+        display="flex"
+        width="100%"
+        borderBottom="#ccc solid 1px"
+        flexDirection="column"
+        marginTop="0.5rem"
+      >
+        <Typography variant="h5">
+          {classic.personalInfo["Full Name"]}
+        </Typography>
+        <Box className={classes.girdInfo}>{renderHeader()}</Box>
+      </Box>
 
-      {/* <DesignerTemplate handleRef={handleRef} /> */}
-
-      {/* <div ref={ref} className={classes.cv}>
-
-        <Box
-          justifyContent="center"
-          alignItems="center"
-          display="flex"
-          width="100%"
-          borderBottom="#ccc solid 1px"
-          flexDirection="column"
-          marginTop="0.5rem"
-        >
-          <Typography variant="h5">
-            {classic.personalInfo["Full Name"]}
-          </Typography>
-          <Box className={classes.girdInfo}>{renderHeader()}</Box>
-        </Box>
-
-        <Box className={classes.gridSecondInfo}>
-          <Box sx={{ width: "75%" }}>
-            <TitleText>Personal Information</TitleText>
-            <Box sx={{ p: 2 }} width="65%">
-              {renderPersonalInfoText()}
-            </Box>
-          </Box>
-          <Box sx={{ p: 3, mr: 10 }}>
-            <img
-              src={
-                !classic.image
-                  ? "https://media.istockphoto.com/vectors/default-avatar-profile-icon-grey-photo-placeholder-hand-drawn-modern-vector-id1273297997?k=20&m=1273297997&s=612x612&w=0&h=EkhPspb58IrPQnchFVjZFrz5R1hnCZJTTH_l34J2EtU="
-                  : classic.image
-              }
-              style={{ width: 180, height: 180 }}
-            />
+      <Box className={classes.gridSecondInfo}>
+        <Box sx={{ width: "75%" }}>
+          <TitleText>Personal Information</TitleText>
+          <Box sx={{ p: 2 }} width="65%">
+            {renderPersonalInfoText()}
           </Box>
         </Box>
-        <Box className={classes.wraperContainer}
-          <TitleText>Professional Experience</TitleText>
+        <Box sx={{ p: 3, mr: 10 }}>
+          <img
+            src={
+              !classic.image
+                ? "https://media.istockphoto.com/vectors/default-avatar-profile-icon-grey-photo-placeholder-hand-drawn-modern-vector-id1273297997?k=20&m=1273297997&s=612x612&w=0&h=EkhPspb58IrPQnchFVjZFrz5R1hnCZJTTH_l34J2EtU="
+                : classic.image
+            }
+            style={{ width: 180, height: 180 }}
+          />
+        </Box>
+      </Box>
+      <Box className={classes.wraperContainer}>
+        <TitleText>Professional Experience</TitleText>
 
-          {renderExperience()}
-        </Box>
-        <Box className={classes.wraperContainer}>
-          <TitleText>Education</TitleText>
-          {renderEducation()}
-        </Box>
-        <Box className={classes.wraperContainer}>
-          <TitleText>Additional skills</TitleText>
-          <InfoContainer padding={1.2}>
-            <TextBox>Computer skills:</TextBox>
-            <TextBox>{classic.computerSkills}</TextBox>
-          </InfoContainer>
-          <InfoContainer padding={1.2}>
-            <TextBox>Languages:</TextBox>
-            <Box sx={{ p: 2 }} width="45%">
-              {renderLanguage()}
-            </Box>
-          </InfoContainer>
-        </Box>
-
-        <InfoContainer>
-          <TextBox>Driving Licence:</TextBox>
-          <TextBox>C & B</TextBox>
+        {renderExperience()}
+      </Box>
+      <Box className={classes.wraperContainer}>
+        <TitleText>Education</TitleText>
+        {renderEducation()}
+      </Box>
+      <Box className={classes.wraperContainer}>
+        <TitleText>Additional skills</TitleText>
+        <InfoContainer padding={1.2}>
+          <TextBox>Computer skills:</TextBox>
+          <TextBox>{classic.computerSkills}</TextBox>
         </InfoContainer>
-      </div> */}
-    </Container>
+        <InfoContainer padding={1.2}>
+          <TextBox>Languages:</TextBox>
+          <Box sx={{ p: 2 }} width="45%">
+            {renderLanguage()}
+          </Box>
+        </InfoContainer>
+      </Box>
+
+      <InfoContainer>
+        <TextBox>Driving Licence:</TextBox>
+        <TextBox>C & B</TextBox>
+      </InfoContainer>
+    </div>
   );
 };
 

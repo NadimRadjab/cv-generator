@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Paper, TextField } from "@mui/material";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeEducationData,
   updateEducationData,
@@ -10,9 +10,9 @@ import FormControllContainer from "../../GlobalUI/FormControllContainer";
 import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
 type Props = {
   info: EducationData;
-  isDesigner: boolean;
 };
 const EducationForm = (props: Props) => {
+  const template = useAppSelector((state) => state.classic);
   const dispatch = useAppDispatch();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
@@ -30,7 +30,19 @@ const EducationForm = (props: Props) => {
   const renderTextField = () => {
     return Object.keys(props.info).map((key, i) => {
       if (key !== "id") {
-        if (props.isDesigner && key !== "City")
+        if (template.cvIdentifire === "designer-01" && key !== "City") {
+          return (
+            <TextField
+              key={i}
+              value={props.info[key]}
+              onChange={handleChange}
+              name={key}
+              sx={{ p: 2, m: 2 }}
+              variant="standard"
+              label={key}
+            />
+          );
+        } else if (template.cvIdentifire === "classicCv-01")
           return (
             <TextField
               key={i}

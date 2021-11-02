@@ -9,4 +9,9 @@ export const global = makeStyles({
     marginBottom: "0.5cm ",
     boxShadow: "0 0 0.5cm rgba(0,0,0,0.5)",
   },
+  link: {
+    color: "white",
+    textDecoration: "none",
+    "&:hover": {},
+  },
 });

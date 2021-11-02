@@ -11,7 +11,6 @@ export interface PersonalDesignerData {
 
 export const personalInfoDesignerData: any = {
   Name: "",
-
   ["Matrial Status"]: "",
   ["Date of Birth"]: "",
 

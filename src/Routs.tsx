@@ -4,8 +4,10 @@ import Navbar from "./components/Navbar";
 import Selector from "./components/Selector";
 import FormContainer from "./components/FormContainer";
 import CvContainer from "./components/CvContainer";
+import { useAppSelector } from "./redux/hooks";
 
 const Routs = () => {
+  const template = useAppSelector((state) => state.classic);
   return (
     <div
       style={{
@@ -18,9 +20,18 @@ const Routs = () => {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Selector} />
-          <Route path="/form" component={() => <FormContainer isDesigner />} />
-          <Route exact path="/preview" component={CvContainer} />
+          {template.cvIdentifire.length && (
+            <Route path="/form">
+              <FormContainer />
+            </Route>
+          )}
+          <Route exact path="/preview">
+            <CvContainer />
+          </Route>
+
+          <Route path="/">
+            <Selector />
+          </Route>
         </Switch>
       </Router>
     </div>

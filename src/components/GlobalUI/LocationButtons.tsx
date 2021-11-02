@@ -5,7 +5,7 @@ type Props = {
   location: string;
 };
 const LocationButtons = (props: Props) => {
-  const histroy = useHistory();
+  const history = useHistory();
   return (
     <Box
       sx={{
@@ -18,13 +18,13 @@ const LocationButtons = (props: Props) => {
         sx={{ mr: 4 }}
         variant="contained"
         color="error"
-        onClick={() => histroy.goBack()}
+        onClick={() => history.goBack()}
       >
         Back
       </Button>
       <Button
         variant="contained"
-        onClick={() => histroy.push(`${props.location}`)}
+        onClick={() => history.push(`${props.location}`)}
       >
         Next
       </Button>

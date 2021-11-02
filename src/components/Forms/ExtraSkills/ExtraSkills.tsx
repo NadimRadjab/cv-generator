@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { addLanguageData } from "../../../redux/features/ClassicTemplate/infoSlice";
 import LocationButtons from "../../GlobalUI/LocationButtons";
 
-const ExtraSkills = (props: { isDesigner: boolean }) => {
+const ExtraSkills = () => {
   const template = useAppSelector((state) => state.classic);
   const dispatch = useAppDispatch();
   const handleLanguage = () => {
@@ -18,6 +18,7 @@ const ExtraSkills = (props: { isDesigner: boolean }) => {
         textAlign: "center",
       }}
     >
+      <LocationButtons location={"/preview"} />
       <Typography fontSize={19}>Additional skills</Typography>
       <Box
         sx={{
@@ -30,10 +31,10 @@ const ExtraSkills = (props: { isDesigner: boolean }) => {
       >
         <ComputerSkillsForm />
         {template.languages.map((info) => {
-          return <LanguageForm key={info.id} info={info} isDesigner />;
+          return <LanguageForm key={info.id} info={info} />;
         })}
 
-        {!props.isDesigner && (
+        {template.cvIdentifire !== "designer-01" && (
           <Button onClick={handleLanguage}>Add Language</Button>
         )}
       </Box>

@@ -25,6 +25,8 @@ interface InfoState {
   awards: AwardsData[];
   image: string;
   description: string;
+  exampleImage: string;
+  cvIdentifire: string;
 }
 type PayloadData = {
   key: string;
@@ -41,12 +43,21 @@ const initialState: InfoState = {
   awards: [{ id: uuidv4(), award: "", year: "" }],
   image: placeholder,
   languages: [{ id: uuidv4(), language: "", level: "" }],
+  exampleImage: "",
+  cvIdentifire: "",
 };
 
 export const infoSlice = createSlice({
   name: "info",
   initialState,
   reducers: {
+    updateCvIdentifire: (
+      state,
+      action: PayloadAction<{ id: string; exampleImg: string }>
+    ) => {
+      state.cvIdentifire = action.payload.id;
+      state.exampleImage = action.payload.exampleImg;
+    },
     updateData: (state, action: PayloadAction<PayloadData>) => {
       state.personalInfo[action.payload.key] = action.payload.text;
     },
@@ -182,6 +193,7 @@ export const infoSlice = createSlice({
 
 export const {
   updateImage,
+  updateCvIdentifire,
   updateDescription,
   updateAwardsData,
   addAwardsData,

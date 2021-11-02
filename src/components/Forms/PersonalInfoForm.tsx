@@ -9,11 +9,10 @@ import {
 import FormControllContainer from "../GlobalUI/FormControllContainer";
 import { Box } from "@mui/system";
 import LocationButtons from "../GlobalUI/LocationButtons";
-interface Props {
-  isDesigner?: boolean;
-}
-const PersonalInfoForm: React.FC<Props> = ({ isDesigner }) => {
-  const personalInfo = useAppSelector((state) => state.classic.personalInfo);
+interface Props {}
+
+const PersonalInfoForm: React.FC<Props> = () => {
+  const template = useAppSelector((state) => state.classic);
   const dispatch = useAppDispatch();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateData({ key: e.target.name, text: e.target.value }));
@@ -27,21 +26,32 @@ const PersonalInfoForm: React.FC<Props> = ({ isDesigner }) => {
   };
 
   const renderTextField = () => {
-    return Object.keys(personalInfo).map((key, i) => {
-      if (isDesigner) {
-        if (key !== "Street" && key !== "Nationality" && key !== "Zip/City") {
-          return (
-            <TextField
-              key={i}
-              onChange={handleChange}
-              name={key}
-              value={personalInfo[key]}
-              sx={{ p: 2, m: 2 }}
-              variant="standard"
-              label={key}
-            />
-          );
-        }
+    return Object.keys(template.personalInfo).map((key, i) => {
+      let field = (
+        <TextField
+          key={i}
+          onChange={handleChange}
+          name={key}
+          value={template.personalInfo[key]}
+          sx={{ p: 2, m: 2 }}
+          variant="standard"
+          label={key}
+        />
+      );
+      switch (template.cvIdentifire) {
+        case "designer-01":
+          if (key !== "Street" && key !== "Nationality" && key !== "Zip/City") {
+            return field;
+          }
+          break;
+        case "classicCv-01":
+          if (key !== "Title" && key !== "Location" && key !== "Site") {
+            return field;
+          }
+          break;
+
+        default:
+          return field;
       }
     });
   };

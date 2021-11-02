@@ -18,9 +18,9 @@ export type EducationData = {
   Until: string;
 };
 export type ProfessionalData = {
-  id?: string;
   Position: string;
   Company: string;
+  [id: string]: any;
   City: string;
   From: string;
   Until: string;

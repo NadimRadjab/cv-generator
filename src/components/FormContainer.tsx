@@ -3,23 +3,17 @@ import { makeStyles } from "@mui/styles";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import PersonalInfoForm from "./Forms/PersonalInfoForm";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Experience from "./Forms/Exp/Experience";
 import ExtraSkills from "./Forms/ExtraSkills/ExtraSkills";
 import AwardsCertificate from "./Forms/Awards&Certificate/Awards&Certificate";
-import ObjectiveForm from "./Forms/Exp/ObjectiveForm";
 
-type Props = {
-  isDesigner: boolean;
-};
+type Props = {};
 const FormContainer = (props: Props) => {
   const classic = useAppSelector((state) => state.classic);
 
   const dispatch = useAppDispatch();
 
-  const { url } = useRouteMatch();
-
-  const classes = useStyles();
   return (
     <Paper
       sx={{
@@ -33,15 +27,19 @@ const FormContainer = (props: Props) => {
     >
       <Switch>
         <Route exact path="/form">
-          <PersonalInfoForm isDesigner />
+          <PersonalInfoForm />
         </Route>
         <Route exact path="/form/exp" render={() => <Experience />} />
-        <Route exact path="/form/awards" render={() => <AwardsCertificate />} />
-        <Route
-          exact
-          path="/form/extr"
-          render={() => <ExtraSkills isDesigner />}
-        />
+
+        {classic.cvIdentifire === "designer-01" && (
+          <Route
+            exact
+            path="/form/awards"
+            render={() => <AwardsCertificate />}
+          />
+        )}
+
+        <Route exact path="/form/extr" render={() => <ExtraSkills />} />
       </Switch>
     </Paper>
   );

@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Box, Typography } from "@mui/material";
 import {
   addEducationData,
@@ -15,6 +15,7 @@ import ObjectiveForm from "./ObjectiveForm";
 const Experience = () => {
   const dispatch = useAppDispatch();
   const template = useAppSelector((state) => state.classic);
+  const [params, setParams] = useState("/form/awards");
   const handleExperience = () => {
     dispatch(addExperienceData());
   };
@@ -22,18 +23,22 @@ const Experience = () => {
     dispatch(addEducationData());
   };
   const classes = useStyles();
-  const histroy = useHistory();
+
+  useEffect(() => {
+    if (template.cvIdentifire !== "designer-01") setParams("/form/extr");
+  }, []);
+
   return (
     <Box>
-      <LocationButtons location={"/form/awards"} />
+      <LocationButtons location={params} />
       <Box sx={{ display: "flex" }}>
-        <ObjectiveForm />
+        {template.cvIdentifire === "designer-01" && <ObjectiveForm />}
         <Box className={classes.formControl}>
           <Typography className={classes.title}>
             Professional Experience
           </Typography>
           {template.professionalExperience.map((exp) => (
-            <ExperienceForm isDesigner key={exp.id} exp={exp} />
+            <ExperienceForm key={exp.id} exp={exp} />
           ))}
           <Box>
             <Button onClick={handleExperience}>Add Experience</Button>
@@ -42,7 +47,7 @@ const Experience = () => {
         <Box className={classes.formControl}>
           <Typography className={classes.title}>Education</Typography>
           {template.education.map((info) => (
-            <EducationForm isDesigner key={info.id} info={info} />
+            <EducationForm key={info.id} info={info} />
           ))}
           <Box>
             <Button onClick={handleEducation}>Add Education</Button>

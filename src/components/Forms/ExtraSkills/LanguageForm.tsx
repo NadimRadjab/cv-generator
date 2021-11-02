@@ -8,7 +8,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeLanguageData,
   updateLanguageData,
@@ -17,10 +17,10 @@ import { lanuageData } from "../../../data/seeds";
 import { LanguageData } from "../../../redux/features/ClassicTemplate/types";
 type Props = {
   info: LanguageData;
-  isDesigner: boolean;
 };
 const LanguageForm = (props: Props) => {
   const dispatch = useAppDispatch();
+  const template = useAppSelector((state) => state.classic);
   const handleRemove = () => {
     dispatch(removeLanguageData(props.info.id));
   };
@@ -54,7 +54,7 @@ const LanguageForm = (props: Props) => {
         variant="standard"
         label="Language"
       />
-      {props.isDesigner && (
+      {template.cvIdentifire !== "designer-01" && (
         <FormControl sx={{ m: 1, width: "100%" }}>
           <InputLabel>Level</InputLabel>
           <Select
@@ -75,7 +75,7 @@ const LanguageForm = (props: Props) => {
           </Select>
         </FormControl>
       )}
-      {props.isDesigner && (
+      {template.cvIdentifire !== "designer-01" && (
         <Button color="error" onClick={handleRemove}>
           Remove
         </Button>

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Paper, TextField } from "@mui/material";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeAwardsData,
   updateAwardsData,
@@ -12,7 +12,6 @@ type Props = {
 };
 const AwardsForm = (props: Props) => {
   const dispatch = useAppDispatch();
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
       updateAwardsData({
