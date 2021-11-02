@@ -7,6 +7,7 @@ import {
   addAwardsData,
   addCertificationsData,
 } from "../../../redux/features/ClassicTemplate/infoSlice";
+import LocationButtons from "../../GlobalUI/LocationButtons";
 const AwardsCertificate = () => {
   const template = useAppSelector((state) => state.classic);
   const dispatch = useAppDispatch();
@@ -26,7 +27,8 @@ const AwardsCertificate = () => {
         textAlign: "center",
       }}
     >
-      <Typography fontSize={19}>Additional skills</Typography>
+      <LocationButtons location={"/form/extr"} />
+      <Typography fontSize={19}>Awards & Certifications</Typography>
       <Box>
         {template.certifications.map((info) => {
           return <CertificateForm key={info.id} info={info} />;

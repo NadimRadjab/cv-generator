@@ -10,6 +10,7 @@ import ExperienceForm from "./ExperienceForm";
 import EducationForm from "./EducationForm";
 import { useHistory } from "react-router";
 import LocationButtons from "../../GlobalUI/LocationButtons";
+import ObjectiveForm from "./ObjectiveForm";
 
 const Experience = () => {
   const dispatch = useAppDispatch();
@@ -26,12 +27,13 @@ const Experience = () => {
     <Box>
       <LocationButtons location={"/form/awards"} />
       <Box sx={{ display: "flex" }}>
+        <ObjectiveForm />
         <Box className={classes.formControl}>
           <Typography className={classes.title}>
             Professional Experience
           </Typography>
           {template.professionalExperience.map((exp) => (
-            <ExperienceForm key={exp.id} exp={exp} />
+            <ExperienceForm isDesigner key={exp.id} exp={exp} />
           ))}
           <Box>
             <Button onClick={handleExperience}>Add Experience</Button>
@@ -40,7 +42,7 @@ const Experience = () => {
         <Box className={classes.formControl}>
           <Typography className={classes.title}>Education</Typography>
           {template.education.map((info) => (
-            <EducationForm key={info.id} info={info} />
+            <EducationForm isDesigner key={info.id} info={info} />
           ))}
           <Box>
             <Button onClick={handleEducation}>Add Education</Button>

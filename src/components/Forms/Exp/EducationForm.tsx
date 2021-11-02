@@ -10,6 +10,7 @@ import FormControllContainer from "../../GlobalUI/FormControllContainer";
 import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
 type Props = {
   info: EducationData;
+  isDesigner: boolean;
 };
 const EducationForm = (props: Props) => {
   const dispatch = useAppDispatch();
@@ -29,17 +30,18 @@ const EducationForm = (props: Props) => {
   const renderTextField = () => {
     return Object.keys(props.info).map((key, i) => {
       if (key !== "id") {
-        return (
-          <TextField
-            key={i}
-            value={props.info[key]}
-            onChange={handleChange}
-            name={key}
-            sx={{ p: 2, m: 2 }}
-            variant="standard"
-            label={key}
-          />
-        );
+        if (props.isDesigner && key !== "City")
+          return (
+            <TextField
+              key={i}
+              value={props.info[key]}
+              onChange={handleChange}
+              name={key}
+              sx={{ p: 2, m: 2 }}
+              variant="standard"
+              label={key}
+            />
+          );
       }
     });
   };

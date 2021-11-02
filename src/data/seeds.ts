@@ -17,6 +17,15 @@ export type EducationData = {
   From: string;
   Until: string;
 };
+export type ProfessionalData = {
+  id?: string;
+  Position: string;
+  Company: string;
+  City: string;
+  From: string;
+  Until: string;
+  Description: string;
+};
 export const personalInfoData: PersonalData = {
   ["Full Name"]: "",
   Street: "",
@@ -26,14 +35,16 @@ export const personalInfoData: PersonalData = {
   ["Email-Address"]: "",
   ["Phone Number"]: "",
   ["Matrial Status"]: "",
+  Title: "",
   Site: "",
   Nationality: "",
 };
-export const professionalExperienceData: { [key: string]: string } = {
+export const professionalExperienceData: ProfessionalData = {
   Position: "",
   Company: "",
   City: "",
   From: "",
+  Description: "",
   Until: "",
 };
 export const educationData: EducationData = {

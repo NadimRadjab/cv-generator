@@ -8,10 +8,11 @@ export const useStyles = makeStyles({
     display: "block",
     marginBottom: "0.5cm ",
     boxShadow: "0 0 0.5cm rgba(0,0,0,0.5)",
+    position: "relative",
   },
   root: {
     display: "grid",
-    gridTemplateColumns: "repeat(1,30% 70%)",
+    gridTemplateColumns: "30% 70%",
     height: "100%",
   },
 });

@@ -13,7 +13,11 @@ export const TextBox: React.FC<Props> = (props: Props) => {
       width={props.width}
       sx={{ justifyContent: "center", alignItems: "center" }}
     >
-      <Typography color={props.color} fontSize="11pt">
+      <Typography
+        color={props.color}
+        fontSize="11pt"
+        sx={{ wordWrap: "break-word" }}
+      >
         {props.children}
       </Typography>
     </Box>

@@ -24,7 +24,7 @@ export const personalInfoDesignerData: any = {
 };
 
 export const IconsData: any = {
-  ["Matrial Status"]: <PersonIcon fontSize="small" />,
+  ["Matrial Status"]: <PersonIcon fontSize="small"></PersonIcon>,
   ["Date of Birth"]: <PermContactCalendarIcon fontSize="small" />,
   ["Phone Number"]: <LocalPhoneIcon fontSize="small" />,
   ["Email-Address"]: <EmailIcon fontSize="small" />,

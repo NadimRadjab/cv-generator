@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -13,70 +14,72 @@ import {
   updateLanguageData,
 } from "../../../redux/features/ClassicTemplate/infoSlice";
 import { lanuageData } from "../../../data/seeds";
-import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
+import { LanguageData } from "../../../redux/features/ClassicTemplate/types";
 type Props = {
-  info: { id: string; language: string; level: string };
+  info: LanguageData;
+  isDesigner: boolean;
 };
 const LanguageForm = (props: Props) => {
   const dispatch = useAppDispatch();
-  const [items, setItems] = useState({
-    language: "",
-    level: "",
-  });
-  const handleChange = (e: any) => {
-    setItems({ ...items, [e.target.name]: e.target.value });
+  const handleRemove = () => {
+    dispatch(removeLanguageData(props.info.id));
   };
-  useEffect(() => {
+  const handleChange = (e: any) => {
     dispatch(
       updateLanguageData({
-        language: items.language,
-        level: items.level,
+        name: e.target.name,
+        value: e.target.value,
         id: props.info.id,
       })
     );
-  }, [dispatch, items]);
-  const handleRemove = () => {
-    dispatch(removeLanguageData(props.info.id));
   };
   return (
     <Paper
       sx={{
-        mt: 2,
+        m: 2,
+        p: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "cneter",
+        justifyContent: "center",
+        width: "100%",
       }}
     >
       <TextField
         onChange={handleChange}
         name="language"
         fullWidth
-        value={items.language}
-        sx={{ p: 2, m: 2, width: "80%" }}
+        value={props.info.language}
+        sx={{ m: 2 }}
         variant="standard"
         label="Language"
       />
-      <FormControl sx={{ width: "80%", m: 1 }} fullWidth>
-        <InputLabel>Level</InputLabel>
-        <Select
-          name="level"
-          onChange={handleChange}
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Level"
-          value={items.level}
-        >
-          {Object.keys(lanuageData).map((value, i) => {
-            return (
-              <MenuItem value={value} key={i + value}>
-                {value}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      <DeleteButton onRemove={handleRemove}>Remove</DeleteButton>
+      {props.isDesigner && (
+        <FormControl sx={{ m: 1, width: "100%" }}>
+          <InputLabel>Level</InputLabel>
+          <Select
+            name="level"
+            onChange={handleChange}
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Level"
+            value={props.info.level}
+          >
+            {Object.keys(lanuageData).map((value, i) => {
+              return (
+                <MenuItem value={value} key={i + value}>
+                  {value}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      )}
+      {props.isDesigner && (
+        <Button color="error" onClick={handleRemove}>
+          Remove
+        </Button>
+      )}
     </Paper>
   );
 };

@@ -24,17 +24,18 @@ const ExperienceForm = (props: any) => {
   const renderTextField = () => {
     return Object.keys(props.exp).map((key, i) => {
       if (key !== "id") {
-        return (
-          <TextField
-            key={i}
-            onChange={handleChange}
-            name={key}
-            value={props.exp[key]}
-            sx={{ p: 2, m: 2 }}
-            variant="standard"
-            label={key}
-          />
-        );
+        if (props.isDesigner && key !== "City")
+          return (
+            <TextField
+              key={i}
+              onChange={handleChange}
+              name={key}
+              value={props.exp[key]}
+              sx={{ p: 2, m: 2 }}
+              variant="standard"
+              label={key}
+            />
+          );
       }
     });
   };

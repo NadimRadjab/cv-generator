@@ -1,21 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-
+import placeholder from "../../../assets/imgs/placeholder.jpeg";
 import {
   EducationData,
   educationData,
   PersonalData,
   personalInfoData,
+  ProfessionalData,
   professionalExperienceData,
 } from "../../../data/seeds";
+import {
+  AwardsData,
+  CertificationData,
+  LanguageData,
+  PayloadDataNestedUpdate,
+} from "./types";
 interface InfoState {
   personalInfo: PersonalData;
-  professionalExperience: { [key: string]: string; id: string }[];
+  professionalExperience: ProfessionalData[];
   education: EducationData[];
   computerSkills: string;
-  languages: { id: string; language: string; level: string }[];
-  certifications: { id: string; certification: string; year: string }[];
-  awards: { id: string; awards: string; year: string }[];
+  languages: LanguageData[];
+  certifications: CertificationData[];
+  awards: AwardsData[];
   image: string;
   description: string;
 }
@@ -26,13 +33,13 @@ type PayloadData = {
 };
 const initialState: InfoState = {
   personalInfo: personalInfoData,
-  professionalExperience: [{ id: uuidv4(), ...professionalExperienceData }],
+  professionalExperience: [{ ...professionalExperienceData, id: uuidv4() }],
   education: [{ ...educationData, id: uuidv4() }],
   computerSkills: "",
   description: "",
   certifications: [{ id: uuidv4(), certification: "", year: "" }],
-  awards: [{ id: uuidv4(), awards: "", year: "" }],
-  image: "",
+  awards: [{ id: uuidv4(), award: "", year: "" }],
+  image: placeholder,
   languages: [{ id: uuidv4(), language: "", level: "" }],
 };
 
@@ -40,16 +47,13 @@ export const infoSlice = createSlice({
   name: "info",
   initialState,
   reducers: {
-    updateData: (
-      state,
-      action: PayloadAction<{ key: string; text: string }>
-    ) => {
+    updateData: (state, action: PayloadAction<PayloadData>) => {
       state.personalInfo[action.payload.key] = action.payload.text;
     },
     addExperienceData: (state) => {
       state.professionalExperience.push({
-        id: uuidv4(),
         ...professionalExperienceData,
+        id: uuidv4(),
       });
     },
     removeExperienceData: (state, action) => {
@@ -101,14 +105,13 @@ export const infoSlice = createSlice({
     },
     updateLanguageData: (
       state,
-      action: PayloadAction<{ id: string; language: string; level: string }>
+      action: PayloadAction<PayloadDataNestedUpdate>
     ) => {
       state.languages = state.languages.map((info) => {
         if (info.id === action.payload.id) {
           return {
             ...info,
-            language: action.payload.language,
-            level: action.payload.level,
+            [action.payload.name]: action.payload.value,
           };
         }
         return { ...info };
@@ -125,14 +128,13 @@ export const infoSlice = createSlice({
 
     updateCertificationsData: (
       state,
-      action: PayloadAction<{ id: string; award: string; year: string }>
+      action: PayloadAction<PayloadDataNestedUpdate>
     ) => {
       state.certifications = state.certifications.map((info) => {
         if (info.id === action.payload.id) {
           return {
             ...info,
-            certification: action.payload.award,
-            year: action.payload.year,
+            [action.payload.name]: action.payload.value,
           };
         }
         return { ...info };
@@ -147,21 +149,20 @@ export const infoSlice = createSlice({
     addAwardsData: (state) => {
       state.awards.push({
         id: uuidv4(),
-        awards: "",
+        award: "",
         year: "",
       });
     },
 
     updateAwardsData: (
       state,
-      action: PayloadAction<{ id: string; award: string; year: string }>
+      action: PayloadAction<PayloadDataNestedUpdate>
     ) => {
       state.awards = state.awards.map((info) => {
         if (info.id === action.payload.id) {
           return {
             ...info,
-            awards: action.payload.award,
-            year: action.payload.year,
+            [action.payload.name]: action.payload.value,
           };
         }
         return { ...info };
@@ -173,11 +174,15 @@ export const infoSlice = createSlice({
     updateImage: (state, action) => {
       state.image = action.payload;
     },
+    updateDescription: (state, action: PayloadAction<{ text: string }>) => {
+      state.description = action.payload.text;
+    },
   },
 });
 
 export const {
   updateImage,
+  updateDescription,
   updateAwardsData,
   addAwardsData,
   removeAwardsData,

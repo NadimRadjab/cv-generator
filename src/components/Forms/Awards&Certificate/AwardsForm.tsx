@@ -1,47 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { TextField } from "@mui/material";
+import { Paper, TextField } from "@mui/material";
 import { useAppDispatch } from "../../../redux/hooks";
 import {
   removeAwardsData,
   updateAwardsData,
 } from "../../../redux/features/ClassicTemplate/infoSlice";
 import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
-import FormControllContainer from "../../GlobalUI/FormControllContainer";
+import { AwardsData } from "../../../redux/features/ClassicTemplate/types";
 type Props = {
-  info: { id: string; awards: string; year: string };
+  info: AwardsData;
 };
 const AwardsForm = (props: Props) => {
   const dispatch = useAppDispatch();
-  const [items, setItems] = useState({
-    award: "",
-    year: "",
-  });
-  const handleChange = (e: any) => {
-    setItems({ ...items, [e.target.name]: e.target.value });
-  };
-  useEffect(() => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
       updateAwardsData({
-        award: items.award,
-        year: items.year,
+        name: e.target.name,
+        value: e.target.value,
         id: props.info.id,
       })
     );
-  }, [dispatch, items]);
+  };
+
   const handleRemove = () => {
     dispatch(removeAwardsData(props.info.id));
   };
   return (
-    <FormControllContainer>
+    <Paper sx={{ m: 2 }}>
       <TextField
         onChange={handleChange}
         name="year"
         sx={{ p: 2, m: 2 }}
         variant="standard"
+        value={props.info.year}
         label="Award Year"
       />
       <TextField
         multiline
+        value={props.info.award}
         onChange={handleChange}
         name="award"
         sx={{ p: 2, m: 2 }}
@@ -49,7 +46,7 @@ const AwardsForm = (props: Props) => {
         label="Award"
       />
       <DeleteButton onRemove={handleRemove}>Remove</DeleteButton>
-    </FormControllContainer>
+    </Paper>
   );
 };
 

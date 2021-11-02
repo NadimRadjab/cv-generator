@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
@@ -48,8 +48,9 @@ const PersonalInfoForm: React.FC<Props> = ({ isDesigner }) => {
   const classes = useStyles();
 
   return (
-    <Box>
+    <Box textAlign="center">
       <LocationButtons location={"form/exp"} />
+      <Typography fontSize={19}>Personal Information</Typography>
       <FormControllContainer>
         {renderTextField()}
         <label className={classes.labelPic} htmlFor="picture" id="picLabel">

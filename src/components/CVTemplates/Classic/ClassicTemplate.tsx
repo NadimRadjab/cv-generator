@@ -1,12 +1,11 @@
-import { Button, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { LegacyRef } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import InfoContainer from "./UI/InfoContainer";
-import Pdf from "react-to-pdf";
+
 import { useAppSelector } from "../../../redux/hooks";
 import DesignerTemplate from "../Designer/DesignerTemplate";
-
 interface Props {
   children?: React.ReactNode;
   color?: string;
@@ -35,6 +34,7 @@ const ClassicTemplate = () => {
   const classes = useStyles();
   const classic = useAppSelector((state) => state.classic);
   let arr = [] as any;
+
   const renderPersonalInfoText = () => {
     return Object.keys(classic.personalInfo).map((key, i) => {
       if (
@@ -104,7 +104,7 @@ const ClassicTemplate = () => {
       </InfoContainer>
     ));
   };
-  const ref: LegacyRef<HTMLDivElement> = React.createRef();
+
   return (
     <Container
       sx={{
@@ -115,14 +115,18 @@ const ClassicTemplate = () => {
         flexDirection: "column",
       }}
     >
-      <Pdf targetRef={ref} filename="cv.pdf">
-        {({ toPdf }: any) => (
-          <Button variant="contained" sx={{ mb: 4 }} onClick={toPdf}>
-            Download Pdf
-          </Button>
-        )}
-      </Pdf>
-      <DesignerTemplate />
+      {/* <Pdf targetRef={ref} filename="cv.pdf">
+        {({ toPdf }: any) => {
+          return (
+            <Button variant="contained" sx={{ mb: 4 }} onClick={toPdf}>
+              Download Pdf
+            </Button>
+          );
+        }}
+      </Pdf> */}
+
+      {/* <DesignerTemplate handleRef={handleRef} /> */}
+
       {/* <div ref={ref} className={classes.cv}>
 
         <Box
@@ -158,7 +162,7 @@ const ClassicTemplate = () => {
             />
           </Box>
         </Box>
-        <Box className={classes.wraperContainer}>
+        <Box className={classes.wraperContainer}
           <TitleText>Professional Experience</TitleText>
 
           {renderExperience()}
@@ -189,6 +193,7 @@ const ClassicTemplate = () => {
     </Container>
   );
 };
+
 const useStyles = makeStyles({
   cv: {
     background: "white",

@@ -1,14 +1,17 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import cvimage from "../assets/imgs/outstanding_10.png";
+import designerStyle from "../assets/imgs/DesignerStyle.png";
 import classicCv from "../assets/imgs/Classic.png";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { makeStyles } from "@mui/styles";
 
 const Selector = () => {
-  const [imgContainer, setImgContainer] = useState<any>([classicCv, cvimage]);
+  const [imgContainer, setImgContainer] = useState<any>([
+    classicCv,
+    designerStyle,
+  ]);
   const [imgNumber, setImgNumber] = useState<number>(0);
   const [slide, setSlide] = useState(1);
   const handleForward = () => {

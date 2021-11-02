@@ -1,10 +1,11 @@
 import React from "react";
 import { Paper, TextField } from "@mui/material";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { updateComputerData } from "../../../redux/features/ClassicTemplate/infoSlice";
 
 const ComputerSkillsForm = () => {
   const dispatch = useAppDispatch();
+  const value = useAppSelector((state) => state.classic.computerSkills);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
       updateComputerData({
@@ -14,13 +15,23 @@ const ComputerSkillsForm = () => {
   };
 
   return (
-    <Paper sx={{}}>
+    <Paper
+      sx={{
+        m: 2,
+        p: 2,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
       <TextField
         multiline
         fullWidth
+        value={value}
         onChange={handleChange}
         name="computerSkills"
-        sx={{ p: 2, m: 2, width: "80%" }}
+        sx={{ m: 2 }}
         variant="standard"
         label="Computer Skills"
       />
