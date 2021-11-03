@@ -4,9 +4,9 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeAwardsData,
   updateAwardsData,
-} from "../../../redux/features/ClassicTemplate/infoSlice";
+} from "../../../redux/features/Info/infoSlice";
 import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
-import { AwardsData } from "../../../redux/features/ClassicTemplate/types";
+import { AwardsData } from "../../../redux/features/Info/types";
 type Props = {
   info: AwardsData;
 };

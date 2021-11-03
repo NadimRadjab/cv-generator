@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeExperienceData,
   updateExperienceData,
-} from "../../../redux/features/ClassicTemplate/infoSlice";
+} from "../../../redux/features/Info/infoSlice";
 import FormControllContainer from "../../GlobalUI/FormControllContainer";
 import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
 import { ProfessionalData } from "../../../data/seeds";
@@ -28,35 +28,31 @@ const ExperienceForm = (props: Props) => {
   };
   const renderTextField = () => {
     return Object.keys(props.exp).map((key, i) => {
+      let field = (
+        <TextField
+          key={i}
+          multiline={key === "Description" ? true : false}
+          value={props.exp[key]}
+          onChange={handleChange}
+          name={key}
+          sx={{ p: 2, m: 2 }}
+          variant="standard"
+          label={key}
+        />
+      );
       if (key !== "id") {
-        if (template.cvIdentifire === "designer-01" && key !== "City") {
-          return (
-            <TextField
-              key={i}
-              multiline={key === "Description" ? true : false}
-              value={props.exp[key]}
-              onChange={handleChange}
-              name={key}
-              sx={{ p: 2, m: 2 }}
-              variant="standard"
-              label={key}
-            />
-          );
-        } else if (
-          template.cvIdentifire === "classicCv-01" &&
-          key !== "Description"
-        )
-          return (
-            <TextField
-              key={i}
-              value={props.exp[key]}
-              onChange={handleChange}
-              name={key}
-              sx={{ p: 2, m: 2 }}
-              variant="standard"
-              label={key}
-            />
-          );
+        switch (template.cvIdentifire) {
+          case "deigner-01":
+            if (key !== "City") return field;
+            break;
+          case "classicCv-01":
+            if (key !== "Description") return field;
+            break;
+          case "casual-01":
+            return field;
+          default:
+            return field;
+        }
       }
     });
   };

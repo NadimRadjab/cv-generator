@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   addAwardsData,
   addCertificationsData,
-} from "../../../redux/features/ClassicTemplate/infoSlice";
+} from "../../../redux/features/Info/infoSlice";
 import LocationButtons from "../../GlobalUI/LocationButtons";
 import { useHistory } from "react-router";
 const AwardsCertificate = () => {

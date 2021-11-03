@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import infoSlice from "./features/ClassicTemplate/infoSlice";
+import infoSlice from "./features/Info/infoSlice";
 import designerSlice from "./features/DesignerTemplate/designerSlice";
 export const store = configureStore({
   reducer: {

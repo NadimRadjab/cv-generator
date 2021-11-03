@@ -4,6 +4,7 @@ import Pdf from "react-to-pdf";
 import { useAppSelector } from "../redux/hooks";
 import DesignerTemplate from "../components/CVTemplates/Designer/DesignerTemplate";
 import ClassicTemplate from "./CVTemplates/Classic/ClassicTemplate";
+import CasualTemplate from "./CVTemplates/Casual/CasualTemplate";
 const CvContainer = () => {
   const [ref, setRef] = useState<React.LegacyRef<HTMLDivElement>>(null);
   const template = useAppSelector((state) => state.classic);
@@ -29,12 +30,13 @@ const CvContainer = () => {
           );
         }}
       </Pdf>
-
+      <CasualTemplate />
+      {/* 
       {template.cvIdentifire === "designer-01" ? (
         <DesignerTemplate handleRef={handleRef} />
       ) : (
         <ClassicTemplate />
-      )}
+      )} */}
     </Container>
   );
 };

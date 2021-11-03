@@ -4,7 +4,7 @@ import { Button, Box, Typography } from "@mui/material";
 import {
   addEducationData,
   addExperienceData,
-} from "../../../redux/features/ClassicTemplate/infoSlice";
+} from "../../../redux/features/Info/infoSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import ExperienceForm from "./ExperienceForm";
 import EducationForm from "./EducationForm";
@@ -32,7 +32,7 @@ const Experience = () => {
     <Box>
       <LocationButtons location={params} />
       <Box sx={{ display: "flex" }}>
-        {template.cvIdentifire === "designer-01" && <ObjectiveForm />}
+        {template.cvIdentifire !== "classicCv-01" && <ObjectiveForm />}
         <Box className={classes.formControl}>
           <Typography className={classes.title}>
             Professional Experience

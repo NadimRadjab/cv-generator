@@ -1,7 +1,7 @@
 import { Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { updateDescription } from "../../../redux/features/ClassicTemplate/infoSlice";
+import { updateDescription } from "../../../redux/features/Info/infoSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 
 const ObjectiveForm = () => {

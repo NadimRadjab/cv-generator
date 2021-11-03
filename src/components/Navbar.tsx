@@ -4,10 +4,14 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { NavLink } from "react-router-dom";
 import { global } from "../styles/global";
-import { Typography } from "@mui/material";
-
+import { Button, Typography } from "@mui/material";
+import ExampelModal from "./ExampelModal";
+import { useHistory } from "react-router";
+import { useAppSelector } from "../redux/hooks";
 const Navbar = () => {
   const classes = global();
+  const history = useHistory();
+  const template = useAppSelector((state) => state.classic);
   return (
     <Box sx={{ width: "100%" }}>
       <AppBar
@@ -31,15 +35,25 @@ const Navbar = () => {
               width: "40%",
             }}
           >
-            <NavLink className={classes.link} to="/" color="inherit">
+            <Button
+              style={{ color: "white" }}
+              variant="outlined"
+              onClick={() => history.push("/")}
+            >
               Home
-            </NavLink>
-            <NavLink className={classes.link} to="/preview">
-              Preview
-            </NavLink>
-            <NavLink className={classes.link} to="/" color="inherit">
-              View Example
-            </NavLink>
+            </Button>
+            {template.cvIdentifire.length ? (
+              <Box sx={{ display: "flex" }}>
+                <Button
+                  style={{ color: "white" }}
+                  variant="outlined"
+                  onClick={() => history.push("/preview")}
+                >
+                  Preview
+                </Button>
+                <ExampelModal />
+              </Box>
+            ) : null}
           </Box>
         </Toolbar>
       </AppBar>

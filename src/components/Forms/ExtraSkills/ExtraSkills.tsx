@@ -3,7 +3,7 @@ import ComputerSkillsForm from "./ComputerSkillsForm";
 import LanguageForm from "./LanguageForm";
 import { Button, Box, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { addLanguageData } from "../../../redux/features/ClassicTemplate/infoSlice";
+import { addLanguageData } from "../../../redux/features/Info/infoSlice";
 import LocationButtons from "../../GlobalUI/LocationButtons";
 
 const ExtraSkills = () => {

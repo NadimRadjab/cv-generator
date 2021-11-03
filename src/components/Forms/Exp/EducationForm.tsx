@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeEducationData,
   updateEducationData,
-} from "../../../redux/features/ClassicTemplate/infoSlice";
+} from "../../../redux/features/Info/infoSlice";
 import { EducationData } from "../../../data/seeds";
 import FormControllContainer from "../../GlobalUI/FormControllContainer";
 import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";

@@ -12,9 +12,9 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeLanguageData,
   updateLanguageData,
-} from "../../../redux/features/ClassicTemplate/infoSlice";
+} from "../../../redux/features/Info/infoSlice";
 import { lanuageData } from "../../../data/seeds";
-import { LanguageData } from "../../../redux/features/ClassicTemplate/types";
+import { LanguageData } from "../../../redux/features/Info/types";
 type Props = {
   info: LanguageData;
 };

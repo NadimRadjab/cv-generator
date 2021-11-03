@@ -14,4 +14,9 @@ export const global = makeStyles({
     textDecoration: "none",
     "&:hover": {},
   },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "30% 70%",
+    height: "100%",
+  },
 });

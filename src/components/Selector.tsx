@@ -7,7 +7,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { makeStyles } from "@mui/styles";
 import { useAppDispatch } from "../redux/hooks";
-import { updateCvIdentifire } from "../redux/features/ClassicTemplate/infoSlice";
+import { updateCvIdentifire } from "../redux/features/Info/infoSlice";
 import { useHistory } from "react-router";
 
 const Selector = () => {
@@ -19,7 +19,13 @@ const Selector = () => {
     id: "designer-01",
     image: designerStyle,
   };
+  const casual = {
+    id: "casual-01",
+    image: designerStyle,
+  };
+
   const [imgContainer, setImgContainer] = useState<any>([classic, designer]);
+
   const [imgNumber, setImgNumber] = useState<number>(0);
   const [slide, setSlide] = useState(1);
   const handleForward = () => {

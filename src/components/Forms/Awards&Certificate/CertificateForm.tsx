@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../../redux/hooks";
 import {
   removeCertificationsData,
   updateCertificationsData,
-} from "../../../redux/features/ClassicTemplate/infoSlice";
+} from "../../../redux/features/Info/infoSlice";
 import DeleteButton from "../../CVTemplates/Classic/UI/DeleteButton";
 type Props = {
   info: { id: string; certification?: string; year?: string };

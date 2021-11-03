@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-import { personalInfoDesignerData } from "../../../data/designerData";
-
 import {
   EducationData,
   educationData,

@@ -2,10 +2,7 @@ import React from "react";
 import { TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import {
-  updateData,
-  updateImage,
-} from "../../redux/features/ClassicTemplate/infoSlice";
+import { updateData, updateImage } from "../../redux/features/Info/infoSlice";
 import FormControllContainer from "../GlobalUI/FormControllContainer";
 import { Box } from "@mui/system";
 import LocationButtons from "../GlobalUI/LocationButtons";
@@ -49,7 +46,16 @@ const PersonalInfoForm: React.FC<Props> = () => {
             return field;
           }
           break;
+        case "casual-01":
+          if (
+            key !== "Title" &&
+            key !== "Nationality" &&
+            key !== "Zip/City" &&
+            key !== "Street"
+          )
+            return field;
 
+          break;
         default:
           return field;
       }
@@ -85,8 +91,8 @@ const useStyles = makeStyles({
     padding: 5,
     marginLeft: 3,
     height: "30px",
-    width: "90%",
-    color: "#12824C",
+    gridColumn: "1/3",
+    color: "#1976d2",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { LegacyRef, useEffect, useRef } from "react";
-import { IconsData } from "../../../data/designerData";
 import { personalInfoData } from "../../../data/seeds";
 import { useAppSelector } from "../../../redux/hooks";
 import { useStyles } from "../../../styles/DesignerTemplate";
