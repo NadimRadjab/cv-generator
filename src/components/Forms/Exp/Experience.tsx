@@ -8,10 +8,9 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import ExperienceForm from "./ExperienceForm";
 import EducationForm from "./EducationForm";
-import { useHistory } from "react-router";
 import LocationButtons from "../../GlobalUI/LocationButtons";
 import ObjectiveForm from "./ObjectiveForm";
-
+import sizes from "../../../styles/sizes";
 const Experience = () => {
   const dispatch = useAppDispatch();
   const template = useAppSelector((state) => state.classic);
@@ -31,7 +30,7 @@ const Experience = () => {
   return (
     <Box>
       <LocationButtons location={params} />
-      <Box sx={{ display: "flex" }}>
+      <Box className={classes.root}>
         {template.cvIdentifire !== "classicCv-01" && <ObjectiveForm />}
         <Box className={classes.formControl}>
           <Typography className={classes.title}>
@@ -58,6 +57,14 @@ const Experience = () => {
   );
 };
 const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    [sizes.down("lg")]: {
+      flexDirection: "column",
+      width: "100%",
+      alignItems: "center",
+    },
+  },
   formControl: {
     display: "flex",
     alignItems: "center",

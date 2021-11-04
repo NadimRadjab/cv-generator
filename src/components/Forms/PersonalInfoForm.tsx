@@ -51,7 +51,8 @@ const PersonalInfoForm: React.FC<Props> = () => {
             key !== "Title" &&
             key !== "Nationality" &&
             key !== "Zip/City" &&
-            key !== "Street"
+            key !== "Street" &&
+            key !== "Site"
           )
             return field;
 

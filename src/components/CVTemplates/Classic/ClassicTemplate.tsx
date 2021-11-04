@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect, LegacyRef, useRef } from "react";
 import { makeStyles } from "@mui/styles";
 import InfoContainer from "./UI/InfoContainer";
 import { useAppSelector } from "../../../redux/hooks";
@@ -28,7 +28,7 @@ const TitleText: React.FC<Props> = (props: Props) => {
   );
 };
 
-const ClassicTemplate = () => {
+const ClassicTemplate = (props: any) => {
   const classes = useStyles();
   const classic = useAppSelector((state) => state.classic);
   let arr = [] as any;
@@ -103,8 +103,12 @@ const ClassicTemplate = () => {
     ));
   };
 
+  const ref: LegacyRef<HTMLDivElement> = useRef(null);
+  useEffect(() => {
+    props.handleRef(ref);
+  }, []);
   return (
-    <div className={classes.cv}>
+    <div ref={ref} className={classes.cv}>
       <Box
         justifyContent="center"
         alignItems="center"
@@ -160,11 +164,6 @@ const ClassicTemplate = () => {
           </Box>
         </InfoContainer>
       </Box>
-
-      <InfoContainer>
-        <TextBox>Driving Licence:</TextBox>
-        <TextBox>C & B</TextBox>
-      </InfoContainer>
     </div>
   );
 };

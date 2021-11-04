@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   removeExperienceData,

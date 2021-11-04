@@ -29,31 +29,31 @@ const EducationForm = (props: Props) => {
 
   const renderTextField = () => {
     return Object.keys(props.info).map((key, i) => {
+      let field = (
+        <TextField
+          key={i}
+          value={props.info[key]}
+          onChange={handleChange}
+          name={key}
+          sx={{ p: 2, m: 2 }}
+          variant="standard"
+          label={key}
+        />
+      );
+
       if (key !== "id") {
-        if (template.cvIdentifire === "designer-01" && key !== "City") {
-          return (
-            <TextField
-              key={i}
-              value={props.info[key]}
-              onChange={handleChange}
-              name={key}
-              sx={{ p: 2, m: 2 }}
-              variant="standard"
-              label={key}
-            />
-          );
-        } else if (template.cvIdentifire === "classicCv-01")
-          return (
-            <TextField
-              key={i}
-              value={props.info[key]}
-              onChange={handleChange}
-              name={key}
-              sx={{ p: 2, m: 2 }}
-              variant="standard"
-              label={key}
-            />
-          );
+        switch (template.cvIdentifire) {
+          case "designer-01":
+            if (template.cvIdentifire === "designer-01" && key !== "City") {
+              return field;
+            }
+            break;
+          case "classicCv-01":
+          case "casual-01":
+            return field;
+          default:
+            return field;
+        }
       }
     });
   };

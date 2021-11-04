@@ -1,7 +1,6 @@
-import { Container, Paper, Typography } from "@mui/material";
-import { borderBottom, Box } from "@mui/system";
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
-import { TextBox } from "../../../GlobalUI/GlobalUI";
 
 type Props = {
   children?: React.ReactNode;

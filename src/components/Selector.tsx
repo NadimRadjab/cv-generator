@@ -1,5 +1,5 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, height } from "@mui/system";
 import React, { useState } from "react";
 import designerStyle from "../assets/imgs/DesignerStyle.png";
 import classicCv from "../assets/imgs/Classic.png";
@@ -9,23 +9,25 @@ import { makeStyles } from "@mui/styles";
 import { useAppDispatch } from "../redux/hooks";
 import { updateCvIdentifire } from "../redux/features/Info/infoSlice";
 import { useHistory } from "react-router";
+import casualImg from "../assets/imgs/casual.png";
+import sizes from "../styles/sizes";
 
 const Selector = () => {
-  const classic = {
-    id: "classicCv-01",
-    image: classicCv,
-  };
-  const designer = {
-    id: "designer-01",
-    image: designerStyle,
-  };
-  const casual = {
-    id: "casual-01",
-    image: designerStyle,
-  };
-
-  const [imgContainer, setImgContainer] = useState<any>([classic, designer]);
-
+  const cvs = [
+    {
+      id: "classicCv-01",
+      image: classicCv,
+    },
+    {
+      id: "designer-01",
+      image: designerStyle,
+    },
+    {
+      id: "casual-01",
+      image: casualImg,
+    },
+  ];
+  const [imgContainer, setImgContainer] = useState<any>(cvs);
   const [imgNumber, setImgNumber] = useState<number>(0);
   const [slide, setSlide] = useState(1);
   const handleForward = () => {
@@ -61,25 +63,17 @@ const Selector = () => {
   return (
     <Container
       sx={{
-        height: "100%",
+        height: "85vh",
         alignItems: "center",
         display: "flex",
+        justifyContent: "center",
         flexDirection: "column",
       }}
     >
       <Box m={2}>
         <Typography fontSize={22}>Choose a Template</Typography>
       </Box>
-      <Paper
-        sx={{
-          height: "80%",
-          width: "90%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#D3D3D3",
-        }}
-      >
+      <Paper className={classes.root}>
         <Button
           sx={{
             opacity: imgNumber === 0 ? 0 : 1,
@@ -117,6 +111,17 @@ const Selector = () => {
 };
 
 const useStyles = makeStyles({
+  root: {
+    width: "90%",
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#D3D3D3",
+    [sizes.down("sm")]: {
+      height: 500,
+    },
+  },
   image: {
     width: "63%",
     opacity: 1,
@@ -125,6 +130,9 @@ const useStyles = makeStyles({
       cursor: "pointer",
       transform: "scale(1.1)",
       transition: "transform 0.5s linear",
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
     },
   },
 });

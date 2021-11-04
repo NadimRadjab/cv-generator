@@ -11,6 +11,12 @@ const CvContainer = () => {
   const handleRef = (ref: React.LegacyRef<HTMLDivElement>) => {
     setRef(ref);
   };
+  let cv;
+  if (template.cvIdentifire === "designer-01") {
+    cv = <DesignerTemplate handleRef={handleRef} />;
+  } else if (template.cvIdentifire === "casual-01") {
+    cv = <CasualTemplate handleRef={handleRef} />;
+  } else cv = <ClassicTemplate handleRef={handleRef} />;
   return (
     <Container
       sx={{
@@ -30,13 +36,7 @@ const CvContainer = () => {
           );
         }}
       </Pdf>
-      <CasualTemplate />
-      {/* 
-      {template.cvIdentifire === "designer-01" ? (
-        <DesignerTemplate handleRef={handleRef} />
-      ) : (
-        <ClassicTemplate />
-      )} */}
+      {cv}
     </Container>
   );
 };
