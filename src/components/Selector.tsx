@@ -36,7 +36,7 @@ const Selector = () => {
     setTimeout(() => {
       setImgNumber(imgNumber + 1);
       setSlide(1);
-    }, 500);
+    }, 700);
   };
 
   const handleBackward = () => {
@@ -46,7 +46,7 @@ const Selector = () => {
     setTimeout(() => {
       setImgNumber(imgNumber - 1);
       setSlide(1);
-    }, 500);
+    }, 700);
   };
   const classes = useStyles();
   const dispatch = useAppDispatch();

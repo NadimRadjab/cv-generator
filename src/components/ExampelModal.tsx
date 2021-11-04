@@ -3,10 +3,9 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useAppSelector } from "../redux/hooks";
-const ExampelModal = () => {
+const ExampelModal = (props: any) => {
   const [open, setOpen] = React.useState(false);
   const template = useAppSelector((state) => state.classic.exampleImage);
   const handleClickOpen = () => {
@@ -20,11 +19,13 @@ const ExampelModal = () => {
   return (
     <div>
       <Button
-        style={{ color: "white" }}
-        variant="outlined"
+        style={{
+          color: props.isMenu ? "black" : "white",
+          margin: props.isMenu ? 4 : 0,
+        }}
         onClick={handleClickOpen}
       >
-        View Example
+        {props.isMenu ? "Example" : " View Example"}
       </Button>
       <Dialog
         open={open}
